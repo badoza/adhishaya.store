@@ -1,77 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adhishaya Herbs & Food Products</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Standard Pre-compiled CSS (Adblocker Safe) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <style>
-        /* --- CUSTOM BRAND COLORS & UTILITIES --- */
-        .font-sans { font-family: 'Poppins', sans-serif !important; }
-        .font-serif { font-family: 'Playfair Display', serif !important; }
-
-        /* Brand Colors mapped to custom classes */
-        .text-brand-green { color: #2A5C2F; }
-        .bg-brand-green { background-color: #2A5C2F; }
-        .border-brand-green { border-color: #2A5C2F; }
-        .hover\:text-brand-green:hover { color: #2A5C2F; }
-        .hover\:bg-brand-green:hover { background-color: #2A5C2F; }
-        
-        .text-brand-gold { color: #C48B31; }
-        .bg-brand-gold { background-color: #C48B31; }
-        .border-brand-gold { border-color: #C48B31; }
-        .hover\:text-brand-gold:hover { color: #C48B31; }
-
-        .text-brand-peach { color: #F7E5CF; }
-        .bg-brand-peach { background-color: #F7E5CF; }
-        
-        /* The specific cream background for icons requested by user */
-        .bg-cream-light { background-color: #FDF6EA; }
-        .rounded-4xl { border-radius: 2rem; }
-
-        .text-brand-dark { color: #1A1A1A; }
-        .bg-brand-dark { background-color: #1A1A1A; }
-        .bg-brand-light { background-color: #FAFAFA; }
-
-        /* Gradients & Blur */
-        .bg-gradient-custom { background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
-        .backdrop-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        
-        /* Functional Layout */
-        body { -webkit-font-smoothing: antialiased; }
-        
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .product-card:hover .product-img { transform: scale(1.05); }
-        .product-img { transition: transform 0.5s ease; }
-
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-
-        /* Premium Certifications Banner Styling */
-        .cert-banner {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
-        }
-        
-        /* View Management (Single Page App Logic) */
-        .view-section { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
-        .view-section.active { display: block; opacity: 1; }
-
+<!-- ... existing code ... -->
         /* Review Scrolling */
         .review-scroll {
             display: flex;
@@ -81,6 +8,18 @@
         }
         .review-scroll::-webkit-scrollbar { display: none; /* Chrome */ }
         .review-card { scroll-snap-align: center; flex: 0 0 auto; width: 300px; }
+
+        /* Guaranteed WhatsApp Button Styles (Prevents disappearing bug) */
+        .btn-whatsapp {
+            background-color: #25D366 !important;
+            color: #ffffff !important;
+        }
+        .btn-whatsapp:hover {
+            background-color: #128C7E !important;
+        }
+        .btn-whatsapp i, .btn-whatsapp span {
+            color: #ffffff !important;
+        }
 
     </style>
 </head>
@@ -99,339 +38,64 @@
                     </div>
                 </div>
 
-                <!-- Desktop Menu -->
+                <!-- Desktop Menu (FAQ Removed) -->
                 <div class="hidden md:flex space-x-8 items-center">
                     <button onclick="navigateTo('view-home')" class="text-gray-700 hover:text-brand-green font-medium transition-colors">Home</button>
                     <button onclick="navigateTo('view-shop')" class="text-gray-700 hover:text-brand-green font-medium transition-colors">Shop All</button>
-                    <button onclick="navigateTo('view-faq')" class="text-gray-700 hover:text-brand-green font-medium transition-colors">FAQ</button>
                     <button onclick="navigateTo('view-about')" class="text-gray-700 hover:text-brand-green font-medium transition-colors">Our Story</button>
                 </div>
 
                 <!-- Icons (Cart removed in favor of direct order flow) -->
-                <div class="flex items-center space-x-5">
-                    <button onclick="navigateTo('view-shop')" class="bg-brand-green text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-green-800 transition-all flex items-center gap-2 shadow-md">
-                        <i data-lucide="store" class="w-4 h-4"></i> Store
-                    </button>
-                    <!-- Mobile Menu Button -->
-                    <button class="md:hidden text-gray-700 hover:text-brand-green">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<!-- ... existing code ... -->
+```
 
-    <!-- VIEWS CONTAINER -->
-    <div class="pt-20 flex-grow">
-
-        <!-- ==========================================
-             VIEW: HOME 
-             ========================================== -->
-        <div id="view-home" class="view-section active">
-            
-            <!-- Hero Section -->
-            <header class="relative py-16 md:py-24 overflow-hidden bg-brand-peach flex items-center justify-center min-h-[80vh]">
-                <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
-                    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brand-green blur-3xl"></div>
-                    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-gold blur-3xl"></div>
-                </div>
-
-                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between z-10 w-full">
-                    <div class="md:w-1/2 text-center md:text-left pt-10 md:pt-0">
-                        <span class="inline-block py-1 px-3 rounded-full bg-white text-brand-green text-sm font-semibold tracking-wide mb-4 shadow-sm">Gentle • Balanced • Natural</span>
-                        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-brand-dark leading-tight mb-6">
-                            Ancient Wisdom <br>
-                            <span class="text-brand-green text-4xl md:text-5xl lg:text-6xl italic font-normal">for modern wellness.</span>
-                        </h1>
-                        <p class="mt-4 text-lg text-gray-700 mb-8 max-w-lg mx-auto md:mx-0">
-                            Discover our authentic range of traditional herbal formulations, crafted with care to bring balance and vitality to your everyday life.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <button onclick="navigateTo('view-shop')" class="bg-brand-green text-white px-8 py-3 rounded-full font-medium hover:bg-green-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center">
-                                Shop Collection <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
-                            </button>
-                            <button onclick="navigateTo('view-about')" class="bg-white text-brand-green border border-brand-green px-8 py-3 rounded-full font-medium hover:bg-brand-peach transition-all flex items-center justify-center">
-                                Our Philosophy
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="md:w-1/2 mt-16 md:mt-0 flex justify-center relative">
-                        <div class="relative w-72 h-96 md:w-80 md:h-[28rem] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
-                            <img src="product-1.jpeg" alt="Adhishaya Products" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-custom"></div>
-                            <div class="absolute bottom-6 left-6 right-6">
-                                <div class="bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg border border-white/20">
-                                    <p class="text-xs text-brand-gold font-bold uppercase tracking-wider mb-1">Featured</p>
-                                    <p class="font-serif font-bold text-lg text-brand-dark">Inji Chooranam</p>
-                                    <p class="text-sm text-gray-600">Pure Ginger Formulation</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Floating decorative element -->
-                        <div class="absolute -bottom-6 -right-6 md:right-10 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3">
-                            <div class="bg-brand-peach p-2 rounded-full">
-                                <i data-lucide="leaf" class="text-brand-green w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold text-brand-dark">100% Natural</p>
-                                <p class="text-xs text-gray-500">No Additives</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <!-- Why Adhishaya Section -->
-            <section class="py-24 bg-white relative">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <!-- Header Row -->
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-                        <h2 class="font-serif text-4xl md:text-5xl font-bold text-brand-green mb-6 md:mb-0">
-                            Why Adhishaya ?
-                        </h2>
-                        <button onclick="navigateTo('view-about')" class="inline-flex items-center gap-3 border border-gray-300 text-brand-dark px-6 py-2.5 rounded-md font-semibold text-sm hover:border-brand-green hover:text-brand-green transition-colors uppercase tracking-wide">
-                            DISCOVER MORE ABOUT US <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </button>
-                    </div>
-
-                    <!-- 4 Column Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-                        
-                        <!-- Feature 1 -->
-                        <div class="flex flex-col items-center md:items-start text-center md:text-left group">
-                            <div class="w-24 h-24 bg-cream-light rounded-4xl flex items-center justify-center mb-6 p-5 transition-transform duration-300 group-hover:-translate-y-2 shadow-sm">
-                                <img src="bowl1.png" alt="High-Quality Ingredient Sourcing" class="w-full h-full object-contain" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%232A5C2F\' stroke-width=\'1.5\'><path d=\'M7 11V7a5 5 0 0 1 10 0v4\'/><path d=\'M4 11h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z\'/></svg>'">
-                            </div>
-                            <h3 class="font-bold text-brand-dark text-lg mb-3 leading-snug">High-Quality Ingredient Sourcing.</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed">
-                                We source only the most potent, ethically-harvested herbs from trusted growers who honor nature's timing. No shortcuts, no synthetics — just pure, unadulterated ingredients that meet our rigorous quality standards.
-                            </p>
-                        </div>
-
-                        <!-- Feature 2 -->
-                        <div class="flex flex-col items-center md:items-start text-center md:text-left group">
-                            <div class="w-24 h-24 bg-cream-light rounded-4xl flex items-center justify-center mb-6 p-5 transition-transform duration-300 group-hover:-translate-y-2 shadow-sm">
-                                <img src="bowl2.png" alt="Small-batch production" class="w-full h-full object-contain" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%232A5C2F\' stroke-width=\'1.5\'><path d=\'M6 3h12l4 6-10 13L2 9Z\'/></svg>'">
-                            </div>
-                            <h3 class="font-bold text-brand-dark text-lg mb-3 leading-snug">Small-batch production.</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed">
-                                Every blend is handcrafted in small batches to ensure freshness, potency, and care. This slow, intentional process allows us to maintain quality over quantity — your wellness deserves nothing less.
-                            </p>
-                        </div>
-
-                        <!-- Feature 3 -->
-                        <div class="flex flex-col items-center md:items-start text-center md:text-left group">
-                            <div class="w-24 h-24 bg-cream-light rounded-4xl flex items-center justify-center mb-6 p-5 transition-transform duration-300 group-hover:-translate-y-2 shadow-sm">
-                                <img src="bowl3.png" alt="Rooted in Ancient Knowledge" class="w-full h-full object-contain" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%232A5C2F\' stroke-width=\'1.5\'><circle cx=\'18\' cy=\'18\' r=\'3\'/><circle cx=\'6\' cy=\'6\' r=\'3\'/><path d=\'M13 6h3a2 2 0 0 1 2 2v7\'/></svg>'">
-                            </div>
-                            <h3 class="font-bold text-brand-dark text-lg mb-3 leading-snug">Rooted in Ancient Knowledge</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed">
-                                Our formulations are born at the intersection of time-tested herbal wisdom and cutting-edge Methods. We bridge tradition and innovation to create remedies that are both soulful and scientifically sound.
-                            </p>
-                        </div>
-
-                        <!-- Feature 4 -->
-                        <div class="flex flex-col items-center md:items-start text-center md:text-left group">
-                            <div class="w-24 h-24 bg-cream-light rounded-4xl flex items-center justify-center mb-6 p-5 transition-transform duration-300 group-hover:-translate-y-2 shadow-sm">
-                                <img src="bowl4.png" alt="Affordable Wellness" class="w-full h-full object-contain" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%232A5C2F\' stroke-width=\'1.5\'><rect width=\'16\' height=\'12\' x=\'4\' y=\'6\' rx=\'2\'/></svg>'">
-                            </div>
-                            <h3 class="font-bold text-brand-dark text-lg mb-3 leading-snug">Affordable Wellness for Everyone</h3>
-                            <p class="text-gray-500 text-sm leading-relaxed">
-                                We believe that holistic health should never be a luxury. That's why we're committed to keeping our products accessible — high-quality, herbal wellness that doesn't break the bank.
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <!-- Unique Certification Banner -->
-            <section class="py-16 cert-banner border-y border-gray-200">
-                <div class="max-w-5xl mx-auto px-4 flex flex-wrap justify-center items-center gap-12 md:gap-32">
-                    <!-- FSSAI -->
-                    <div class="h-16 flex items-center hover:scale-105 transition-transform duration-300 filter drop-shadow-md">
-                        <img src="fssai.png" alt="FSSAI Certified" class="h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span style="display:none;" class="font-serif italic font-bold text-3xl text-blue-800 tracking-tighter">fssai<span class="text-orange-500">.</span></span>
-                    </div>
-                    
-                    <!-- GMP (Made Larger as requested) -->
-                    <div class="h-24 md:h-28 flex items-center transform scale-110 hover:scale-125 transition-transform duration-300 filter drop-shadow-lg">
-                        <img src="gmp.png" alt="GMP Certified" class="h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div style="display:none;" class="w-20 h-20 rounded-full border-4 border-green-600 flex items-center justify-center flex-col p-1 text-center bg-white shadow-xl">
-                            <span class="text-[10px] font-bold text-green-700 uppercase leading-none">Good Mfg</span>
-                            <span class="text-base font-black text-green-800">GMP</span>
-                            <span class="text-[10px] font-bold text-green-700 uppercase leading-none">Practice</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Ministry of Ayush -->
-                    <div class="h-16 flex items-center hover:scale-105 transition-transform duration-300 filter drop-shadow-md">
-                        <img src="ayush.png" alt="Ministry of Ayush" class="h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div style="display:none;" class="h-12 flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                            <div class="flex flex-col">
-                                <span class="text-[10px] font-bold text-gray-600 uppercase tracking-widest leading-none">Ministry Of</span>
-                                <span class="text-xl font-bold text-gray-900 tracking-wide leading-none mt-1">AYUSH</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Product Categories Section -->
-            <section class="py-20 relative bg-[#FDF9F1]">
-                <div class="absolute inset-0 opacity-10" style="background-image: url('bkg.png'); background-size: cover; background-position: center; mix-blend-mode: multiply;"></div>
-                
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="flex justify-between items-center mb-12">
-                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-green">Products Categories</h2>
-                        <button onclick="navigateTo('view-shop')" class="inline-flex items-center gap-2 border border-brand-green text-brand-green px-6 py-2.5 rounded-md font-semibold text-sm hover:bg-brand-green hover:text-white transition-colors uppercase tracking-wide bg-white/50 backdrop-blur-sm">
-                            DISCOVER ALL <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </button>
-                    </div>
-
-                    <!-- Categories Grid (Matches the screenshot) -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <button onclick="openCategory('Women\'s Health')" class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex justify-between items-center group border border-gray-100 w-full text-left">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors text-lg">Women's Health</span>
-                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-dark group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
-                        </button>
-                        <button onclick="openCategory('Men\'s Health')" class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex justify-between items-center group border border-gray-100 w-full text-left">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors text-lg">Men's Health</span>
-                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-dark group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
-                        </button>
-                        <button onclick="openCategory('Digestive Health')" class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex justify-between items-center group border border-gray-100 w-full text-left">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors text-lg">Digestive Health</span>
-                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-dark group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
-                        </button>
-                        <button onclick="openCategory('Blood Booster')" class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex justify-between items-center group border border-gray-100 w-full text-left">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors text-lg">Blood Booster</span>
-                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-dark group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
-                        </button>
-                        <button onclick="openCategory('Skin care')" class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex justify-between items-center group border border-gray-100 w-full text-left">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors text-lg">Skin care</span>
-                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-dark group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
-                        </button>
-                        <button onclick="openCategory('Hair care')" class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex justify-between items-center group border border-gray-100 w-full text-left">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors text-lg">Hair care</span>
-                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-dark group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
-                        </button>
-                        <button onclick="openCategory('Tooth Care')" class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex justify-between items-center group border border-gray-100 w-full text-left">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors text-lg">Tooth Care</span>
-                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-dark group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
-                        </button>
-                        <button onclick="openCategory('Herbal Drinks')" class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex justify-between items-center group border border-gray-100 w-full text-left">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors text-lg">Herbal Drinks</span>
-                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-dark group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
-                        </button>
-                        <button onclick="openCategory('Combos and offers')" class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex justify-between items-center group border border-gray-100 w-full text-left">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors text-lg">Combos and offers</span>
-                            <i data-lucide="arrow-right" class="w-6 h-6 text-brand-dark group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Fake Google Reviews Section -->
-            <section class="py-20 bg-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center mb-12">
-                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-dark mb-4">Loved by our Community</h2>
-                        <div class="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
-                        <div class="flex justify-center items-center gap-2 text-brand-dark font-semibold">
-                            <span class="text-2xl">4.9</span>
-                            <div class="flex text-yellow-400">
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            </div>
-                            <span class="text-sm text-gray-500 font-normal ml-2">Based on Google Reviews</span>
-                        </div>
-                    </div>
-
-                    <div class="review-scroll gap-6 pb-6">
-                        <!-- Review 1 -->
-                        <div class="review-card bg-brand-light p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-lg">S</div>
-                                <div>
-                                    <h4 class="font-bold text-brand-dark text-sm">Santhosh Kumar</h4>
-                                    <div class="flex text-yellow-400 text-xs">★★★★★ <span class="text-gray-400 ml-2">2 weeks ago</span></div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed flex-grow">"The Inji Chooranam is fantastic! Very authentic taste and you can feel the purity of the ingredients. Delivered via WhatsApp very smoothly."</p>
-                        </div>
-
-                        <!-- Review 2 -->
-                        <div class="review-card bg-brand-light p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-lg">P</div>
-                                <div>
-                                    <h4 class="font-bold text-brand-dark text-sm">Priya R.</h4>
-                                    <div class="flex text-yellow-400 text-xs">★★★★★ <span class="text-gray-400 ml-2">1 month ago</span></div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed flex-grow">"I purchased the Thiripala powder. Quality is top-notch compared to other commercial brands. Highly recommend Adhishaya."</p>
-                        </div>
-
-                        <!-- Review 3 -->
-                        <div class="review-card bg-brand-light p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold text-lg">V</div>
-                                <div>
-                                    <h4 class="font-bold text-brand-dark text-sm">Vikram Natarajan</h4>
-                                    <div class="flex text-yellow-400 text-xs">★★★★★ <span class="text-gray-400 ml-2">3 months ago</span></div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed flex-grow">"Their Nilavembu Kudineer kept our family healthy during the monsoon season. You can tell they follow traditional preparation methods."</p>
-                        </div>
-                        
-                        <!-- Review 4 -->
-                        <div class="review-card bg-brand-light p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-lg">A</div>
-                                <div>
-                                    <h4 class="font-bold text-brand-dark text-sm">Anjali Desai</h4>
-                                    <div class="flex text-yellow-400 text-xs">★★★★★ <span class="text-gray-400 ml-2">4 months ago</span></div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed flex-grow">"Ordering was so simple through WhatsApp. The seller was very responsive and the herbal drinks are absolutely refreshing!"</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
+```html:Adhishaya Store:index.html
+<!-- ... existing code ... -->
         <!-- ==========================================
              VIEW: SHOP ALL / CATEGORY PAGE 
              ========================================== -->
-        <div id="view-shop" class="view-section bg-brand-light py-12 min-h-screen">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Shop Header -->
-                <div class="text-center mb-12">
-                    <h2 id="shop-title" class="font-serif text-4xl font-bold text-brand-dark mb-4">Our Store</h2>
-                    <div class="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
-                    <p id="shop-subtitle" class="text-gray-600 max-w-2xl mx-auto">Browse our complete collection of natural herbal products.</p>
+        <div id="view-shop" class="view-section bg-brand-light pb-20 min-h-screen">
+            
+            <!-- Beautiful Shop Hero Banner -->
+            <div class="relative bg-brand-green text-white py-20 md:py-28 mx-4 sm:mx-6 lg:mx-8 rounded-b-[3rem] overflow-hidden shadow-2xl mb-12">
+                <!-- Decorative Elements -->
+                <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+                    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-white blur-3xl"></div>
+                    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-gold blur-3xl"></div>
                 </div>
-                
-                <div class="flex flex-col md:flex-row gap-8">
-                    <!-- Sidebar Categories -->
-                    <div class="w-full md:w-1/4">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 sticky top-24">
-                            <h3 class="font-bold text-brand-dark mb-4 uppercase tracking-wider text-sm">Categories</h3>
-                            <ul class="space-y-3" id="category-sidebar">
+                <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                    <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">100% Pure & Natural</span>
+                    <h2 id="shop-title" class="font-serif text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-md">Our Apothecary</h2>
+                    <div class="w-24 h-1.5 bg-brand-gold mx-auto rounded-full mb-8"></div>
+                    <p id="shop-subtitle" class="text-brand-peach text-lg md:text-xl font-light">Explore our curated collection of traditional herbal formulations.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-10">
+                    <!-- Modern Sticky Sidebar Categories -->
+                    <div class="w-full lg:w-1/4">
+                        <div class="bg-white p-6 rounded-3xl shadow-lg border border-gray-100 sticky top-28 z-10">
+                            <h3 class="font-bold text-brand-dark mb-6 uppercase tracking-wider text-sm flex items-center gap-2">
+                                <i data-lucide="filter" class="w-4 h-4 text-brand-gold"></i> Categories
+                            </h3>
+                            <ul class="space-y-2" id="category-sidebar">
                                 <!-- Populated by JS -->
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Products Grid -->
-                    <div class="w-full md:w-3/4">
-                        <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Enhanced Products Grid -->
+                    <div class="w-full lg:w-3/4">
+                        <!-- Top Bar (Results count & Sort Mockup) -->
+                        <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                            <span id="product-count" class="text-gray-500 font-medium text-sm">Showing products</span>
+                            <div class="flex items-center gap-2 text-sm text-gray-600 font-medium">
+                                <i data-lucide="arrow-down-up" class="w-4 h-4"></i> Sort by: <span class="text-brand-dark">Featured</span>
+                            </div>
+                        </div>
+
+                        <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
                             <!-- Populated by JS -->
                         </div>
                     </div>
@@ -441,303 +105,104 @@
 
         <!-- ==========================================
              VIEW: FAQ PAGE 
-             ========================================== -->
-        <div id="view-faq" class="view-section bg-white py-16 min-h-screen">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="font-serif text-4xl font-bold text-brand-dark mb-4">Frequently Asked Questions</h2>
-                    <div class="w-24 h-1 bg-brand-gold mx-auto rounded-full"></div>
-                </div>
+<!-- ... existing code ... -->
+```
 
-                <div class="space-y-6">
-                    <div class="border border-gray-200 rounded-xl p-6 bg-brand-light">
-                        <h4 class="font-bold text-brand-dark mb-2 text-lg">Are your products 100% natural?</h4>
-                        <p class="text-gray-600">Yes! At Adhishaya, we pride ourselves on using only ethically-harvested, 100% natural ingredients without any artificial additives or preservatives.</p>
-                    </div>
-                    <div class="border border-gray-200 rounded-xl p-6 bg-brand-light">
-                        <h4 class="font-bold text-brand-dark mb-2 text-lg">How do I place an order?</h4>
-                        <p class="text-gray-600">Simply browse our store, click "Order via WhatsApp" on the product you want, and it will instantly open a pre-filled message to our business number. We handle payment and shipping directly with you.</p>
-                    </div>
-                    <div class="border border-gray-200 rounded-xl p-6 bg-brand-light">
-                        <h4 class="font-bold text-brand-dark mb-2 text-lg">Do you ship across India?</h4>
-                        <p class="text-gray-600">Yes, we deliver pan-India. Shipping times typically range from 3-7 business days depending on your location.</p>
-                    </div>
-                    <div class="border border-gray-200 rounded-xl p-6 bg-brand-light">
-                        <h4 class="font-bold text-brand-dark mb-2 text-lg">Are your products certified?</h4>
-                        <p class="text-gray-600">Absolutely. We maintain stringent quality control and hold FSSAI, GMP, and Ministry of Ayush certifications to ensure the highest standards of safety and efficacy.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ==========================================
-             VIEW: ABOUT US 
-             ========================================== -->
-        <div id="view-about" class="view-section py-20 bg-brand-green text-white relative overflow-hidden min-h-screen">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold opacity-10 rounded-full transform -translate-x-1/3 translate-y-1/3"></div>
-            
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-10">
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2">
-                        <img src="logo.jpeg" alt="Adhishaya Logo Graphic" class="w-80 h-80 object-contain mx-auto rounded-3xl bg-white/10 p-8 backdrop-blur-sm shadow-2xl" onerror="this.style.display='none'">
-                    </div>
-                    <div class="md:w-1/2">
-                        <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">Our Story & Promise</h2>
-                        <p class="text-brand-peach mb-6 text-lg leading-relaxed">
-                            Adhishaya was born out of a profound respect for ancient herbal wisdom. We believe that true, lasting health comes from nature, not a laboratory. Our journey started with a simple goal: to bring the purest, most authentic formulations directly to your home, prepared exactly as traditional texts prescribe.
-                        </p>
-                        <p class="text-gray-300 mb-8 leading-relaxed">
-                            Every single product we offer is a testament to our dedication. We don't believe in mass production; we believe in care, small batches, and holistic wellness.
-                        </p>
-                        <ul class="space-y-4 mb-8 text-lg font-medium">
-                            <li class="flex items-center gap-3">
-                                <div class="bg-brand-gold/20 p-2 rounded-full text-brand-gold"><i data-lucide="check" class="w-5 h-5"></i></div>
-                                <span>Ethically sourced raw materials</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <div class="bg-brand-gold/20 p-2 rounded-full text-brand-gold"><i data-lucide="check" class="w-5 h-5"></i></div>
-                                <span>Stringent quality control standards</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <div class="bg-brand-gold/20 p-2 rounded-full text-brand-gold"><i data-lucide="check" class="w-5 h-5"></i></div>
-                                <span>Eco-friendly packaging practices</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div> <!-- End Content Wrapper -->
-
-    <!-- Footer -->
-    <footer class="bg-brand-dark text-gray-300 pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div class="col-span-1 md:col-span-1">
-                    <div class="flex items-center mb-4">
-                        <span class="font-serif font-bold text-2xl text-white">Adhishaya</span>
-                    </div>
-                    <p class="text-sm text-gray-400 mb-6">Bringing the healing touch of nature to your doorstep with our premium, gentle, and balanced herbal products.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><button onclick="navigateTo('view-home')" class="hover:text-brand-gold transition-colors">Home</button></li>
-                        <li><button onclick="navigateTo('view-shop')" class="hover:text-brand-gold transition-colors">Shop All</button></li>
-                        <li><button onclick="navigateTo('view-about')" class="hover:text-brand-gold transition-colors">About Us</button></li>
-                        <li><button onclick="navigateTo('view-faq')" class="hover:text-brand-gold transition-colors">FAQ</button></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><button onclick="openLegal('privacy')" class="hover:text-brand-gold transition-colors">Privacy Policy</button></li>
-                        <li><button onclick="openLegal('terms')" class="hover:text-brand-gold transition-colors">Terms of Use</button></li>
-                        <li><button onclick="openLegal('shipping')" class="hover:text-brand-gold transition-colors">Shipping Policy</button></li>
-                        <li><button onclick="openLegal('refund')" class="hover:text-brand-gold transition-colors">Refunds & Returns</button></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Contact Us</h4>
-                    <p class="text-sm text-gray-400 mb-4">Have questions? Reach out to us directly on WhatsApp.</p>
-                    <button onclick="window.open('https://wa.me/918012346672', '_blank')" class="bg-[#25D366] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#128C7E] transition-colors flex items-center gap-2">
-                        <i data-lucide="message-circle" class="w-5 h-5"></i> Chat with us
-                    </button>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <p>&copy; 2026 Adhishaya Herbs & Food Products. All rights reserved.</p>
-                <div class="flex space-x-4 mt-4 md:mt-0">
-                    <span>Made in India</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Application Logic -->
-    <script>
-        lucide.createIcons();
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 20) {
-                nav.classList.add('shadow-md');
-                nav.classList.replace('py-4', 'py-0');
-            } else {
-                nav.classList.remove('shadow-md');
-            }
-        });
-
-        // --- SINGLE PAGE APP NAVIGATION ---
-        function navigateTo(viewId) {
-            // Hide all views
-            document.querySelectorAll('.view-section').forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            // Show requested view
-            const targetView = document.getElementById(viewId);
-            if(targetView) {
-                targetView.classList.add('active');
-            }
-            
-            // If shop view, default to "All"
-            if(viewId === 'view-shop') {
-                renderShop('All');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function openCategory(catName) {
-            navigateTo('view-shop');
-            renderShop(catName);
-        }
-
-        // --- DIRECT WHATSAPP ORDER LOGIC ---
-        function directWhatsAppOrder(productName, price) {
-            const businessNumber = "918012346672"; 
-            const message = `Hello Adhishaya Herbs! I would like to place an order for:%0A%0A*${productName}*%0A*Price:* ₹${price}%0A%0APlease let me know the payment and delivery details. Thank you!`;
-            const whatsappUrl = `https://wa.me/${businessNumber}?text=${message}`;
-            window.open(whatsappUrl, '_blank');
-        }
-
-        // --- LEGAL PAGES LOGIC (Opens in New Tab) ---
-        function openLegal(type) {
-            let title = "";
-            let content = "";
-            
-            if(type === 'privacy') {
-                title = "Privacy Policy";
-                content = `
-                    <h2>1. Introduction</h2><p>Welcome to Adhishaya Herbs. We respect your privacy and comply with the Information Technology Act, 2000 of India.</p>
-                    <h2>2. Data Collection</h2><p>We collect basic information required for shipping and WhatsApp communication. We do not store sensitive payment data.</p>
-                    <h2>3. Data Usage</h2><p>Your data is strictly used to fulfill orders and provide customer support.</p>
-                `;
-            } else if (type === 'terms') {
-                title = "Terms of Use";
-                content = `
-                    <h2>1. Acceptance of Terms</h2><p>By using this website, you agree to these terms, governed by the laws of India.</p>
-                    <h2>2. Medical Disclaimer</h2><p>Our products are traditional supplements. They are not intended to diagnose, treat, cure, or prevent any severe medical disease without doctor consultation.</p>
-                    <h2>3. Pricing</h2><p>All prices are in INR (₹) and subject to change without prior notice.</p>
-                `;
-            } else if (type === 'shipping') {
-                title = "Shipping Policy";
-                content = `<h2>Shipping</h2><p>We deliver Pan-India. Orders are dispatched within 48 hours and typically reach within 3-7 working days. Shipping charges are calculated on WhatsApp.</p>`;
-            } else if (type === 'refund') {
-                title = "Refunds & Returns";
-                content = `<h2>Returns</h2><p>Due to the consumable nature of our products, we do not accept returns. If your product arrives damaged, please send us a photo on WhatsApp within 24 hours for a replacement.</p>`;
-            }
-
-            const win = window.open("", "_blank");
-            win.document.write(`
-                <html>
-                <head>
-                    <title>${title} - Adhishaya Herbs</title>
-                    <style>
-                        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #333; }
-                        h1 { color: #2A5C2F; border-bottom: 2px solid #C48B31; padding-bottom: 10px; }
-                        h2 { color: #1A1A1A; margin-top: 30px; }
-                    </style>
-                </head>
-                <body>
-                    <h1>${title}</h1>
-                    ${content}
-                    <p style="margin-top: 50px; font-size: 0.9em; color: #888;">&copy; 2026 Adhishaya Herbs & Food Products.</p>
-                </body>
-                </html>
-            `);
-        }
-
-        // --- PRODUCT DATABASE ---
-        const categories = [
-            "Women's Health", "Men's Health", "Digestive Health", 
-            "Blood Booster", "Skin care", "Hair care", 
-            "Tooth Care", "Herbal Drinks", "Combos and offers"
-        ];
-
-        const products = [
-            { id: 1, name: "Inji Chooranam", cat: "Digestive Health", price: 250, img: "product-1.jpeg" },
-            { id: 2, name: "Triphala Chooranam", cat: "Digestive Health", price: 210, img: "https://images.unsplash.com/photo-1615486171448-4fd1eb8f1212?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 3, name: "Shatavari Powder", cat: "Women's Health", price: 350, img: "https://images.unsplash.com/photo-1596647900977-2ba0f8d035e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 4, name: "Ashoka Root Extract", cat: "Women's Health", price: 400, img: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 5, name: "Amukkara Chooranam", cat: "Men's Health", price: 320, img: "https://images.unsplash.com/photo-1585553616435-2dc0a54e271d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 6, name: "Safed Musli Powder", cat: "Men's Health", price: 450, img: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 7, name: "Moringa Blood Builder", cat: "Blood Booster", price: 280, img: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 8, name: "Amla Leaf Powder", cat: "Blood Booster", price: 220, img: "https://images.unsplash.com/photo-1564227503780-e88937085b3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 9, name: "Neem Face Pack", cat: "Skin care", price: 180, img: "https://images.unsplash.com/photo-1608248593010-09312b9d5b78?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 10, name: "Hibiscus Glow Mix", cat: "Skin care", price: 200, img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 11, name: "Bhringraj Hair Wash", cat: "Hair care", price: 260, img: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 12, name: "Herbal Tooth Powder", cat: "Tooth Care", price: 150, img: "https://images.unsplash.com/photo-1607505193910-c11f7c35e407?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 13, name: "Nilavembu Kudineer", cat: "Herbal Drinks", price: 180, img: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 14, name: "Sukku Coffee Mix", cat: "Herbal Drinks", price: 160, img: "https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-            { id: 15, name: "Immunity Combo Pack", cat: "Combos and offers", price: 650, img: "https://images.unsplash.com/photo-1515023115689-589c33041d3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" },
-        ];
-
+```html:Adhishaya Store:index.html
+<!-- ... existing code ... -->
         // --- RENDER SHOP LOGIC ---
         function renderShop(selectedCat) {
             const sidebar = document.getElementById('category-sidebar');
             const grid = document.getElementById('products-container');
             const title = document.getElementById('shop-title');
             const subtitle = document.getElementById('shop-subtitle');
+            const productCount = document.getElementById('product-count');
 
             // Update Titles
             if(selectedCat === 'All') {
-                title.innerText = "Our Complete Store";
-                subtitle.innerText = "Browse all authentic formulations.";
+                title.innerText = "Our Apothecary";
+                subtitle.innerText = "Explore our curated collection of traditional herbal formulations.";
             } else {
                 title.innerText = selectedCat;
-                subtitle.innerText = `Explore our natural range for ${selectedCat.toLowerCase()}.`;
+                subtitle.innerText = `Premium, natural solutions for ${selectedCat.toLowerCase()}.`;
             }
 
-            // Render Sidebar
+            // Render Sidebar (Modern Pill Design)
             sidebar.innerHTML = `
-                <li><button onclick="renderShop('All')" class="w-full text-left font-medium ${selectedCat === 'All' ? 'text-brand-green' : 'text-gray-600 hover:text-brand-green'} transition-colors">All Products</button></li>
+                <li>
+                    <button onclick="renderShop('All')" class="w-full text-left font-semibold px-4 py-3 rounded-xl transition-all duration-300 flex items-center justify-between ${selectedCat === 'All' ? 'bg-brand-green text-white shadow-md transform scale-105' : 'text-gray-600 hover:bg-brand-peach/30 hover:text-brand-green'}">
+                        <span>All Products</span>
+                        ${selectedCat === 'All' ? '<i data-lucide="chevron-right" class="w-4 h-4 text-white"></i>' : ''}
+                    </button>
+                </li>
             `;
             categories.forEach(cat => {
+                const isActive = selectedCat === cat;
                 sidebar.innerHTML += `
-                    <li><button onclick="renderShop('${cat}')" class="w-full text-left font-medium ${selectedCat === cat ? 'text-brand-green' : 'text-gray-600 hover:text-brand-green'} transition-colors">${cat}</button></li>
+                    <li>
+                        <button onclick="renderShop('${cat}')" class="w-full text-left font-semibold px-4 py-3 rounded-xl transition-all duration-300 flex items-center justify-between ${isActive ? 'bg-brand-green text-white shadow-md transform scale-105' : 'text-gray-600 hover:bg-brand-peach/30 hover:text-brand-green'}">
+                            <span>${cat}</span>
+                            ${isActive ? '<i data-lucide="chevron-right" class="w-4 h-4 text-white"></i>' : ''}
+                        </button>
+                    </li>
                 `;
             });
 
+            // Filter Products
+            const filteredProducts = selectedCat === 'All' ? products : products.filter(p => p.cat === selectedCat);
+            
+            // Update Count
+            if(productCount) productCount.innerText = `Showing ${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''}`;
+
             // Render Products
             grid.innerHTML = '';
-            const filteredProducts = selectedCat === 'All' ? products : products.filter(p => p.cat === selectedCat);
-
+            
             if(filteredProducts.length === 0) {
-                grid.innerHTML = `<p class="text-gray-500 col-span-full">No products found in this category yet.</p>`;
+                grid.innerHTML = `
+                    <div class="col-span-full flex flex-col items-center justify-center py-20 bg-white rounded-3xl border border-gray-100 shadow-sm">
+                        <i data-lucide="leaf" class="w-16 h-16 text-brand-peach mb-4"></i>
+                        <p class="text-brand-dark font-serif text-xl font-bold">New formulations arriving soon.</p>
+                        <p class="text-gray-500 mt-2">Check back later for products in this category.</p>
+                        <button onclick="renderShop('All')" class="mt-6 text-brand-green font-bold hover:underline">View All Products</button>
+                    </div>
+                `;
+                lucide.createIcons();
                 return;
             }
 
-            filteredProducts.forEach(p => {
+            filteredProducts.forEach((p, index) => {
+                // Determine layout badge
+                let badge = "";
+                if(index === 0 && selectedCat === 'All') badge = `<span class="absolute top-4 left-4 bg-white text-brand-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-10 flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-brand-gold fill-current"></i> Bestseller</span>`;
+                else if (p.price > 300) badge = `<span class="absolute top-4 left-4 bg-brand-gold text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-10">Premium</span>`;
+
                 grid.innerHTML += `
-                    <div class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-xl transition-shadow duration-300 product-card border border-gray-100 flex flex-col">
-                        <div class="relative w-full h-56 rounded-xl overflow-hidden bg-gray-50 mb-4">
+                    <div class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-2xl transition-all duration-500 product-card border border-gray-100 flex flex-col group transform hover:-translate-y-2 opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]" style="animation-delay: ${index * 0.05}s">
+                        <div class="relative w-full h-64 rounded-2xl overflow-hidden bg-[#FDF9F1] mb-6">
+                            ${badge}
                             <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100%\\' height=\\'100%\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'%232A5C2F\\' stroke-width=\\'1\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'><rect width=\\'18\\' height=\\'18\\' x=\\'3\\' y=\\'3\\' rx=\\'2\\' ry=\\'2\\'/><circle cx=\\'9\\' cy=\\'9\\' r=\\'2\\'/><path d=\\'m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21\\'/></svg>'">
+                            <!-- Overlay gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
-                        <div class="flex-grow flex flex-col justify-between">
-                            <div>
-                                <p class="text-xs text-brand-gold uppercase font-bold tracking-wider mb-1">${p.cat}</p>
-                                <div class="flex justify-between items-start mb-2">
-                                    <h3 class="font-serif font-bold text-lg text-brand-dark leading-tight">${p.name}</h3>
-                                </div>
+                        <div class="flex-grow flex flex-col justify-between px-1">
+                            <div class="mb-4">
+                                <p class="text-[10px] text-brand-gold uppercase font-black tracking-widest mb-2">${p.cat}</p>
+                                <h3 class="font-serif font-bold text-xl text-brand-dark leading-tight group-hover:text-brand-green transition-colors">${p.name}</h3>
                             </div>
                             <div>
-                                <p class="font-bold text-brand-green text-xl mb-4">₹${p.price}</p>
-                                <button onclick="directWhatsAppOrder('${p.name}', ${p.price})" class="w-full bg-[#25D366] text-white py-2.5 rounded-xl font-bold hover:bg-[#128C7E] transition-colors flex justify-center items-center gap-2 shadow-md">
-                                    <i data-lucide="message-circle" class="w-4 h-4"></i> Order via WhatsApp
+                                <div class="flex items-center justify-between mb-5">
+                                    <p class="font-black text-brand-green text-2xl">₹${p.price}</p>
+                                    <div class="flex gap-1">
+                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
+                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
+                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
+                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
+                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
+                                    </div>
+                                </div>
+                                <button onclick="directWhatsAppOrder('${p.name.replace(/'/g, "\\'")}', ${p.price})" class="w-full btn-whatsapp py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex justify-center items-center gap-2 relative overflow-hidden">
+                                    <i data-lucide="message-circle" class="w-5 h-5 relative z-10"></i> 
+                                    <span class="font-bold text-base relative z-10">Order on WhatsApp</span>
                                 </button>
                             </div>
                         </div>
@@ -749,6 +214,19 @@
             lucide.createIcons();
         }
 
+        // Add a simple fade-in animation via JS created style
+        if(!document.getElementById('dynamic-styles')) {
+            const style = document.createElement('style');
+            style.id = 'dynamic-styles';
+            style.innerHTML = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
     </script>
 </body>
-</html>
+<!-- ... existing code ... -->
