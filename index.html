@@ -656,7 +656,7 @@
                 <div class="col-span-1 md:col-span-1">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 bg-brand-cream rounded-lg flex items-center justify-center p-1">
-                            <img src="logo.jpeg" alt="Logo" class="w-full h-full object-contain rounded" onerror="this.src='https://placehold.co/100/FDF6EA/3A5A40?text=Logo'">
+                            <img src="logo.jpeg" alt="Logo" class="w-full h-full object-contain rounded animate-pulse" onerror="this.src='https://placehold.co/100/FDF6EA/3A5A40?text=Logo'">
                         </div>
                         <div class="flex flex-col justify-center">
                             <span class="font-serif font-bold text-xl text-brand-cream leading-tight">Adhishaya</span>
@@ -784,7 +784,7 @@
                 `;
             }
 
-            // Normal standard product card layout
+            // Normal standard product card layout with Cart & Order button side-by-side
             return `
                 <div class="product-card group relative">
                     ${tagHTML}
@@ -816,13 +816,13 @@
         // --- 4. Page Specific Renders ---
         
         function renderHome() {
-            // Hero Product (Show first featured product, compact layout size)
-            const heroProduct = products.find(p => p.featured) || products[0];
+            // Hero Product (Show PCOD Tablets as the featured hero product)
+            const heroProduct = products.find(p => p.id === 1) || products[0];
             if (heroProduct) {
                 document.getElementById('hero-product-container').innerHTML = createProductCardHTML(heroProduct, true);
             }
 
-            // Featured Carousel
+            // Featured Carousel (Show products that are featured)
             const featured = products.filter(p => p.featured);
             let carouselHTML = '';
             // Duplicate array for seamless loop trick
