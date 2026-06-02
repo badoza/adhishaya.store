@@ -11,157 +11,123 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- 
-      BULLETPROOF FIX: Static CSS File. 
-      NO JAVASCRIPT CDN is used here, so it cannot be blocked by Safari or Ad-Blockers.
+      BULLETPROOF CSS FIX:
+      We are using standard Tailwind 2.2 + Pure CSS classes.
+      No brackets or dynamic escapes. 100% Safari, iPhone, and Mac compatible.
     -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.0/umd/lucide.min.js"></script>
 
     <style>
         /* --- CUSTOM BRAND COLORS & UTILITIES --- */
-        
-        /* Font Family Overrides */
         body, .font-sans { font-family: 'Poppins', sans-serif !important; }
         .font-serif { font-family: 'Playfair Display', serif !important; }
 
-        /* Brand Colors */
-        .text-brand-green { color: #2A5C2F; }
-        .bg-brand-green { background-color: #2A5C2F; }
-        .border-brand-green { border-color: #2A5C2F; }
-        .hover\:text-brand-green:hover { color: #2A5C2F; }
-        .hover\:bg-brand-green:hover { background-color: #2A5C2F; }
+        /* Pure CSS Color Classes (Safari Safe) */
+        .c-green-txt { color: #2A5C2F; }
+        .c-green-bg { background-color: #2A5C2F; }
+        .c-green-border { border-color: #2A5C2F; }
+        .hover-c-green-bg:hover { background-color: #2A5C2F; color: #ffffff; }
+        .hover-c-green-txt:hover { color: #2A5C2F; }
+
+        .c-gold-txt { color: #C48B31; }
+        .c-gold-bg { background-color: #C48B31; }
+        .c-gold-border { border-color: #C48B31; }
+        .hover-c-gold-txt:hover { color: #C48B31; }
+        .hover-c-gold-bg:hover { background-color: #C48B31; color: #ffffff; }
+
+        .c-peach-bg { background-color: #F7E5CF; }
+        .c-cream-bg { background-color: #FDF6EA; }
+        .c-light-bg { background-color: #FAFAFA; }
+        .c-dark-txt { color: #1A1A1A; }
+        .c-dark-bg { background-color: #1A1A1A; }
+
+        .group:hover .group-hover-c-green-txt { color: #2A5C2F; }
         
-        .group:hover .group-hover\:text-brand-green { color: #2A5C2F; }
-        .group:hover .group-hover\:text-white { color: #ffffff; }
+        /* Safe Layout Classes */
+        .text-xxs { font-size: 10px; line-height: 14px; }
+        .hero-blob-large { width: 500px; height: 500px; }
+        .hero-img-height { height: 28rem; }
+        .min-h-80vh { min-height: 80vh; }
+        .rotate-minus-15 { transform: rotate(-15deg); }
+        .z-60 { z-index: 60; }
+        .z-70 { z-index: 70; }
+        .z-100 { z-index: 100; }
 
-        .text-brand-gold { color: #C48B31; }
-        .bg-brand-gold { background-color: #C48B31; }
-        .border-brand-gold { border-color: #C48B31; }
-        .hover\:text-brand-gold:hover { color: #C48B31; }
-
-        .text-brand-peach { color: #F7E5CF; }
-        .bg-brand-peach { background-color: #F7E5CF; }
-
-        .text-brand-dark { color: #1A1A1A; }
-        .bg-brand-dark { background-color: #1A1A1A; }
-
-        .bg-brand-light { background-color: #FAFAFA; }
-        .bg-brand-cream { background-color: #FDF6EA; }
-
-        /* Layout & Size Modifiers */
-        .text-\[10px\] { font-size: 10px; }
-        .w-\[500px\] { width: 500px; }
-        .h-\[500px\] { height: 500px; }
-        .rounded-b-\[3rem\] { border-bottom-left-radius: 3rem; border-bottom-right-radius: 3rem; }
-        .bg-\[\#FDF9F1\] { background-color: #FDF9F1; }
-        
-        @media (min-width: 768px) {
-            .md\:h-\[28rem\] { height: 28rem; }
-        }
-
-        /* Opacity & Gradients */
-        .bg-white\/90 { background-color: rgba(255, 255, 255, 0.9); }
-        .bg-white\/80 { background-color: rgba(255, 255, 255, 0.8); }
-        .bg-white\/70 { background-color: rgba(255, 255, 255, 0.7); }
-        .bg-white\/10 { background-color: rgba(255, 255, 255, 0.1); }
-        .bg-black\/60 { background-color: rgba(0, 0, 0, 0.6); }
-        .bg-brand-gold\/20 { background-color: rgba(196, 139, 49, 0.2); }
-        .hover\:bg-brand-peach\/30:hover { background-color: rgba(247, 229, 207, 0.3); }
-
-        .bg-gradient-to-t-black-60 { background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
-        .bg-gradient-to-t-black-20 { background: linear-gradient(to top, rgba(0,0,0,0.2), transparent); }
-
-        /* Blur Effects */
-        .backdrop-blur { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-        .backdrop-blur-sm { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
-        .blur-3xl { filter: blur(64px); -webkit-filter: blur(64px); }
+        /* Gradients & Blur */
+        .bg-grad-dark { background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
+        .bg-grad-light { background: linear-gradient(to top, rgba(0,0,0,0.2), transparent); }
+        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .glass-panel { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 
         /* Utilities */
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;  
-            overflow: hidden;
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        /* The New "Apothecary Arch" Category Design */
+        .arch-card {
+            border-top-left-radius: 999px;
+            border-top-right-radius: 999px;
+            border-bottom-left-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        /* --- FUNCTIONAL UI STYLES --- */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        .arch-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+        
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* View Router Classes */
+        /* View Router */
         .view-section { display: none; animation: fadeIn 0.4s ease-out; }
         .view-section.active { display: block; }
 
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .animate-\[fadeIn_0\.5s_ease-out_forwards\] {
-            opacity: 0;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
+        .custom-fade-in { opacity: 0; animation: fadeIn 0.5s ease-out forwards; }
 
         /* Guaranteed WhatsApp Button Styles */
-        .btn-whatsapp {
-            background-color: #25D366 !important;
-            color: #ffffff !important;
-        }
-        .btn-whatsapp:hover {
-            background-color: #128C7E !important;
-        }
-        .btn-whatsapp i, .btn-whatsapp span {
-            color: #ffffff !important;
-        }
+        .btn-whatsapp { background-color: #25D366 !important; color: #ffffff !important; border: none; }
+        .btn-whatsapp:hover { background-color: #128C7E !important; }
+        .btn-whatsapp i, .btn-whatsapp span { color: #ffffff !important; }
 
-        /* Uniform Feature Cards ("Why Adhishaya") */
+        /* "Why Adhishaya" Cards */
         .feature-card {
             background-color: #ffffff;
             padding: 1.5rem;
             border-radius: 1rem;
             border: 1px solid #f3f4f6;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
         .feature-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Uniform Product Cards */
-        .product-card {
-            transition: all 0.5s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        }
+        /* Products */
+        .product-card { transition: all 0.5s ease; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
         .product-card:hover .product-img { transform: scale(1.05); }
         .product-img { transition: transform 0.5s ease; }
 
-        /* Review Scrolling */
-        .review-scroll {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Firefox */
-        }
-        .review-scroll::-webkit-scrollbar { display: none; /* Chrome */ }
+        /* Reviews Scroll */
+        .review-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; }
         .review-card { scroll-snap-align: center; flex: 0 0 auto; width: 300px; }
-
+        
         /* General Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
     </style>
 </head>
-<body class="bg-brand-light text-brand-dark font-sans flex flex-col min-h-screen">
+<body class="c-light-bg c-dark-txt font-sans flex flex-col min-h-screen">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-nav border-b border-gray-100 transition-all duration-300" id="navbar">
@@ -169,30 +135,31 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigateTo('view-home')">
-                    <img src="logo.jpeg" alt="Adhishaya Logo" class="h-12 w-auto rounded-lg shadow-sm object-cover" onerror="this.style.display='none'">
+                    <img src="logo.jpeg" alt="Adhishaya Logo" class="h-12 w-auto rounded-lg shadow-sm object-cover" onerror="this.src='https://placehold.co/100x100/FDF6EA/2A5C2F?text=Logo'">
                     <div class="ml-3 flex flex-col">
-                        <span class="font-serif font-bold text-xl text-brand-green leading-tight">Adhishaya</span>
-                        <span class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Herbs & Food</span>
+                        <span class="font-serif font-bold text-xl c-green-txt leading-tight">Adhishaya</span>
+                        <span class="text-xxs text-gray-500 uppercase tracking-widest font-semibold">Herbs & Food</span>
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <button onclick="navigateTo('view-home')" class="text-gray-700 hover:text-brand-green font-medium transition-colors focus:outline-none">Home</button>
-                    <button onclick="navigateTo('view-shop'); renderShop('All');" class="text-gray-700 hover:text-brand-green font-medium transition-colors focus:outline-none">Shop All</button>
-                    <button onclick="navigateTo('view-about')" class="text-gray-700 hover:text-brand-green font-medium transition-colors focus:outline-none">Our Story</button>
+                    <button onclick="navigateTo('view-home')" class="text-gray-700 hover-c-green-txt font-medium transition-colors focus:outline-none">Home</button>
+                    <button onclick="navigateTo('view-shop'); renderShop('All');" class="text-gray-700 hover-c-green-txt font-medium transition-colors focus:outline-none">Store</button>
+                    <button onclick="navigateTo('view-about')" class="text-gray-700 hover-c-green-txt font-medium transition-colors focus:outline-none">Our Story</button>
                 </div>
 
-                <!-- Mobile Menu Button -->
+                <!-- Mobile Menu Icon -->
                 <div class="md:hidden flex items-center">
-                    <button class="text-gray-700 hover:text-brand-green focus:outline-none" onclick="alert('Menu functionality for mobile goes here!')">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    <button class="text-gray-700 hover-c-green-txt focus:outline-none" onclick="navigateTo('view-shop'); renderShop('All');">
+                        <i data-lucide="shopping-bag" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- App Container -->
     <div id="app-container" class="pt-20 flex-grow">
 
         <!-- ==========================================
@@ -201,37 +168,37 @@
         <div id="view-home" class="view-section active">
             
             <!-- Hero Section -->
-            <header class="relative py-16 md:py-24 overflow-hidden bg-brand-peach flex items-center justify-center">
+            <header class="relative py-16 md:py-24 overflow-hidden c-peach-bg flex items-center justify-center">
                 <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
-                    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brand-green blur-3xl"></div>
-                    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-gold blur-3xl"></div>
+                    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full c-green-bg filter blur-3xl"></div>
+                    <div class="absolute bottom-0 right-0 hero-blob-large rounded-full c-gold-bg filter blur-3xl"></div>
                 </div>
 
                 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between z-10 w-full">
                     <div class="md:w-1/2 text-center md:text-left pt-10 md:pt-0">
-                        <span class="inline-block py-1 px-3 rounded-full bg-white text-brand-green text-sm font-semibold tracking-wide mb-4 shadow-sm">Gentle • Balanced • Natural</span>
-                        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-brand-dark leading-tight mb-6">
+                        <span class="inline-block py-1 px-3 rounded-full bg-white c-green-txt text-sm font-semibold tracking-wide mb-4 shadow-sm">Gentle • Balanced • Natural</span>
+                        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold c-dark-txt leading-tight mb-6">
                             Ancient Wisdom <br>
-                            <span class="text-brand-green text-4xl md:text-5xl lg:text-6xl italic font-normal">for modern wellness.</span>
+                            <span class="c-green-txt text-4xl md:text-5xl lg:text-6xl italic font-normal">for modern wellness.</span>
                         </h1>
                         <p class="mt-4 text-lg text-gray-700 mb-8 max-w-lg mx-auto md:mx-0">
                             Discover our authentic range of traditional herbal formulations, crafted with care to bring balance and vitality to your everyday life.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <button onclick="navigateTo('view-shop'); renderShop('All');" class="bg-brand-green text-white px-8 py-3 rounded-full font-medium hover:bg-green-800 transition-all shadow-lg transform hover:-translate-y-1 flex items-center justify-center focus:outline-none">
+                            <button onclick="navigateTo('view-shop'); renderShop('All');" class="c-green-bg text-white px-8 py-3 rounded-full font-medium hover:bg-green-800 transition-all shadow-lg transform hover:-translate-y-1 flex items-center justify-center focus:outline-none">
                                 Shop Collection <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
                             </button>
                         </div>
                     </div>
                     
                     <div class="md:w-1/2 mt-16 md:mt-0 flex justify-center relative">
-                        <div class="relative w-72 h-96 md:w-80 md:h-[28rem] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
-                            <img src="product-1.jpeg" alt="Adhishaya Products" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t-black-60"></div>
+                        <div class="relative w-72 h-96 md:w-80 hero-img-height rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                            <img src="product-1.jpeg" alt="Adhishaya Products" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x600/FDF6EA/2A5C2F?text=Product'">
+                            <div class="absolute inset-0 bg-grad-dark"></div>
                             <div class="absolute bottom-6 left-6 right-6">
-                                <div class="bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg">
-                                    <p class="text-xs text-brand-gold font-bold uppercase tracking-wider mb-1">Featured</p>
-                                    <p class="font-serif font-bold text-lg text-brand-dark">Inji Chooranam</p>
+                                <div class="glass-panel p-4 rounded-xl shadow-lg">
+                                    <p class="text-xs c-gold-txt font-bold uppercase tracking-wider mb-1">Featured</p>
+                                    <p class="font-serif font-bold text-lg c-dark-txt">Inji Chooranam</p>
                                     <p class="text-sm text-gray-600">Pure Ginger Formulation</p>
                                 </div>
                             </div>
@@ -240,67 +207,104 @@
                 </div>
             </header>
 
-            <!-- Categories Grid Section -->
-            <section class="py-20 relative bg-white" style="background-image: url('bkg.png'); background-size: cover; background-position: center;">
-                <div class="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+            <!-- NEW CREATIVE CATEGORIES SECTION (Apothecary Arches) -->
+            <section class="py-20 relative bg-white border-b border-gray-100" style="background-image: url('bkg.png'); background-size: cover; background-position: center;">
+                <div class="absolute inset-0 bg-white opacity-80 backdrop-blur-sm"></div>
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="flex justify-between items-end mb-10">
-                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-dark">Products Categories</h2>
-                        <button onclick="navigateTo('view-shop'); renderShop('All');" class="hidden sm:flex items-center gap-2 border border-brand-green text-brand-green px-6 py-2 rounded-lg font-semibold hover:bg-brand-green hover:text-white transition-colors focus:outline-none">
-                            DISCOVER ALL <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    <div class="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-12">
+                        <div class="text-center sm:text-left mb-6 sm:mb-0">
+                            <span class="c-gold-txt text-sm font-bold uppercase tracking-widest mb-2 block">Curated For You</span>
+                            <h2 class="font-serif text-3xl md:text-4xl font-bold c-dark-txt">Explore by Wellness Need</h2>
+                        </div>
+                        <button onclick="navigateTo('view-shop'); renderShop('All');" class="flex items-center gap-2 c-green-border border text-brand-green px-6 py-2 rounded-full font-semibold hover-c-green-bg transition-colors focus:outline-none">
+                            Shop All <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
                     </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                        <!-- Category Buttons dynamically rendered -->
-                        <button onclick="navigateTo('view-shop'); renderShop('Women\'s Health');" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 flex justify-between items-center group transition-all focus:outline-none">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors">Women's Health</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+                    <!-- Horizontal Scrolling Arches -->
+                    <div class="flex overflow-x-auto gap-6 pb-12 pt-4 px-2 snap-x hide-scrollbar">
+                        
+                        <!-- Arch 1 -->
+                        <button onclick="navigateTo('view-shop'); renderShop('Women\'s Health');" class="snap-start flex-shrink-0 w-48 h-64 c-cream-bg arch-card border border-white flex flex-col items-center justify-center p-6 group relative focus:outline-none">
+                            <div class="bg-white p-4 rounded-full shadow-sm mb-4 group-hover:shadow-md transition-shadow z-10">
+                                <i data-lucide="flower-2" class="w-8 h-8 c-green-txt"></i>
+                            </div>
+                            <span class="font-serif font-bold text-lg c-dark-txt text-center z-10">Women's<br>Health</span>
+                            <span class="text-xs c-gold-txt tracking-widest uppercase mt-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 font-bold">Explore <i data-lucide="chevron-right" class="w-3 h-3 inline"></i></span>
                         </button>
-                        <button onclick="navigateTo('view-shop'); renderShop('Men\'s Health');" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 flex justify-between items-center group transition-all focus:outline-none">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors">Men's Health</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+
+                        <!-- Arch 2 -->
+                        <button onclick="navigateTo('view-shop'); renderShop('Men\'s Health');" class="snap-start flex-shrink-0 w-48 h-64 c-cream-bg arch-card border border-white flex flex-col items-center justify-center p-6 group relative focus:outline-none">
+                            <div class="bg-white p-4 rounded-full shadow-sm mb-4 group-hover:shadow-md transition-shadow z-10">
+                                <i data-lucide="activity" class="w-8 h-8 c-green-txt"></i>
+                            </div>
+                            <span class="font-serif font-bold text-lg c-dark-txt text-center z-10">Men's<br>Health</span>
+                            <span class="text-xs c-gold-txt tracking-widest uppercase mt-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 font-bold">Explore <i data-lucide="chevron-right" class="w-3 h-3 inline"></i></span>
                         </button>
-                        <button onclick="navigateTo('view-shop'); renderShop('Digestive Health');" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 flex justify-between items-center group transition-all focus:outline-none">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors">Digestive Health</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+
+                        <!-- Arch 3 -->
+                        <button onclick="navigateTo('view-shop'); renderShop('Digestive Health');" class="snap-start flex-shrink-0 w-48 h-64 c-cream-bg arch-card border border-white flex flex-col items-center justify-center p-6 group relative focus:outline-none">
+                            <div class="bg-white p-4 rounded-full shadow-sm mb-4 group-hover:shadow-md transition-shadow z-10">
+                                <i data-lucide="leaf" class="w-8 h-8 c-green-txt"></i>
+                            </div>
+                            <span class="font-serif font-bold text-lg c-dark-txt text-center z-10">Digestive<br>Health</span>
+                            <span class="text-xs c-gold-txt tracking-widest uppercase mt-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 font-bold">Explore <i data-lucide="chevron-right" class="w-3 h-3 inline"></i></span>
                         </button>
-                        <button onclick="navigateTo('view-shop'); renderShop('Blood Booster');" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 flex justify-between items-center group transition-all focus:outline-none">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors">Blood Booster</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+
+                        <!-- Arch 4 -->
+                        <button onclick="navigateTo('view-shop'); renderShop('Blood Booster');" class="snap-start flex-shrink-0 w-48 h-64 c-cream-bg arch-card border border-white flex flex-col items-center justify-center p-6 group relative focus:outline-none">
+                            <div class="bg-white p-4 rounded-full shadow-sm mb-4 group-hover:shadow-md transition-shadow z-10">
+                                <i data-lucide="droplet" class="w-8 h-8 c-green-txt"></i>
+                            </div>
+                            <span class="font-serif font-bold text-lg c-dark-txt text-center z-10">Blood<br>Booster</span>
+                            <span class="text-xs c-gold-txt tracking-widest uppercase mt-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 font-bold">Explore <i data-lucide="chevron-right" class="w-3 h-3 inline"></i></span>
                         </button>
-                        <button onclick="navigateTo('view-shop'); renderShop('Skin care');" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 flex justify-between items-center group transition-all focus:outline-none">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors">Skin care</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+
+                        <!-- Arch 5 -->
+                        <button onclick="navigateTo('view-shop'); renderShop('Skin care');" class="snap-start flex-shrink-0 w-48 h-64 c-cream-bg arch-card border border-white flex flex-col items-center justify-center p-6 group relative focus:outline-none">
+                            <div class="bg-white p-4 rounded-full shadow-sm mb-4 group-hover:shadow-md transition-shadow z-10">
+                                <i data-lucide="sparkles" class="w-8 h-8 c-green-txt"></i>
+                            </div>
+                            <span class="font-serif font-bold text-lg c-dark-txt text-center z-10">Skin<br>Care</span>
+                            <span class="text-xs c-gold-txt tracking-widest uppercase mt-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 font-bold">Explore <i data-lucide="chevron-right" class="w-3 h-3 inline"></i></span>
                         </button>
-                        <button onclick="navigateTo('view-shop'); renderShop('Hair care');" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 flex justify-between items-center group transition-all focus:outline-none">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors">Hair care</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+
+                        <!-- Arch 6 -->
+                        <button onclick="navigateTo('view-shop'); renderShop('Hair care');" class="snap-start flex-shrink-0 w-48 h-64 c-cream-bg arch-card border border-white flex flex-col items-center justify-center p-6 group relative focus:outline-none">
+                            <div class="bg-white p-4 rounded-full shadow-sm mb-4 group-hover:shadow-md transition-shadow z-10">
+                                <i data-lucide="wind" class="w-8 h-8 c-green-txt"></i>
+                            </div>
+                            <span class="font-serif font-bold text-lg c-dark-txt text-center z-10">Hair<br>Care</span>
+                            <span class="text-xs c-gold-txt tracking-widest uppercase mt-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 font-bold">Explore <i data-lucide="chevron-right" class="w-3 h-3 inline"></i></span>
                         </button>
-                        <button onclick="navigateTo('view-shop'); renderShop('Tooth Care');" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 flex justify-between items-center group transition-all focus:outline-none">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors">Tooth Care</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+
+                        <!-- Arch 7 -->
+                        <button onclick="navigateTo('view-shop'); renderShop('Tooth Care');" class="snap-start flex-shrink-0 w-48 h-64 c-cream-bg arch-card border border-white flex flex-col items-center justify-center p-6 group relative focus:outline-none">
+                            <div class="bg-white p-4 rounded-full shadow-sm mb-4 group-hover:shadow-md transition-shadow z-10">
+                                <i data-lucide="smile" class="w-8 h-8 c-green-txt"></i>
+                            </div>
+                            <span class="font-serif font-bold text-lg c-dark-txt text-center z-10">Tooth<br>Care</span>
+                            <span class="text-xs c-gold-txt tracking-widest uppercase mt-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 font-bold">Explore <i data-lucide="chevron-right" class="w-3 h-3 inline"></i></span>
                         </button>
-                        <button onclick="navigateTo('view-shop'); renderShop('Herbal Drinks');" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 flex justify-between items-center group transition-all focus:outline-none">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors">Herbal Drinks</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
-                        </button>
-                        <button onclick="navigateTo('view-shop'); renderShop('Combos and offers');" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md border border-gray-100 flex justify-between items-center group transition-all focus:outline-none">
-                            <span class="font-bold text-brand-dark group-hover:text-brand-green transition-colors">Combos and offers</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+
+                        <!-- Arch 8 -->
+                        <button onclick="navigateTo('view-shop'); renderShop('Herbal Drinks');" class="snap-start flex-shrink-0 w-48 h-64 c-cream-bg arch-card border border-white flex flex-col items-center justify-center p-6 group relative focus:outline-none">
+                            <div class="bg-white p-4 rounded-full shadow-sm mb-4 group-hover:shadow-md transition-shadow z-10">
+                                <i data-lucide="coffee" class="w-8 h-8 c-green-txt"></i>
+                            </div>
+                            <span class="font-serif font-bold text-lg c-dark-txt text-center z-10">Herbal<br>Drinks</span>
+                            <span class="text-xs c-gold-txt tracking-widest uppercase mt-4 opacity-0 group-hover:opacity-100 transition-opacity z-10 font-bold">Explore <i data-lucide="chevron-right" class="w-3 h-3 inline"></i></span>
                         </button>
                     </div>
-                    <button onclick="navigateTo('view-shop'); renderShop('All');" class="mt-8 sm:hidden w-full flex items-center justify-center gap-2 border border-brand-green text-brand-green px-6 py-3 rounded-lg font-semibold hover:bg-brand-green hover:text-white transition-colors focus:outline-none">
-                        DISCOVER ALL <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </button>
                 </div>
             </section>
 
-            <section class="py-20 bg-brand-light">
+            <!-- Why Adhishaya Cards -->
+            <section class="py-20 c-light-bg">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-16">
-                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-dark mb-4 md:mb-0">Why Adhishaya ?</h2>
-                        <button onclick="navigateTo('view-about')" class="border border-brand-green text-brand-green px-6 py-2 rounded-lg font-semibold hover:bg-brand-green hover:text-white transition-colors flex items-center gap-2 focus:outline-none">
+                        <h2 class="font-serif text-3xl md:text-4xl font-bold c-dark-txt mb-4 md:mb-0">Why Adhishaya ?</h2>
+                        <button onclick="navigateTo('view-about')" class="c-green-border border c-green-txt px-6 py-2 rounded-lg font-semibold hover-c-green-bg transition-colors flex items-center gap-2 focus:outline-none">
                             DISCOVER MORE ABOUT US <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
                     </div>
@@ -308,38 +312,38 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <!-- Card 1 -->
                         <div class="feature-card group">
-                            <div class="bg-brand-cream w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-                                <img src="bowl1.png" alt="Sourcing" class="w-12 h-12 object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<i data-lucide=\'leaf\' class=\'w-8 h-8 text-brand-green\'></i>'">
+                            <div class="c-cream-bg w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                                <img src="bowl1.png" alt="Sourcing" class="w-12 h-12 object-contain" onerror="this.src='https://placehold.co/100x100/FDF6EA/2A5C2F?text=Icon'">
                             </div>
-                            <h3 class="font-bold text-brand-dark text-lg mb-3">High-Quality Ingredient Sourcing.</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">We source only the most potent, ethically-harvested herbs from trusted growers who honor nature's timing. No shortcuts, no synthetics — just pure, unadulterated ingredients that meet our rigorous quality standards.</p>
+                            <h3 class="font-bold c-dark-txt text-lg mb-3">High-Quality Ingredient Sourcing.</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">We source only the most potent, ethically-harvested herbs from trusted growers who honor nature's timing. No shortcuts, no synthetics — just pure ingredients.</p>
                         </div>
                         
                         <!-- Card 2 -->
                         <div class="feature-card group">
-                            <div class="bg-brand-cream w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-                                <img src="bowl2.png" alt="Production" class="w-12 h-12 object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<i data-lucide=\'box\' class=\'w-8 h-8 text-brand-green\'></i>'">
+                            <div class="c-cream-bg w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                                <img src="bowl2.png" alt="Production" class="w-12 h-12 object-contain" onerror="this.src='https://placehold.co/100x100/FDF6EA/2A5C2F?text=Icon'">
                             </div>
-                            <h3 class="font-bold text-brand-dark text-lg mb-3">Small-batch production.</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">Every blend is handcrafted in small batches to ensure freshness, potency, and care. This slow, intentional process allows us to maintain quality over quantity — your wellness deserves nothing less.</p>
+                            <h3 class="font-bold c-dark-txt text-lg mb-3">Small-batch production.</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Every blend is handcrafted in small batches to ensure freshness, potency, and care. This slow process allows us to maintain quality over quantity.</p>
                         </div>
 
                         <!-- Card 3 -->
                         <div class="feature-card group">
-                            <div class="bg-brand-cream w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-                                <img src="bowl3.png" alt="Knowledge" class="w-12 h-12 object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<i data-lucide=\'book-open\' class=\'w-8 h-8 text-brand-green\'></i>'">
+                            <div class="c-cream-bg w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                                <img src="bowl3.png" alt="Knowledge" class="w-12 h-12 object-contain" onerror="this.src='https://placehold.co/100x100/FDF6EA/2A5C2F?text=Icon'">
                             </div>
-                            <h3 class="font-bold text-brand-dark text-lg mb-3">Rooted in Ancient Knowledge</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">Our formulations are born at the intersection of time-tested herbal wisdom and cutting-edge Methods. We bridge tradition and innovation to create remedies that are both soulful and scientifically sound.</p>
+                            <h3 class="font-bold c-dark-txt text-lg mb-3">Rooted in Ancient Knowledge</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Our formulations are born at the intersection of time-tested herbal wisdom and cutting-edge Methods. We bridge tradition and innovation.</p>
                         </div>
 
                         <!-- Card 4 -->
                         <div class="feature-card group">
-                            <div class="bg-brand-cream w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
-                                <img src="bowl4.png" alt="Affordable" class="w-12 h-12 object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<i data-lucide=\'heart\' class=\'w-8 h-8 text-brand-green\'></i>'">
+                            <div class="c-cream-bg w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                                <img src="bowl4.png" alt="Affordable" class="w-12 h-12 object-contain" onerror="this.src='https://placehold.co/100x100/FDF6EA/2A5C2F?text=Icon'">
                             </div>
-                            <h3 class="font-bold text-brand-dark text-lg mb-3">Affordable Wellness for Everyone</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">We believe that holistic health should never be a luxury. That's why we're committed to keeping our products accessible — high-quality, herbal wellness that doesn't break the bank.</p>
+                            <h3 class="font-bold c-dark-txt text-lg mb-3">Affordable Wellness for Everyone</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">We believe that holistic health should never be a luxury. That's why we're committed to keeping our products accessible without breaking the bank.</p>
                         </div>
                     </div>
                 </div>
@@ -347,19 +351,19 @@
 
             <!-- Certifications Banner -->
             <section class="py-12 bg-white border-y border-gray-100" style="background-image: url('bkg2.png'); background-size: cover; background-position: center;">
-                <div class="max-w-4xl mx-auto px-4 flex flex-wrap justify-center items-center gap-12 md:gap-24 bg-white/70 backdrop-blur-md py-6 rounded-3xl shadow-sm border border-white/20">
-                    <img src="fssai.png" alt="FSSAI" class="h-12 md:h-16 object-contain" onerror="this.style.display='none'">
-                    <!-- GMP made larger and prominent -->
-                    <img src="gmp.png" alt="GMP Quality" class="h-24 md:h-32 object-contain" onerror="this.style.display='none'">
-                    <img src="ayush.png" alt="Ministry of Ayush" class="h-12 md:h-16 object-contain" onerror="this.style.display='none'">
+                <div class="max-w-4xl mx-auto px-4 flex flex-wrap justify-center items-center gap-12 md:gap-24 bg-white bg-opacity-70 backdrop-blur-md py-6 rounded-3xl shadow-sm border border-white">
+                    <img src="fssai.png" alt="FSSAI" class="h-12 md:h-16 object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2A5C2F?text=FSSAI'">
+                    <img src="gmp.png" alt="GMP Quality" class="h-24 md:h-32 object-contain" onerror="this.src='https://placehold.co/150x150/ffffff/2A5C2F?text=GMP'">
+                    <img src="ayush.png" alt="Ministry of Ayush" class="h-12 md:h-16 object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2A5C2F?text=AYUSH'">
                 </div>
             </section>
 
-            <section class="py-20 bg-brand-light overflow-hidden">
+            <!-- Reviews -->
+            <section class="py-20 c-light-bg overflow-hidden">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
-                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-dark mb-4">Loved by our Community</h2>
-                    <div class="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-4"></div>
-                    <div class="flex justify-center items-center gap-2 text-brand-dark font-bold">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold c-dark-txt mb-4">Loved by our Community</h2>
+                    <div class="w-24 h-1 c-gold-bg mx-auto rounded-full mb-4"></div>
+                    <div class="flex justify-center items-center gap-2 c-dark-txt font-bold">
                         <span class="text-2xl">4.9</span>
                         <div class="flex text-yellow-400">
                             <i data-lucide="star" class="w-5 h-5 fill-current"></i>
@@ -373,90 +377,67 @@
                 </div>
 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="review-scroll gap-6 pb-8 pt-4 px-4 -mx-4">
-                        <!-- Review 1 -->
+                    <div class="review-scroll gap-6 pb-8 pt-4 px-4 -mx-4 hide-scrollbar">
+                        <!-- Review Cards -->
                         <div class="review-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                             <div>
-                                <div class="flex text-yellow-400 mb-3">
-                                    <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                </div>
-                                <p class="text-gray-700 text-sm mb-4">"The Inji Chooranam has completely fixed my bloating issues. It feels so authentic, just like what my grandmother used to make. Highly recommend Adhishaya!"</p>
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-gray-700 text-sm mb-4">"The Inji Chooranam has completely fixed my bloating issues. It feels so authentic. Highly recommend Adhishaya!"</p>
                             </div>
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-brand-peach text-brand-green flex items-center justify-center font-bold">R</div>
-                                <div><p class="font-bold text-brand-dark text-sm">Rahul S.</p><p class="text-xs text-gray-500">Verified Buyer</p></div>
+                                <div class="w-10 h-10 rounded-full c-peach-bg c-green-txt flex items-center justify-center font-bold">R</div>
+                                <div><p class="font-bold c-dark-txt text-sm">Rahul S.</p><p class="text-xs text-gray-500">Verified Buyer</p></div>
                             </div>
                         </div>
-                        <!-- Review 2 -->
                         <div class="review-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                             <div>
-                                <div class="flex text-yellow-400 mb-3">
-                                    <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                </div>
-                                <p class="text-gray-700 text-sm mb-4">"I've been using their hair care powders for a month and the difference is visible. Pure ingredients and you can smell the quality immediately."</p>
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-gray-700 text-sm mb-4">"I've been using their hair care powders for a month and the difference is visible. Pure ingredients!"</p>
                             </div>
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-brand-green text-white flex items-center justify-center font-bold">P</div>
-                                <div><p class="font-bold text-brand-dark text-sm">Priya M.</p><p class="text-xs text-gray-500">Verified Buyer</p></div>
+                                <div class="w-10 h-10 rounded-full c-green-bg text-white flex items-center justify-center font-bold">P</div>
+                                <div><p class="font-bold c-dark-txt text-sm">Priya M.</p><p class="text-xs text-gray-500">Verified Buyer</p></div>
                             </div>
                         </div>
-                        <!-- Review 3 -->
                         <div class="review-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                             <div>
-                                <div class="flex text-yellow-400 mb-3">
-                                    <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-gray-300 fill-current"></i>
-                                </div>
-                                <p class="text-gray-700 text-sm mb-4">"Great quality and packaging. Ordering on WhatsApp was surprisingly smooth and delivery was fast. Will buy again."</p>
+                                <div class="flex text-yellow-400 mb-3"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-gray-700 text-sm mb-4">"Great quality and packaging. Ordering on WhatsApp was surprisingly smooth. Will buy again."</p>
                             </div>
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-brand-gold text-white flex items-center justify-center font-bold">A</div>
-                                <div><p class="font-bold text-brand-dark text-sm">Arun K.</p><p class="text-xs text-gray-500">Verified Buyer</p></div>
-                            </div>
-                        </div>
-                         <!-- Review 4 -->
-                         <div class="review-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
-                            <div>
-                                <div class="flex text-yellow-400 mb-3">
-                                    <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                </div>
-                                <p class="text-gray-700 text-sm mb-4">"The Nilavembu is a lifesaver during flu season. Genuine products that stay true to Ayurvedic roots."</p>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">S</div>
-                                <div><p class="font-bold text-brand-dark text-sm">Sneha V.</p><p class="text-xs text-gray-500">Verified Buyer</p></div>
+                                <div class="w-10 h-10 rounded-full c-gold-bg text-white flex items-center justify-center font-bold">A</div>
+                                <div><p class="font-bold c-dark-txt text-sm">Arun K.</p><p class="text-xs text-gray-500">Verified Buyer</p></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-        </div> <!-- End View Home -->
+        </div> <!-- End Home View -->
 
-        <div id="view-shop" class="view-section bg-brand-light pb-20 min-h-screen">
+        <!-- ==========================================
+             VIEW: SHOP / STORE
+             ========================================== -->
+        <div id="view-shop" class="view-section c-light-bg pb-20 min-h-screen">
             
-            <!-- Beautiful Shop Hero Banner -->
-            <div class="relative bg-brand-green text-white py-20 md:py-28 mx-4 sm:mx-6 lg:mx-8 rounded-b-[3rem] overflow-hidden shadow-2xl mb-12">
-                <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
-                    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-white blur-3xl"></div>
-                    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-gold blur-3xl"></div>
-                </div>
+            <div class="relative c-green-bg text-white py-20 md:py-28 mx-4 sm:mx-6 lg:mx-8 rounded-b-3xl overflow-hidden shadow-2xl mb-12">
                 <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                    <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">100% Pure & Natural</span>
+                    <span class="c-gold-txt font-bold tracking-widest uppercase text-sm mb-4 block">100% Pure & Natural</span>
                     <h2 id="shop-title" class="font-serif text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-md">Our Apothecary</h2>
-                    <div class="w-24 h-1.5 bg-brand-gold mx-auto rounded-full mb-8"></div>
-                    <p id="shop-subtitle" class="text-brand-peach text-lg md:text-xl font-light">Explore our curated collection of traditional herbal formulations.</p>
+                    <div class="w-24 h-1 c-gold-bg mx-auto rounded-full mb-8"></div>
+                    <p id="shop-subtitle" class="text-gray-200 text-lg md:text-xl font-light">Explore our curated collection of traditional herbal formulations.</p>
                 </div>
             </div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col lg:flex-row gap-10">
-                    <!-- Sticky Sidebar Categories -->
+                    <!-- Sidebar -->
                     <div class="w-full lg:w-1/4">
                         <div class="bg-white p-6 rounded-3xl shadow-lg border border-gray-100 sticky top-28 z-10">
-                            <h3 class="font-bold text-brand-dark mb-6 uppercase tracking-wider text-sm flex items-center gap-2">
-                                <i data-lucide="filter" class="w-4 h-4 text-brand-gold"></i> Categories
+                            <h3 class="font-bold c-dark-txt mb-6 uppercase tracking-wider text-sm flex items-center gap-2">
+                                <i data-lucide="filter" class="w-4 h-4 c-gold-txt"></i> Categories
                             </h3>
                             <ul class="space-y-2" id="category-sidebar">
-                                <!-- Populated by JS -->
+                                <!-- Populated dynamically -->
                             </ul>
                         </div>
                     </div>
@@ -465,144 +446,109 @@
                     <div class="w-full lg:w-3/4">
                         <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
                             <span id="product-count" class="text-gray-500 font-medium text-sm">Showing products</span>
-                            <div class="flex items-center gap-2 text-sm text-gray-600 font-medium">
-                                <i data-lucide="arrow-down-up" class="w-4 h-4"></i> Sort by: <span class="text-brand-dark">Featured</span>
-                            </div>
                         </div>
-
                         <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-                            <!-- Populated by JS -->
+                            <!-- Populated dynamically -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="view-about" class="view-section py-20 bg-brand-green text-white relative overflow-hidden min-h-screen">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold opacity-10 rounded-full transform -translate-x-1/3 translate-y-1/3"></div>
-            
+        <!-- ==========================================
+             VIEW: ABOUT 
+             ========================================== -->
+        <div id="view-about" class="view-section py-20 c-green-bg text-white relative overflow-hidden min-h-screen">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="flex flex-col md:flex-row items-center gap-12 pt-10">
                     <div class="md:w-1/2">
-                        <img src="logo.jpeg" alt="Adhishaya Logo Graphic" class="w-64 h-64 object-contain mx-auto rounded-3xl bg-white/10 p-8 backdrop-blur-sm" onerror="this.style.display='none'">
+                        <img src="logo.jpeg" alt="Adhishaya Logo Graphic" class="w-64 h-64 object-contain mx-auto rounded-3xl bg-white bg-opacity-10 p-8" onerror="this.src='https://placehold.co/400x400/FDF6EA/2A5C2F?text=Logo'">
                     </div>
                     <div class="md:w-1/2">
                         <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">The Adhishaya Promise</h2>
-                        <p class="text-brand-peach mb-6 text-lg leading-relaxed">
+                        <p class="text-gray-200 mb-6 text-lg leading-relaxed">
                             We believe that true health comes from nature. At Adhishaya Herbs & Food Products, we are dedicated to bringing you the purest herbal formulations, prepared exactly as ancient texts prescribe. Our journey started with a simple mission: to make authentic wellness accessible to everyone without compromising on quality.
                         </p>
                         <ul class="space-y-4 mb-8">
-                            <li class="flex items-center gap-3">
-                                <div class="bg-brand-gold/20 p-2 rounded-full text-brand-gold"><i data-lucide="check" class="w-5 h-5"></i></div>
-                                <span class="text-lg">Ethically sourced raw materials</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <div class="bg-brand-gold/20 p-2 rounded-full text-brand-gold"><i data-lucide="check" class="w-5 h-5"></i></div>
-                                <span class="text-lg">Stringent quality control standards</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <div class="bg-brand-gold/20 p-2 rounded-full text-brand-gold"><i data-lucide="check" class="w-5 h-5"></i></div>
-                                <span class="text-lg">Eco-friendly packaging practices</span>
-                            </li>
+                            <li class="flex items-center gap-3"><div class="c-gold-txt"><i data-lucide="check" class="w-5 h-5"></i></div><span class="text-lg">Ethically sourced raw materials</span></li>
+                            <li class="flex items-center gap-3"><div class="c-gold-txt"><i data-lucide="check" class="w-5 h-5"></i></div><span class="text-lg">Stringent quality control standards</span></li>
+                            <li class="flex items-center gap-3"><div class="c-gold-txt"><i data-lucide="check" class="w-5 h-5"></i></div><span class="text-lg">Eco-friendly packaging practices</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="view-faq" class="view-section py-20 bg-brand-light min-h-screen">
+        <!-- ==========================================
+             VIEW: FAQ 
+             ========================================== -->
+        <div id="view-faq" class="view-section py-20 c-light-bg min-h-screen">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
                 <div class="text-center mb-12">
-                    <h2 class="font-serif text-4xl font-bold text-brand-dark mb-4">Frequently Asked Questions</h2>
-                    <div class="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
-                    <p class="text-gray-600">Everything you need to know about our products and services.</p>
+                    <h2 class="font-serif text-4xl font-bold c-dark-txt mb-4">Frequently Asked Questions</h2>
+                    <div class="w-24 h-1 c-gold-bg mx-auto rounded-full mb-6"></div>
                 </div>
                 <div class="space-y-4">
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h3 class="font-bold text-brand-dark text-lg mb-2">Are your products 100% natural?</h3>
-                        <p class="text-gray-600">Yes, all Adhishaya products are made from 100% natural ingredients sourced directly from nature, with absolutely no synthetic additives, colors, or preservatives.</p>
+                        <h3 class="font-bold c-dark-txt text-lg mb-2">Are your products 100% natural?</h3>
+                        <p class="text-gray-600">Yes, all Adhishaya products are made from 100% natural ingredients sourced directly from nature, with no synthetic additives.</p>
                     </div>
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h3 class="font-bold text-brand-dark text-lg mb-2">How do I place an order?</h3>
-                        <p class="text-gray-600">Currently, we process orders directly via WhatsApp to provide a personalized experience. Simply click the "Order on WhatsApp" button on any product, and it will open a pre-filled message for our team.</p>
+                        <h3 class="font-bold c-dark-txt text-lg mb-2">How do I place an order?</h3>
+                        <p class="text-gray-600">Click the "Order on WhatsApp" button on any product. It will open a pre-filled message to our team (+91 80123 46672) to process your order securely.</p>
                     </div>
                     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h3 class="font-bold text-brand-dark text-lg mb-2">Do you ship across India?</h3>
-                        <p class="text-gray-600">Yes, we deliver to almost all pin codes across India. Shipping details and charges will be confirmed by our team when you place your order via WhatsApp.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h3 class="font-bold text-brand-dark text-lg mb-2">Are your facilities certified?</h3>
-                        <p class="text-gray-600">Yes, we adhere to strict quality standards and our facilities hold necessary certifications including FSSAI and GMP compliance.</p>
+                        <h3 class="font-bold c-dark-txt text-lg mb-2">Are your facilities certified?</h3>
+                        <p class="text-gray-600">Yes, we adhere to strict quality standards and hold FSSAI, GMP, and Ministry of Ayush certifications.</p>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- ==========================================
+             VIEW: LEGAL 
+             ========================================== -->
         <div id="view-legal" class="view-section py-20 bg-white min-h-screen">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-                <h2 id="legal-title" class="font-serif text-4xl font-bold text-brand-dark mb-8 border-b pb-4">Privacy Policy</h2>
+                <h2 id="legal-title" class="font-serif text-4xl font-bold c-dark-txt mb-8 border-b pb-4">Privacy Policy</h2>
                 <div class="max-w-none text-gray-600 space-y-6">
-                    <p><strong>Last Updated: May 2026</strong></p>
-                    <p>At Adhishaya Herbs & Food Products, we take your privacy seriously. This document outlines how we collect, use, and protect your personal data in accordance with the Information Technology Act, 2000 (India) and applicable global data protection regulations.</p>
-                    <h3 class="font-bold text-brand-dark text-xl mt-6">1. Information We Collect</h3>
-                    <p>When you interact with our website or place an order via WhatsApp, we may collect personal information such as your name, phone number, shipping address, and payment details. We only collect information strictly necessary to fulfill your order and improve your experience.</p>
-                    <h3 class="font-bold text-brand-dark text-xl mt-6">2. How We Use Your Information</h3>
-                    <p>Your data is used solely for processing orders, delivery logistics, customer support, and, if you opt-in, sending updates about new products. We do not sell your data to third-party marketing agencies.</p>
-                    <h3 class="font-bold text-brand-dark text-xl mt-6">3. Data Security</h3>
-                    <p>We implement industry-standard security measures to prevent unauthorized access to your personal information. However, no digital transmission is 100% secure.</p>
-                    <p class="text-sm italic mt-10 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                        *Note: This is a placeholder legal document for demonstration purposes. Please consult with a legal professional to ensure full compliance with the Consumer Protection (E-Commerce) Rules, 2020 and upcoming DPDP Act guidelines in India.
-                    </p>
+                    <p>At Adhishaya Herbs & Food Products, we take your privacy seriously in accordance with the Information Technology Act, 2000 (India).</p>
+                    <h3 class="font-bold c-dark-txt text-xl mt-6">1. Information We Collect</h3>
+                    <p>When you place an order via WhatsApp, we collect necessary personal information such as your name, phone number, and shipping address solely to fulfill your order.</p>
+                    <h3 class="font-bold c-dark-txt text-xl mt-6">2. Data Security</h3>
+                    <p>We implement strict security measures to protect your data. We do not sell your data to third-party marketing agencies.</p>
                 </div>
             </div>
         </div>
 
     </div> <!-- End App Container -->
 
-    <footer class="bg-brand-dark text-gray-300 pt-16 pb-8">
+    <!-- Footer -->
+    <footer class="c-dark-bg text-gray-300 pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div class="col-span-1 md:col-span-1">
                     <div class="flex items-center mb-4">
                         <span class="font-serif font-bold text-2xl text-white">Adhishaya</span>
                     </div>
-                    <p class="text-sm text-gray-400 mb-6">Bringing the healing touch of nature to your doorstep with our premium, gentle, and balanced herbal products.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-brand-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-brand-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-brand-gold transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                    </div>
+                    <p class="text-sm text-gray-400 mb-6">Bringing the healing touch of nature to your doorstep.</p>
                 </div>
                 
                 <div>
                     <h4 class="text-white font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><button onclick="navigateTo('view-home')" class="hover:text-brand-gold transition-colors focus:outline-none">Home</button></li>
-                        <li><button onclick="navigateTo('view-shop'); renderShop('All');" class="hover:text-brand-gold transition-colors focus:outline-none">Shop All</button></li>
-                        <li><button onclick="navigateTo('view-about')" class="hover:text-brand-gold transition-colors focus:outline-none">About Us</button></li>
-                        <li><button onclick="window.open('https://wa.me/918012346672', '_blank')" class="hover:text-brand-gold transition-colors focus:outline-none">Contact</button></li>
+                        <li><button onclick="navigateTo('view-home')" class="hover-c-gold-txt focus:outline-none">Home</button></li>
+                        <li><button onclick="navigateTo('view-shop'); renderShop('All');" class="hover-c-gold-txt focus:outline-none">Store</button></li>
+                        <li><button onclick="navigateTo('view-about')" class="hover-c-gold-txt focus:outline-none">About Us</button></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="text-white font-semibold mb-4">Customer Care</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><button onclick="navigateTo('view-faq')" class="hover:text-brand-gold transition-colors focus:outline-none">FAQ</button></li>
-                        <li><button onclick="window.open('https://wa.me/918012346672', '_blank')" class="hover:text-brand-gold transition-colors focus:outline-none">Shipping & Returns</button></li>
-                        <li><button onclick="window.open('https://wa.me/918012346672', '_blank')" class="hover:text-brand-gold transition-colors focus:outline-none">Track Order</button></li>
+                        <li><button onclick="navigateTo('view-faq')" class="hover-c-gold-txt focus:outline-none">FAQ</button></li>
+                        <li><a href="https://wa.me/918012346672" target="_blank" class="hover-c-gold-txt">Contact Support</a></li>
                     </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Newsletter</h4>
-                    <p class="text-sm text-gray-400 mb-4">Subscribe to get updates on new products and wellness tips.</p>
-                    <form class="flex" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
-                        <input type="email" placeholder="Your email address" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:border-brand-gold text-white text-sm" required>
-                        <button type="submit" class="bg-brand-gold text-brand-dark px-4 py-2 rounded-r-lg font-semibold hover:bg-brand-peach transition-colors">
-                            <i data-lucide="send" class="w-4 h-4"></i>
-                        </button>
-                    </form>
                 </div>
             </div>
             
@@ -617,6 +563,15 @@
     </footer>
 
     <script>
+        // --- SAFE ICON LOADING ---
+        try {
+            if(typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        } catch(e) {
+            console.warn("Icons failed to load. The site will still function properly.");
+        }
+
         // --- DATA ---
         const categories = [
             "Women's Health", "Men's Health", "Digestive Health", 
@@ -624,7 +579,6 @@
             "Tooth Care", "Herbal Drinks", "Combos and offers"
         ];
 
-        // Extended Dummy Products with Unsplash Images
         const products = [
             { id: 1, name: "Inji Chooranam", price: 250, cat: "Digestive Health", img: "product-1.jpeg" },
             { id: 2, name: "Amukkara Chooranam", price: 320, cat: "Men's Health", img: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=500&q=80" },
@@ -636,27 +590,19 @@
             { id: 8, name: "Neem & Clove Powder", price: 150, cat: "Tooth Care", img: "https://images.unsplash.com/photo-1604543519967-0eb231bb8503?auto=format&fit=crop&w=500&q=80" },
             { id: 9, name: "Ashoka Arishta Blend", price: 290, cat: "Women's Health", img: "https://images.unsplash.com/photo-1587825027984-c4ca4d5a9d80?auto=format&fit=crop&w=500&q=80" },
             { id: 10, name: "Tulsi Green Tea Mix", price: 160, cat: "Herbal Drinks", img: "https://images.unsplash.com/photo-1576092762791-dd9e2220c4af?auto=format&fit=crop&w=500&q=80" },
-            { id: 11, name: "Complete Wellness Combo", price: 999, cat: "Combos and offers", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=500&q=80" },
-            { id: 12, name: "Safed Musli Powder", price: 450, cat: "Men's Health", img: "https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?auto=format&fit=crop&w=500&q=80" }
+            { id: 11, name: "Wellness Combo Box", price: 999, cat: "Combos and offers", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=500&q=80" }
         ];
 
-        // --- ROUTING LOGIC (Single Page App Feel) ---
+        // --- ROUTING LOGIC ---
         function navigateTo(viewId, titleStr = null) {
-            // Hide all views
             const views = document.querySelectorAll('.view-section');
             views.forEach(v => v.classList.remove('active'));
-            
-            // Show target view
             document.getElementById(viewId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Special case for legal page title
-            if(viewId === 'view-legal' && titleStr) {
-                document.getElementById('legal-title').innerText = titleStr;
-            }
+            if(viewId === 'view-legal' && titleStr) document.getElementById('legal-title').innerText = titleStr;
         }
 
-        // --- RENDER SHOP LOGIC ---
+        // --- RENDER STORE ---
         function renderShop(selectedCat) {
             const sidebar = document.getElementById('category-sidebar');
             const grid = document.getElementById('products-container');
@@ -664,7 +610,6 @@
             const subtitle = document.getElementById('shop-subtitle');
             const productCount = document.getElementById('product-count');
 
-            // Update Titles
             if(selectedCat === 'All') {
                 title.innerText = "Our Apothecary";
                 subtitle.innerText = "Explore our curated collection of traditional herbal formulations.";
@@ -673,102 +618,75 @@
                 subtitle.innerText = `Premium, natural solutions for ${selectedCat.toLowerCase()}.`;
             }
 
-            // Render Sidebar (Modern Pill Design)
-            sidebar.innerHTML = `
+            // Safe Sidebar UI Generation
+            let sidebarHTML = `
                 <li>
-                    <button onclick="renderShop('All')" class="w-full text-left font-semibold px-4 py-3 rounded-xl transition-all duration-300 flex items-center justify-between focus:outline-none ${selectedCat === 'All' ? 'bg-brand-green text-white shadow-md transform scale-105' : 'text-gray-600 hover:bg-brand-peach/30 hover:text-brand-green'}">
+                    <button onclick="renderShop('All')" class="w-full text-left font-semibold px-4 py-3 rounded-xl transition-all duration-300 flex items-center justify-between focus:outline-none ${selectedCat === 'All' ? 'c-green-bg text-white shadow-md transform scale-105' : 'text-gray-600 hover-c-green-txt'}">
                         <span>All Products</span>
-                        ${selectedCat === 'All' ? '<i data-lucide="chevron-right" class="w-4 h-4 text-white"></i>' : ''}
                     </button>
-                </li>
-            `;
+                </li>`;
+            
             categories.forEach(cat => {
                 const isActive = selectedCat === cat;
-                sidebar.innerHTML += `
+                sidebarHTML += `
                     <li>
-                        <button onclick="renderShop('${cat}')" class="w-full text-left font-semibold px-4 py-3 rounded-xl transition-all duration-300 flex items-center justify-between focus:outline-none ${isActive ? 'bg-brand-green text-white shadow-md transform scale-105' : 'text-gray-600 hover:bg-brand-peach/30 hover:text-brand-green'}">
+                        <button onclick="renderShop('${cat}')" class="w-full text-left font-semibold px-4 py-3 rounded-xl transition-all duration-300 flex items-center justify-between focus:outline-none ${isActive ? 'c-green-bg text-white shadow-md transform scale-105' : 'text-gray-600 hover-c-green-txt'}">
                             <span>${cat}</span>
-                            ${isActive ? '<i data-lucide="chevron-right" class="w-4 h-4 text-white"></i>' : ''}
                         </button>
-                    </li>
-                `;
+                    </li>`;
             });
+            sidebar.innerHTML = sidebarHTML;
 
-            // Filter Products
             const filteredProducts = selectedCat === 'All' ? products : products.filter(p => p.cat === selectedCat);
-            
-            // Update Count
             if(productCount) productCount.innerText = `Showing ${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''}`;
 
-            // Render Products
-            grid.innerHTML = '';
-            
+            // Safe Product Grid Generation
+            let gridHTML = '';
             if(filteredProducts.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full flex flex-col items-center justify-center py-20 bg-white rounded-3xl border border-gray-100 shadow-sm">
-                        <i data-lucide="leaf" class="w-16 h-16 text-brand-peach mb-4"></i>
-                        <p class="text-brand-dark font-serif text-xl font-bold">New formulations arriving soon.</p>
-                        <p class="text-gray-500 mt-2">Check back later for products in this category.</p>
-                        <button onclick="renderShop('All')" class="mt-6 text-brand-green font-bold hover:underline focus:outline-none">View All Products</button>
-                    </div>
-                `;
-                lucide.createIcons();
-                return;
-            }
+                gridHTML = `<div class="col-span-full py-20 bg-white rounded-3xl border border-gray-100 text-center"><p class="text-xl font-bold">New formulations arriving soon.</p></div>`;
+            } else {
+                filteredProducts.forEach((p, index) => {
+                    let badge = "";
+                    if(index === 0 && selectedCat === 'All') badge = `<span class="absolute top-4 left-4 bg-white c-dark-txt text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-10">Bestseller</span>`;
+                    else if (p.price > 300) badge = `<span class="absolute top-4 left-4 c-gold-bg text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-10">Premium</span>`;
 
-            filteredProducts.forEach((p, index) => {
-                let badge = "";
-                if(index === 0 && selectedCat === 'All') badge = `<span class="absolute top-4 left-4 bg-white text-brand-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-10 flex items-center gap-1"><i data-lucide="star" class="w-3 h-3 text-brand-gold fill-current"></i> Bestseller</span>`;
-                else if (p.price > 300) badge = `<span class="absolute top-4 left-4 bg-brand-gold text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-10">Premium</span>`;
-
-                grid.innerHTML += `
-                    <div class="bg-white rounded-3xl p-5 border border-gray-100 flex flex-col group product-card animate-[fadeIn_0.5s_ease-out_forwards]" style="animation-delay: ${index * 0.05}s">
-                        <div class="relative w-full h-64 rounded-2xl overflow-hidden bg-[#FDF9F1] mb-6">
-                            ${badge}
-                            <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100%\\' height=\\'100%\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'%232A5C2F\\' stroke-width=\\'1\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'><rect width=\\'18\\' height=\\'18\\' x=\\'3\\' y=\\'3\\' rx=\\'2\\' ry=\\'2\\'/><circle cx=\\'9\\' cy=\\'9\\' r=\\'2\\'/><path d=\\'m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21\\'/></svg>'">
-                            <div class="absolute inset-0 bg-gradient-to-t-black-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </div>
-                        <div class="flex-grow flex flex-col justify-between px-1">
-                            <div class="mb-4">
-                                <p class="text-[10px] text-brand-gold uppercase font-black tracking-widest mb-2">${p.cat}</p>
-                                <h3 class="font-serif font-bold text-xl text-brand-dark leading-tight group-hover:text-brand-green transition-colors">${p.name}</h3>
+                    gridHTML += `
+                        <div class="bg-white rounded-3xl p-5 border border-gray-100 flex flex-col group product-card custom-fade-in" style="animation-delay: ${index * 0.05}s">
+                            <div class="relative w-full h-64 rounded-2xl overflow-hidden c-cream-bg mb-6">
+                                ${badge}
+                                <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover product-img" onerror="this.src='https://placehold.co/400x400/FDF6EA/2A5C2F?text=${p.name.replace(/ /g, '+')}'">
                             </div>
-                            <div>
-                                <div class="flex items-center justify-between mb-5">
-                                    <p class="font-black text-brand-green text-2xl">₹${p.price}</p>
-                                    <div class="flex gap-1">
-                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
-                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
-                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
-                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
-                                        <i data-lucide="star" class="w-4 h-4 text-brand-gold fill-current"></i>
-                                    </div>
+                            <div class="flex-grow flex flex-col justify-between px-1">
+                                <div class="mb-4">
+                                    <p class="text-xxs c-gold-txt uppercase font-black tracking-widest mb-2">${p.cat}</p>
+                                    <h3 class="font-serif font-bold text-xl c-dark-txt leading-tight group-hover-c-green-txt transition-colors">${p.name}</h3>
                                 </div>
-                                <button onclick="directWhatsAppOrder('${p.name.replace(/'/g, "\\'")}', ${p.price})" class="w-full btn-whatsapp py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex justify-center items-center gap-2 relative overflow-hidden focus:outline-none">
-                                    <i data-lucide="message-circle" class="w-5 h-5 relative z-10"></i> 
-                                    <span class="font-bold text-base relative z-10">Order on WhatsApp</span>
-                                </button>
+                                <div>
+                                    <div class="flex items-center justify-between mb-5">
+                                        <p class="font-black c-green-txt text-2xl">₹${p.price}</p>
+                                    </div>
+                                    <button onclick="directWhatsAppOrder('${p.name.replace(/'/g, "\\'")}', ${p.price})" class="w-full btn-whatsapp py-3.5 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex justify-center items-center gap-2 font-bold focus:outline-none">
+                                        Order via WhatsApp
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-            });
+                    `;
+                });
+            }
+            grid.innerHTML = gridHTML;
             
-            lucide.createIcons();
+            try { if(typeof lucide !== 'undefined') lucide.createIcons(); } catch(e) {}
         }
 
         // --- DIRECT WHATSAPP ORDER ---
         function directWhatsAppOrder(productName, price) {
             const businessNumber = "918012346672";
             const message = `Hello Adhishaya! 🌱\n\nI would like to order:\n*${productName}*\nPrice: ₹${price}\n\nPlease let me know the payment options and delivery details.`;
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${businessNumber}?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/${businessNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // --- INITIALIZATION ---
-        lucide.createIcons();
-
-        // Navbar Scroll Effect
+        // --- NAVBAR SCROLL ---
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 20) {
