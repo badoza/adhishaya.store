@@ -96,6 +96,33 @@
         }
         .product-card:hover .product-img { transform: scale(1.05); }
 
+        /* Specific scaled down version for Hero Card */
+        .hero-mini-card {
+            max-width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1.25rem;
+            padding: 0.85rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+        }
+        .hero-mini-card .product-img-wrapper {
+            padding-top: 85%;
+            margin-bottom: 0.75rem;
+        }
+        .hero-mini-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+        .hero-mini-card p {
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero-mini-card .btn-whatsapp, .hero-mini-card .btn-primary, .hero-mini-card button {
+            padding: 0.5rem 0.75rem !important;
+            font-size: 0.75rem !important;
+        }
+
         /* Why Adhishaya Hover Cards */
         .why-card {
             background: white; border-radius: 1rem; padding: 2rem; border: 1px solid #f0f0f0;
@@ -114,6 +141,18 @@
         .carousel-track:hover { animation-play-state: paused; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 1rem)); } }
 
+        /* Certifications Banner with Grayscale & Zoom animation */
+        .certification-logo {
+            filter: grayscale(100%);
+            opacity: 0.65;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .certification-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
         /* Admin Panel Overlay */
         .modal-overlay { background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 1000; }
         
@@ -125,22 +164,25 @@
 </head>
 <body>
 
-    <!-- Application State & Content Script -->
     <script>
         // Default Mock Data - Overwritten by localStorage if Admin makes changes
         const defaultProducts = [
             { id: 1, name: "PCOD Tablets", price: 270, oldPrice: 290, desc: "Expert formulated to restore balance and support long-term well-being.", category: "Women's Health", featured: true, tag: "20% off", image: "https://images.unsplash.com/photo-1629198728070-7b3b3a6e60b9?auto=format&fit=crop&q=80&w=400&h=400" },
-            { id: 2, name: "Inji Chooranam", price: 250, oldPrice: null, desc: "Premium ginger formulation for optimal digestion and immunity.", category: "Digestive Health", featured: true, tag: "Bestseller", image: "product-1.jpeg" },
+            { id: 2, name: "Inji Chooranam", price: 250, oldPrice: null, desc: "Premium ginger formulation for optimal digestion and immunity.", category: "Traditional Remedies", featured: true, tag: "Bestseller", image: "product-1.jpeg" },
             { id: 3, name: "Amukkara Chooranam", price: 320, oldPrice: 350, desc: "Ashwagandha root powder for stress relief and vitality.", category: "Men's Health", featured: true, tag: null, image: "https://images.unsplash.com/photo-1611078489935-0cb964de46d6?auto=format&fit=crop&q=80&w=400&h=400" },
             { id: 4, name: "Nilavembu Kudineer", price: 180, oldPrice: null, desc: "Traditional herbal decoction powder for strong immunity.", category: "Herbal Drinks", featured: false, tag: null, image: "https://images.unsplash.com/photo-1596646879895-75e1f0e4b868?auto=format&fit=crop&q=80&w=400&h=400" },
-            { id: 5, name: "Thiripala Chooranam", price: 210, oldPrice: null, desc: "Classic blend of three fruits for detox and rejuvenation.", category: "Digestive Health", featured: false, tag: null, image: "https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&q=80&w=400&h=400" },
-            { id: 6, name: "Hair Vitality Oil", price: 450, oldPrice: 500, desc: "Deep nourishment for roots and scalp health.", category: "Hair care", featured: true, tag: "Premium", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&q=80&w=400&h=400" }
+            { id: 5, name: "Thiripala Chooranam", price: 210, oldPrice: null, desc: "Classic blend of three fruits for detox and rejuvenation.", category: "Daily food Essentials", featured: false, tag: null, image: "https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&q=80&w=400&h=400" },
+            { id: 6, name: "Hair Vitality Oil", price: 450, oldPrice: 500, desc: "Deep nourishment for roots and scalp health.", category: "Daily food Essentials", featured: true, tag: "Premium", image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&q=80&w=400&h=400" }
         ];
 
+        // Specific category list matching the mockup image exactly
         const categoriesList = [
-            "Women's Health", "Men's Health", "Digestive Health", 
-            "Blood Booster", "Skin care", "Hair care", 
-            "Tooth Care", "Herbal Drinks", "Combos and offers"
+            "Daily food Essentials",
+            "Women's Health",
+            "Men's Health",
+            "Traditional Remedies",
+            "Herbal Drinks",
+            "Combos and offers"
         ];
 
         // Initialize App State
@@ -152,7 +194,6 @@
         const saveCart = () => localStorage.setItem('adhishaya_cart', JSON.stringify(cart));
     </script>
 
-    <!-- Header Navigation (Double Decker) -->
     <header class="fixed w-full z-50 glass-header top-0">
         <!-- Top Row: Logo, Search, Icons -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -190,7 +231,7 @@
                     </button>
                     
                     <!-- Mobile Menu Button -->
-                    <button class="md:hidden text-gray-700 hover:text-brand-green ml-2">
+                    <button class="md:hidden text-gray-700 hover:text-brand-green ml-2" onclick="toggleMobileMenu()">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
@@ -209,18 +250,27 @@
                 </nav>
             </div>
         </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-4 space-y-2">
+            <a href="#" onclick="navigateTo('view-home'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Home</a>
+            <a href="#" onclick="navigateTo('view-store'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Shop</a>
+            <a href="#" onclick="navigateTo('view-store'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Offers</a>
+            <a href="#" onclick="navigateTo('view-about'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">About Us</a>
+            <a href="#" onclick="navigateTo('view-contact'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Contact Us</a>
+            <a href="#" onclick="navigateTo('view-admin'); toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Admin Panel</a>
+        </div>
     </header>
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="pt-32 min-h-screen"> <!-- pt-32 clears the double header -->
+    <main class="pt-20 md:pt-32 min-h-screen"> <!-- pt-32 clears the double header -->
 
         <!-- ========================================== -->
         <!-- VIEW: HOME PAGE                            -->
         <!-- ========================================== -->
-        <div id="view-home" class="view-section active">
+        <div id="view-home" class="view-section active animate-fade-in">
             
-            <!-- Exact Mockup Hero Section -->
-            <section class="relative w-full h-[600px] bg-gray-900 overflow-hidden mt-4">
+            <!-- Hero Section -->
+            <section class="relative w-full h-[550px] bg-gray-900 overflow-hidden">
                 <!-- Background Image (Mockup specific) -->
                 <img src="image_9b5a5d.jpg" class="absolute inset-0 w-full h-full object-cover opacity-80" alt="Mountain Landscape" onerror="this.src='https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&q=80'">
                 <div class="absolute inset-0 bg-black bg-opacity-20"></div>
@@ -228,79 +278,79 @@
                 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col md:flex-row items-center justify-between z-10">
                     
                     <!-- Left Hero Content -->
-                    <div class="md:w-3/5 bg-white bg-opacity-90 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-2xl">
-                        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-brand-green leading-tight mb-6">
+                    <div class="md:w-3/5 bg-white bg-opacity-90 backdrop-blur-md p-6 md:p-10 rounded-2xl shadow-2xl mt-12 md:mt-0">
+                        <h1 class="font-serif text-3xl md:text-4xl lg:text-5.5xl font-bold text-brand-green leading-tight mb-4">
                             Ancient Wisdom <br>
                             for modern wellness.
                         </h1>
-                        <p class="text-lg text-gray-700 mb-8 font-medium">
+                        <p class="text-md text-gray-700 mb-6 font-medium">
                             With Expert-Formulated Herbal Products of Unparalleled Quality.
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <button onclick="navigateTo('view-store')" class="bg-brand-green text-white px-8 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-colors shadow-lg">
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button onclick="navigateTo('view-store')" class="bg-brand-green text-white px-6 py-2.5 rounded-lg font-bold hover:bg-opacity-90 transition-colors shadow-lg text-sm">
                                 SHOP NOW
                             </button>
-                            <button onclick="navigateTo('view-about')" class="border-2 border-brand-green text-brand-green px-8 py-3 rounded-lg font-bold hover:bg-brand-cream transition-colors">
+                            <button onclick="navigateTo('view-about')" class="border-2 border-brand-green text-brand-green px-6 py-2.5 rounded-lg font-bold hover:bg-brand-cream transition-colors text-sm">
                                 LEARN MORE
                             </button>
                         </div>
                     </div>
 
-                    <!-- Right Floating Product (Featured Hero Product) - Resized to fit nicely -->
-                    <div class="hidden md:block w-72 lg:w-80 mt-8 md:mt-0 relative ml-auto" id="hero-product-container">
-                        <!-- Injected via JS -->
+                    <!-- Right Floating Product (Featured Hero Product) - Scaled Smaller exactly as requested -->
+                    <div class="hidden md:flex justify-end items-center mr-4" id="hero-product-container">
+                        <!-- Injected dynamically via JS with mini-hero-card layout -->
                     </div>
 
                 </div>
             </section>
 
-            <!-- Exact Mockup Featured Carousel Section -->
+            <!-- Featured Carousel Section -->
             <section class="py-16 bg-white border-b border-gray-100 overflow-hidden">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 flex justify-between items-end">
-                    <div class="md:w-1/3">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div class="w-full md:w-1/3">
                         <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-green mb-4">Featured Products</h2>
                         <p class="text-sm text-gray-700 font-medium leading-relaxed mb-6">
-                            <strong class="text-brand-green">Expert Formulated</strong> and rooted in the study of <strong class="text-brand-green">ancient herbs and naturopathy</strong>, our formulas bring the healing of nature to you. Using high-quality, potent ingredients, Each blend is carefully designed to restore balance, support your health and long-term well-being.
+                            <strong class="text-brand-green">Expert Formulated</strong> and rooted in the study of <strong class="text-brand-green">ancient herbs and naturopathy</strong>, our formulas bring the healing of nature to you. Using high-quality, potent ingredients, each blend is carefully designed to restore balance, support your health and long-term well-being.
                         </p>
                         <p class="text-sm text-brand-green font-bold mb-4">Explore our range and find the perfect blend for your body's needs.</p>
-                        <button onclick="navigateTo('view-store')" class="btn-outline text-sm py-2 px-6 w-full justify-between">
+                        <button onclick="navigateTo('view-store')" class="btn-outline text-sm py-2 px-6 w-full flex justify-between items-center">
                             DISCOVER ALL <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
                     </div>
                     
                     <!-- Carousel Track -->
-                    <div class="w-full md:w-2/3 pl-0 md:pl-10 overflow-hidden relative">
-                        <!-- Gradient Masks for smooth scroll edge -->
-                        <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 hidden md:block"></div>
-                        <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 hidden md:block"></div>
+                    <div class="w-full md:w-2/3 overflow-hidden relative">
+                        <div class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10 hidden md:block"></div>
+                        <div class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10 hidden md:block"></div>
                         
-                        <div class="carousel-track" id="featured-carousel">
-                            <!-- Injected via JS. Duplicated for seamless loop -->
+                        <div class="carousel-track py-2" id="featured-carousel">
+                            <!-- Injected via JS. Duplicated dynamically for loop -->
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Categories Section (From image_39d57a.jpg) -->
-            <section class="py-20 bg-brand-cream relative overflow-hidden">
+            <!-- Categories Section (From mockup image) -->
+            <section class="py-16 bg-brand-cream relative overflow-hidden" style="background-image: url('bkg.png'); background-size: cover; background-position: center;">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="flex justify-between items-center mb-12">
+                    <div class="flex justify-between items-center mb-10">
                         <h2 class="font-serif text-3xl font-bold text-brand-green">Products Categories</h2>
-                        <button onclick="navigateTo('view-store')" class="border border-brand-green text-brand-green px-6 py-2 rounded font-semibold hover:bg-brand-green hover:text-white transition-colors flex items-center gap-2 text-sm">
+                        <button onclick="navigateTo('view-store')" class="border border-brand-green text-brand-green px-6 py-2 rounded font-semibold hover:bg-brand-green hover:text-white transition-colors flex items-center gap-2 text-sm bg-white">
                             DISCOVER ALL <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
                     </div>
                     
+                    <!-- Grid corresponding exactly to the provided snapshot -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="home-categories">
-                        <!-- Injected via JS -->
+                        <!-- Injected dynamically via JS to match snap exactly -->
                     </div>
                 </div>
             </section>
 
-            <!-- Why Adhishaya? Section (From image_3a4d5b.jpg) -->
+            <!-- Why Adhishaya? Section -->
             <section class="py-20 bg-white">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between items-center mb-16">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-4">
                         <h2 class="font-serif text-4xl font-bold text-brand-green">Why Adhishaya ?</h2>
                         <button onclick="navigateTo('view-about')" class="border border-brand-green text-brand-green px-6 py-2 rounded font-semibold hover:bg-brand-green hover:text-white transition-colors flex items-center gap-2 text-sm">
                             DISCOVER MORE ABOUT US <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -357,12 +407,13 @@
                 </div>
             </section>
 
-            <!-- Certifications Banner -->
-            <section class="py-10 bg-[#FDF6EA] border-y border-[#f5ebd9]">
-                <div class="max-w-4xl mx-auto px-4 flex justify-between items-center opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
-                    <img src="fssai.png" alt="FSSAI" class="h-12 md:h-16 object-contain" onerror="this.src='https://placehold.co/150x60/FDF6EA/3A5A40?text=FSSAI'">
-                    <img src="gmp.png" alt="GMP Certified" class="h-16 md:h-24 object-contain transform scale-110" onerror="this.src='https://placehold.co/150x80/FDF6EA/3A5A40?text=GMP+CERTIFIED'">
-                    <img src="ayush.png" alt="Ministry of Ayush" class="h-12 md:h-16 object-contain" onerror="this.src='https://placehold.co/150x60/FDF6EA/3A5A40?text=AYUSH'">
+            <!-- Certifications Banner with Grayscale & Zoom animations restored -->
+            <section class="py-12 bg-[#FDF6EA] border-y border-[#f5ebd9]">
+                <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+                    <img src="fssai.png" alt="FSSAI" class="h-14 md:h-18 object-contain certification-logo" onerror="this.src='https://placehold.co/150x60/FDF6EA/3A5A40?text=FSSAI'">
+                    <!-- GMP Certified is rendered slightly larger -->
+                    <img src="gmp.png" alt="GMP Certified" class="h-18 md:h-24 object-contain certification-logo transform scale-110" onerror="this.src='gm.png'; this.onerror=function(){this.src='https://placehold.co/150x80/FDF6EA/3A5A40?text=GMP+CERTIFIED'}">
+                    <img src="ayush.png" alt="Ministry of Ayush" class="h-14 md:h-18 object-contain certification-logo" onerror="this.src='https://placehold.co/150x60/FDF6EA/3A5A40?text=AYUSH'">
                 </div>
             </section>
 
@@ -428,8 +479,8 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <!-- Store Header -->
-                <div class="bg-brand-green rounded-3xl p-10 md:p-16 text-center text-white mb-12 shadow-xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
+                <div class="bg-brand-green rounded-3xl p-10 md:p-16 text-center text-white mb-12 shadow-xl relative overflow-hidden" style="background-image: url('bkg2.png'); background-size: cover; background-position: center;">
+                    <div class="absolute inset-0 bg-brand-green bg-opacity-70"></div>
                     <div class="relative z-10">
                         <h1 class="font-serif text-4xl md:text-5xl font-bold mb-4">Adhishaya Apothecary</h1>
                         <p class="text-brand-cream text-lg max-w-2xl mx-auto opacity-90">Browse our complete collection of expert-formulated herbal remedies, crafted for your holistic wellness.</p>
@@ -462,11 +513,11 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- VIEW: CART PAGE                            -->
+        <!-- VIEW: CART PAGE / CHECKOUT LIST            -->
         <!-- ========================================== -->
         <div id="view-cart" class="view-section bg-gray-50 py-12">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 class="font-serif text-3xl font-bold text-brand-green mb-8">Your Cart</h1>
+                <h1 class="font-serif text-3xl font-bold text-brand-green mb-8">Your Basket</h1>
                 
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                     <div id="cart-items-list" class="space-y-4 divide-y divide-gray-100">
@@ -549,6 +600,52 @@
             </div>
         </div>
 
+        <!-- ========================================== -->
+        <!-- VIEW: ABOUT STORY PAGE                     -->
+        <!-- ========================================== -->
+        <div id="view-about" class="view-section py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <h1 class="font-serif text-4xl font-bold text-brand-green mb-6 text-center">Our Philosophy</h1>
+                <div class="w-24 h-1 bg-brand-gold mx-auto mb-10 rounded-full"></div>
+                <div class="prose max-w-none text-gray-700 space-y-6 leading-relaxed">
+                    <p class="text-lg">At Adhishaya Herbs & Food Products, we bridge age-old herbal practices with contemporary quality controls. Our name reflects a promise of balance, purity, and standard procedures derived from the natural sciences.</p>
+                    <p>We source premium ingredients meticulously, ensuring that every batch of traditional remedies, daily food essentials, and herbal oils conforms to pure Indian dietary and wellness standard practices.</p>
+                    <p>Whether you're exploring restorative traditional mixtures or adding nutritional boosters to your lifestyle, Adhishaya promises a clean, synthetic-free journey towards robust physical and mental energy.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VIEW: CONTACT FORM                         -->
+        <!-- ========================================== -->
+        <div id="view-contact" class="view-section py-16 bg-brand-cream">
+            <div class="max-w-3xl mx-auto px-4 bg-white p-8 rounded-3xl shadow-sm border">
+                <h1 class="font-serif text-3xl font-bold text-brand-green mb-4 text-center">Get in Touch</h1>
+                <p class="text-center text-gray-600 mb-8">Have questions about our formulations or ordering? Drop us a message.</p>
+                <form class="space-y-6" onsubmit="event.preventDefault(); showToast('Thank you! We will get back to you shortly.');">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">Your Name</label>
+                            <input type="text" required class="w-full border rounded-lg px-4 py-2 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">Email Address</label>
+                            <input type="email" required class="w-full border rounded-lg px-4 py-2 outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1">Subject</label>
+                        <input type="text" required class="w-full border rounded-lg px-4 py-2 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1">Message</label>
+                        <textarea required rows="4" class="w-full border rounded-lg px-4 py-2 outline-none"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full">Send Message</button>
+                </form>
+            </div>
+        </div>
+
     </main>
 
     <!-- Footer -->
@@ -579,9 +676,9 @@
                 <div>
                     <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-sm">Legal & Help</h4>
                     <ul class="space-y-3 text-sm">
-                        <li><a href="#" onclick="alert('Dummy Privacy Policy: We do not share your data.')" class="hover:text-brand-gold transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" onclick="alert('Dummy Terms: All sales final for herbal products.')" class="hover:text-brand-gold transition-colors">Terms of Use</a></li>
-                        <li><a href="#" onclick="alert('Dummy FAQ: Q: Delivery time? A: 3-5 Business days.')" class="hover:text-brand-gold transition-colors">FAQ</a></li>
+                        <li><a href="#" onclick="openModal('privacy')" class="hover:text-brand-gold transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" onclick="openModal('terms')" class="hover:text-brand-gold transition-colors">Terms of Use</a></li>
+                        <li><a href="#" onclick="openModal('faq')" class="hover:text-brand-gold transition-colors">FAQ / Help Desk</a></li>
                     </ul>
                 </div>
                 
@@ -600,17 +697,33 @@
         </div>
     </footer>
 
+    <!-- Modals for Legal Pages -->
+    <div id="legal-modal" class="fixed inset-0 modal-overlay hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 md:p-8 relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="modal-content" class="prose max-w-none text-gray-700">
+                <!-- Dynamic Legal Content Injection -->
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Notification System -->
     <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-10 pointer-events-none z-[100]">
-        <div class="bg-brand-green rounded-full p-1"><i data-lucide="check" class="w-4 h-4"></i></div>
+        <div class="bg-brand-green rounded-full p-1"><i data-lucide="check" class="w-4 h-4 text-white"></i></div>
         <span id="toast-msg" class="font-medium text-sm">Action successful</span>
     </div>
 
-    <!-- MAIN APPLICATION LOGIC -->
     <script>
         // --- 1. Core Utilities & Initialization ---
         lucide.createIcons();
         const WHATSAPP_NUM = "918012346672";
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
 
         function showToast(message) {
             const toast = document.getElementById('toast');
@@ -642,11 +755,35 @@
         }
 
         // --- 3. Component Rendering (Products) ---
-        function createProductCardHTML(product) {
+        function createProductCardHTML(product, isHeroMini = false) {
             const oldPriceHTML = product.oldPrice ? `<span class="text-xs text-gray-400 line-through ml-2">Rs. ${product.oldPrice}</span>` : '';
             const tagHTML = product.tag ? `<div class="absolute top-3 right-3 bg-white text-brand-green text-xs font-bold px-2 py-1 rounded shadow-sm z-10 border border-gray-100">${product.tag}</div>` : '';
             
-            // Double Button Layout: Add to Cart & Direct WhatsApp
+            if (isHeroMini) {
+                // Highly compact card representation specifically tailored for the Hero layout preview to let scenery cover shine
+                return `
+                    <div class="hero-mini-card relative group text-left">
+                        ${tagHTML}
+                        <div class="product-img-wrapper cursor-pointer" onclick="navigateTo('view-store', '${product.category}')">
+                            <img src="${product.image}" alt="${product.name}" class="product-img" onerror="this.src='https://placehold.co/300/FDF6EA/3A5A40?text=Product'">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-brand-gold uppercase tracking-wider mb-1">${product.category}</span>
+                            <h3 class="font-serif font-bold text-brand-dark leading-tight">${product.name}</h3>
+                            <p class="text-gray-500 line-clamp-1">${product.desc}</p>
+                            
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="font-bold text-brand-dark">Rs. ${product.price}${oldPriceHTML}</div>
+                                <button onclick="addToCart(${product.id})" class="bg-brand-green hover:bg-[#2c4430] text-white py-1 px-3 rounded-lg font-semibold text-xs transition-colors flex items-center justify-center gap-1">
+                                    <i data-lucide="shopping-basket" class="w-3 h-3"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Normal standard product card layout
             return `
                 <div class="product-card group relative">
                     ${tagHTML}
@@ -655,7 +792,7 @@
                     </div>
                     <div class="flex flex-col flex-grow">
                         <span class="text-xs font-bold text-brand-gold uppercase tracking-wider mb-1">${product.category}</span>
-                        <h3 class="font-serif font-bold text-xl text-gray-800 mb-2 leading-tight">${product.name}</h3>
+                        <h3 class="font-serif font-bold text-xl text-brand-dark mb-2 leading-tight">${product.name}</h3>
                         <p class="text-sm text-gray-500 mb-4 line-clamp-2 flex-grow">${product.desc}</p>
                         
                         <div class="flex items-end justify-between mb-4">
@@ -678,10 +815,10 @@
         // --- 4. Page Specific Renders ---
         
         function renderHome() {
-            // Hero Product (Show first featured product)
+            // Hero Product (Show first featured product, compact layout size)
             const heroProduct = products.find(p => p.featured) || products[0];
-            if(heroProduct) {
-                document.getElementById('hero-product-container').innerHTML = createProductCardHTML(heroProduct);
+            if (heroProduct) {
+                document.getElementById('hero-product-container').innerHTML = createProductCardHTML(heroProduct, true);
             }
 
             // Featured Carousel
@@ -689,17 +826,16 @@
             let carouselHTML = '';
             // Duplicate array for seamless loop trick
             [...featured, ...featured].forEach(p => {
-                // Wrapper to fix width in carousel
                 carouselHTML += `<div class="w-72 flex-shrink-0">${createProductCardHTML(p)}</div>`;
             });
             document.getElementById('featured-carousel').innerHTML = carouselHTML;
 
-            // Home Categories Grid (Buttons style)
+            // Products Categories Grid styled matching the snapshot exactly
             const catContainer = document.getElementById('home-categories');
             catContainer.innerHTML = categoriesList.map(cat => `
-                <button onclick="navigateTo('view-store', '${cat}')" class="bg-white px-6 py-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center hover:shadow-md hover:border-brand-green transition-all group">
-                    <span class="font-bold text-gray-800 group-hover:text-brand-green">${cat}</span>
-                    <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors transform group-hover:translate-x-1"></i>
+                <button onclick="navigateTo('view-store', '${cat}')" class="bg-white px-6 py-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center hover:shadow-md hover:border-brand-green transition-all group w-full text-left">
+                    <span class="font-bold text-brand-dark group-hover:text-brand-green text-sm md:text-base">${cat}</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-brand-green group-hover:translate-x-1 transform transition-transform"></i>
                 </button>
             `).join('');
             
@@ -731,7 +867,7 @@
             lucide.createIcons();
         }
 
-        // --- 5. Cart & WhatsApp Logic ---
+        // --- 5. Cart & WhatsApp Integration Logic ---
         
         function updateCartBadge() {
             const count = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -765,7 +901,7 @@
             const totalEl = document.getElementById('cart-total-price');
             
             if(cart.length === 0) {
-                list.innerHTML = `<div class="text-center py-12 text-gray-500"><i data-lucide="shopping-basket" class="w-12 h-12 mx-auto mb-4 opacity-50"></i>Your cart is empty.</div>`;
+                list.innerHTML = `<div class="text-center py-12 text-gray-500"><i data-lucide="shopping-basket" class="w-12 h-12 mx-auto mb-4 opacity-50"></i>Your basket is empty.</div>`;
                 totalEl.innerText = "Rs. 0";
                 lucide.createIcons();
                 return;
@@ -776,7 +912,7 @@
                 total += (item.price * item.qty);
                 return `
                     <div class="flex items-center gap-4 py-4">
-                        <img src="${item.image}" class="w-20 h-20 object-cover rounded-lg bg-gray-100 border">
+                        <img src="${item.image}" class="w-20 h-20 object-cover rounded-lg bg-gray-100 border" onerror="this.src='https://placehold.co/100/FDF6EA/3A5A40?text=Product'">
                         <div class="flex-grow">
                             <h4 class="font-bold text-gray-800">${item.name}</h4>
                             <p class="text-brand-green font-semibold text-sm">Rs. ${item.price}</p>
@@ -800,7 +936,7 @@
         }
 
         function checkoutCart() {
-            if(cart.length === 0) { showToast("Cart is empty!"); return; }
+            if(cart.length === 0) { showToast("Your basket is empty!"); return; }
             
             let text = "Hello Adhishaya,\n\nI would like to order the following items from your store:\n\n";
             let total = 0;
@@ -812,11 +948,9 @@
             text += `\n*Total Amount: Rs. ${total}*\n\nPlease let me know the payment and delivery details.`;
             
             window.open(`https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(text)}`, '_blank');
-            // Optional: Clear cart after sending
-            // cart = []; saveCart(); updateCartBadge();
         }
 
-        // --- 6. Admin Logic ---
+        // --- 6. Admin Panel CMS Functions ---
         
         function setupAdmin() {
             const catSelect = document.getElementById('admin-category');
@@ -837,21 +971,72 @@
                 featured: document.getElementById('admin-featured').checked
             };
             
-            products.unshift(newProduct); // Add to beginning of array
+            products.unshift(newProduct);
             saveProducts();
             
             e.target.reset();
             showToast("Product Added Successfully!");
-            renderHome(); // Re-render in background
+            renderHome();
         }
 
         function resetData() {
-            if(confirm("Are you sure? This will delete all custom products and restore the demo data.")) {
+            if(confirm("Are you sure? This will delete all custom products and restore original dummy listings.")) {
                 products = defaultProducts;
                 saveProducts();
                 showToast("Data Reset Complete");
                 renderHome();
             }
+        }
+
+        // --- 7. Modal Controls (Legal Pages & FAQ) ---
+        
+        const legalTexts = {
+            privacy: `
+                <h2 class="font-serif text-2xl font-bold text-brand-green mb-4">Privacy Policy</h2>
+                <p class="mb-4">This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from Adhishaya Herbs & Food Products, complying with standard consumer security legislation under Indian digital governance guidelines.</p>
+                <h3 class="font-bold text-lg mb-2 text-brand-green">1. Personal Information We Collect</h3>
+                <p class="mb-4">When you visit our site, we process order data to establish custom checkout scripts. All checkout metrics are securely channeled through end-to-end encrypted direct business messages on the WhatsApp interface, ensuring third-party servers do not cache transactional details.</p>
+                <h3 class="font-bold text-lg mb-2 text-brand-green">2. Sharing Your Personal Information</h3>
+                <p class="mb-4">We do not lease, trade, or distribute your checkout phone numbers or personal messages to any marketing agencies or algorithmic analytics trackers.</p>
+            `,
+            terms: `
+                <h2 class="font-serif text-2xl font-bold text-brand-green mb-4">Terms of Use</h2>
+                <p class="mb-4">Welcome to Adhishaya Herbs & Food Products. By accessing this platform, you agree to comply with standard ethical usage criteria outlined beneath Indian Electronic Commerce Standards (2020).</p>
+                <h3 class="font-bold text-lg mb-2 text-brand-green">1. Authentic Wellness Demeanor</h3>
+                <p class="mb-4">Adhishaya's product descriptions represent organic compositions verified by GMP standards. However, products do not override specialized medical advice for diagnostic pathological conditions.</p>
+                <h3 class="font-bold text-lg mb-2 text-brand-green">2. Purchase Protocol</h3>
+                <p class="mb-4">Upon initiating order request sequences via our site, transactional finalization occurs manually via customer support lines on the WhatsApp Business terminal. Pricing structures include all legal state tariffs where applicable.</p>
+            `,
+            faq: `
+                <h2 class="font-serif text-2xl font-bold text-brand-green mb-4">FAQ & Support Desk</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-gray-800">Q: How do I complete my order?</h4>
+                        <p class="text-sm text-gray-600">A: When you click "Order" on any card or checkout from your Basket, our script generates a pre-formatted checkout text. This launches WhatsApp directly to our support line (+91 80123 46672) to settle shipping details manually.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800">Q: What certificates support your products?</h4>
+                        <p class="text-sm text-gray-600">A: Our products comply strictly with FSSAI regulations, hold organic GMP (Good Manufacturing Practice) certification, and represent classical formulas certified by the Ministry of AYUSH guidelines.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800">Q: What is the delivery timeframe?</h4>
+                        <p class="text-sm text-gray-600">A: Standard deliveries across India generally complete within 3-5 business days depending on localized logistics networks.</p>
+                    </div>
+                </div>
+            `
+        };
+
+        function openModal(type) {
+            document.getElementById('modal-content').innerHTML = legalTexts[type] || 'Content not found';
+            const modal = document.getElementById('legal-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('legal-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
         // --- Init App ---
