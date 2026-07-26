@@ -203,7 +203,7 @@
                         <div class="bg-white/95 backdrop-blur-sm p-4 rounded-3xl shadow-2xl border border-white/50 w-[240px] lg:w-[260px] cursor-pointer hover:scale-105 transition-transform duration-300" onclick="viewProduct(101)">
                             <div class="relative rounded-2xl overflow-hidden bg-brand-peach mb-3 aspect-square flex items-center justify-center">
                                 <span class="absolute top-2 right-2 bg-white text-brand-green text-[10px] font-bold px-2 py-1 rounded shadow-sm z-10">Hero Product</span>
-                                <img src="Carasoul img 1.jpg" alt="Thathuviruthi Chooranam" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400/FDF6EA/2A5C2F?text=Product'">
+                                <img src="Carasoul%20img%201.jpg" alt="Thathuviruthi Chooranam" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400/FDF6EA/2A5C2F?text=Product'">
                             </div>
                             <span class="text-[9px] font-bold text-brand-gold uppercase tracking-wider block mb-1">Men's Wellness</span>
                             <h3 class="font-serif font-bold text-lg text-gray-900 leading-tight mb-1 truncate">Thathuviruthi Chooranam</h3>
@@ -471,7 +471,7 @@
                     <ul class="space-y-3 text-sm">
                         <li><a href="#" onclick="navigateTo('home')" class="hover:text-brand-peach transition-colors">Home</a></li>
                         <li><a href="#" onclick="navigateTo('store')" class="hover:text-brand-peach transition-colors">Shop All Products</a></li>
-                        <li><a href="#" onclick="navigateTo('admin')" class="hover:text-brand-peach transition-colors text-brand-gold flex items-center gap-1"><i data-lucide="lock" class="w-3 h-3"></i> Admin Portal</a></li>
+                        <li id="admin-nav-link" style="display: none;"><a href="#" onclick="navigateTo('admin')" class="hover:text-brand-peach transition-colors text-brand-gold flex items-center gap-1"><i data-lucide="lock" class="w-3 h-3"></i> Admin Portal</a></li>
                     </ul>
                 </div>
                 
@@ -547,15 +547,41 @@
     <div id="auth-overlay" class="fixed inset-0 overlay" onclick="toggleAuthModal()"></div>
     <div id="auth-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-2xl w-[90%] max-w-[400px] p-8 modal-pop text-center">
         <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i data-lucide="x" class="w-5 h-5"></i></button>
-        <img src="logo.jpeg" class="w-16 h-16 mx-auto rounded-xl mb-4" onerror="this.src='https://placehold.co/100/FDF6EA/2A5C2F?text=Logo'">
-        <h3 class="font-serif font-bold text-2xl text-gray-900 mb-2">Welcome Back</h3>
-        <p class="text-sm text-gray-500 mb-8">Sign in to manage your orders and wellness journey.</p>
         
-        <button class="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-50 transition-colors mb-4 shadow-sm">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-5 h-5">
-            Continue with Google
-        </button>
-        <p class="text-[10px] text-gray-400 mt-4">By continuing, you agree to our Terms of Use and Privacy Policy.</p>
+        <div id="auth-logged-out">
+            <img src="logo.jpeg" class="w-16 h-16 mx-auto rounded-xl mb-4" onerror="this.src='https://placehold.co/100/FDF6EA/2A5C2F?text=Logo'">
+            <h3 class="font-serif font-bold text-2xl text-gray-900 mb-2">Welcome Back</h3>
+            <p class="text-sm text-gray-500 mb-6">Sign in to manage your orders.</p>
+            
+            <form id="email-auth-form" class="space-y-3 mb-4 text-left" onsubmit="event.preventDefault();">
+                <input type="email" id="auth-email" placeholder="Email Address" required class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-brand-green outline-none text-sm">
+                <input type="password" id="auth-pass" placeholder="Password" required class="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-brand-green outline-none text-sm">
+                <div class="flex gap-2">
+                    <button onclick="window.loginWithEmail()" class="flex-1 bg-brand-green text-white font-bold py-2.5 rounded-lg hover:bg-[#1e4422] transition-colors text-sm shadow-sm">Login</button>
+                    <button onclick="window.registerWithEmail()" class="flex-1 bg-white border border-brand-green text-brand-green font-bold py-2.5 rounded-lg hover:bg-brand-peach transition-colors text-sm shadow-sm">Register</button>
+                </div>
+            </form>
+
+            <div class="flex items-center gap-2 mb-4">
+                <hr class="flex-1 border-gray-200"><span class="text-xs text-gray-400">OR</span><hr class="flex-1 border-gray-200">
+            </div>
+            
+            <button onclick="window.loginWithGoogle()" class="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-50 transition-colors shadow-sm">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-5 h-5">
+                Continue with Google
+            </button>
+        </div>
+
+        <div id="auth-logged-in" style="display: none;">
+            <div class="w-16 h-16 mx-auto rounded-full bg-brand-peach text-brand-green flex items-center justify-center mb-4">
+                <i data-lucide="user-check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="font-serif font-bold text-2xl text-gray-900 mb-2">My Account</h3>
+            <p id="user-email-display" class="text-sm text-gray-500 mb-6"></p>
+            <button onclick="window.logoutUser()" class="w-full bg-red-50 text-red-600 border border-red-200 py-3 rounded-xl font-bold hover:bg-red-100 transition-colors shadow-sm">
+                Sign Out
+            </button>
+        </div>
     </div>
 
     <!-- Toast Notification -->
@@ -568,10 +594,11 @@
         lucide.createIcons();
         const WHATSAPP_NUM = "918012346672";
         let cart = [];
+        window.currentUser = null;
 
         // Global Products Database
         let productsDB = [
-            { id: 101, name: "Thathuviruthi Chooranam", price: 450, category: "Men's Health", img: "Carasoul img 1.jpg", tag: "Hero Product" },
+            { id: 101, name: "Thathuviruthi Chooranam", price: 450, category: "Men's Health", img: "Carasoul%20img%201.jpg", tag: "Hero Product" },
             { id: 2, name: "PCOD Tablets", price: 270, category: "Women's Health", img: "image_39ce35.png" },
             { id: 3, name: "Inji Chooranam", price: 250, category: "Digestive Health", img: "https://images.unsplash.com/photo-1611078489935-0cb964de46d6?auto=format&fit=crop&q=80&w=400" },
             { id: 4, name: "Nilavembu Kudineer", price: 180, category: "Herbal Drinks", img: "https://images.unsplash.com/photo-1596646879895-75e1f0e4b868?auto=format&fit=crop&q=80&w=400" },
@@ -580,6 +607,12 @@
 
         // --- Routing System ---
         function navigateTo(pageId) {
+            if (pageId === 'admin') {
+                if (!window.currentUser || window.currentUser.email !== 'dodge.kunal@gmail.com') {
+                    showToast("Access Denied: Admin privileges required.");
+                    return;
+                }
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
             document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
             document.getElementById(`view-${pageId}`).classList.add('active');
@@ -620,10 +653,10 @@
                 // Configure Carousel for Hero
                 thumbnailsHTML = `
                     <div class="flex gap-3 mt-4 overflow-x-auto hide-scroll pb-2">
-                        <img src="Carasoul img 1.jpg" onclick="changeMainImage(this)" class="thumbnail active w-20 h-20 rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity border-2 border-transparent">
-                        <img src="Carasoul img 2.jpg" onclick="changeMainImage(this)" class="thumbnail w-20 h-20 rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity border-2 border-transparent">
-                        <img src="Carasoul img 3.jpg" onclick="changeMainImage(this)" class="thumbnail w-20 h-20 rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity border-2 border-transparent">
-                        <img src="Carasoul img 4.jpg" onclick="changeMainImage(this)" class="thumbnail w-20 h-20 rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity border-2 border-transparent">
+                        <img src="Carasoul%20img%201.jpg" onclick="changeMainImage(this)" class="thumbnail active w-20 h-20 rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity border-2 border-transparent">
+                        <img src="Carasoul%20img%202.jpg" onclick="changeMainImage(this)" class="thumbnail w-20 h-20 rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity border-2 border-transparent">
+                        <img src="Carasoul%20img%203.jpg" onclick="changeMainImage(this)" class="thumbnail w-20 h-20 rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity border-2 border-transparent">
+                        <img src="Carasoul%20img%204.jpg" onclick="changeMainImage(this)" class="thumbnail w-20 h-20 rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity border-2 border-transparent">
                     </div>
                 `;
                 // Inject SEO Tabbed Content
@@ -846,6 +879,109 @@
             }, 3000);
         }
 
+    </script>
+
+    <!-- Firebase Integration -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            signInWithPopup, 
+            GoogleAuthProvider, 
+            signInWithEmailAndPassword, 
+            createUserWithEmailAndPassword, 
+            signOut, 
+            onAuthStateChanged 
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhYm-TxemRXCTQSCY6Jo0c1SPMYegDjhw",
+            authDomain: "adhishaya-6eb47.firebaseapp.com",
+            projectId: "adhishaya-6eb47",
+            storageBucket: "adhishaya-6eb47.firebasestorage.app",
+            messagingSenderId: "871718551216",
+            appId: "1:871718551216:web:4c849b0053f77386588575",
+            measurementId: "G-FKYHW2SB6Q"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        window.loginWithGoogle = () => {
+            signInWithPopup(auth, googleProvider)
+                .then(() => {
+                    showToast("Successfully logged in with Google!");
+                    toggleAuthModal();
+                })
+                .catch(err => showToast("Google Login Error: " + err.message));
+        };
+
+        window.loginWithEmail = () => {
+            const email = document.getElementById('auth-email').value;
+            const pass = document.getElementById('auth-pass').value;
+            if(!email || !pass) return showToast("Please enter email and password");
+            
+            signInWithEmailAndPassword(auth, email, pass)
+                .then(() => {
+                    showToast("Successfully logged in!");
+                    toggleAuthModal();
+                })
+                .catch(err => showToast("Login Error: " + err.message));
+        };
+
+        window.registerWithEmail = () => {
+            const email = document.getElementById('auth-email').value;
+            const pass = document.getElementById('auth-pass').value;
+            if(!email || !pass) return showToast("Please enter email and password");
+
+            createUserWithEmailAndPassword(auth, email, pass)
+                .then(() => {
+                    showToast("Account created successfully!");
+                    toggleAuthModal();
+                })
+                .catch(err => showToast("Registration Error: " + err.message));
+        };
+
+        window.logoutUser = () => {
+            signOut(auth).then(() => {
+                showToast("Logged out successfully");
+                toggleAuthModal();
+                // If they are on admin page, boot them to home
+                if(document.getElementById('view-admin').classList.contains('active')) {
+                    navigateTo('home');
+                }
+            });
+        };
+
+        // Watch Auth State
+        onAuthStateChanged(auth, (user) => {
+            window.currentUser = user;
+            const loggedOutDiv = document.getElementById('auth-logged-out');
+            const loggedInDiv = document.getElementById('auth-logged-in');
+            const adminLink = document.getElementById('admin-nav-link');
+            
+            if (user) {
+                // User is signed in.
+                loggedOutDiv.style.display = 'none';
+                loggedInDiv.style.display = 'block';
+                document.getElementById('user-email-display').innerText = user.email;
+                
+                // Admin specific logic
+                if(user.email === 'dodge.kunal@gmail.com') {
+                    adminLink.style.display = 'block';
+                } else {
+                    adminLink.style.display = 'none';
+                }
+            } else {
+                // No user is signed in.
+                loggedOutDiv.style.display = 'block';
+                loggedInDiv.style.display = 'none';
+                adminLink.style.display = 'none';
+                document.getElementById('auth-email').value = '';
+                document.getElementById('auth-pass').value = '';
+            }
+        });
     </script>
 </body>
 </html>
