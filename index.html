@@ -30,77 +30,50 @@
       "description": "Providers of traditional Siddha proprietary herbal formulas."
     }
     </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "Thathuviruthi Chooranam",
-      "image": [
-        "https://badoza.github.io/adhishaya.store/carasoul1.png"
-       ],
-      "description": "Traditional Siddha Proprietary Herbal Formula for Men's Wellness, featuring Ashwagandha, Poonaikali Seeds, and Moringa.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Adhishaya Herbs"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "128"
-      },
-      "offers": {
-        "@type": "Offer",
-        "url": "https://badoza.github.io/adhishaya.store/",
-        "priceCurrency": "INR",
-        "price": "450",
-        "availability": "https://schema.org/InStock",
-        "itemCondition": "https://schema.org/NewCondition"
-      }
-    }
-    </script>
 
     <!-- Tailwind & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* Base typography and colors */
-        body { font-family: 'Poppins', sans-serif; background-color: #FAFAFA; scroll-behavior: smooth;}
+        body { font-family: 'Poppins', sans-serif; background-color: #FAFAFA; scroll-behavior: smooth; }
         h1, h2, h3, h4, h5, .serif-font { font-family: 'Playfair Display', serif; }
         
+        /* Premium Color Palette */
         .text-brand-green { color: #2A4B3C; }
         .bg-brand-green { background-color: #2A4B3C; }
         .bg-cream { background-color: #FDF6EA; }
+        .border-brand-green { border-color: #2A4B3C; }
         
-        /* Hero Mini Card constraint */
-        .hero-mini-card { max-width: 250px; backdrop-filter: blur(8px); background-color: rgba(253, 246, 234, 0.95); margin-left: auto;}
-        
-        /* Certifications Hover effects */
+        /* Hover effects */
         .cert-logo { filter: grayscale(100%); transition: all 0.4s ease; opacity: 0.7; }
-        .cert-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.05) translateY(-5px); }
+        .cert-logo:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.05); }
         .gmp-logo { transform: scale(1.15); }
-        .gmp-logo:hover { transform: scale(1.2) translateY(-5px); }
+        .gmp-logo:hover { transform: scale(1.2); }
         
-        /* Modal & Overlay styling (Ensures perfect centering) */
-        .overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
-        .overlay.active { opacity: 1; pointer-events: auto; }
-        
-        /* Review Scroll */
+        /* Scroll hiding for carousels */
         .review-scroll { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
         .review-card { scroll-snap-align: center; }
         .review-scroll::-webkit-scrollbar { display: none; }
         .review-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Modal transitions */
+        .modal-overlay { 
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease; 
+        }
+        .modal-overlay.active { 
+            opacity: 1; pointer-events: auto; 
+        }
     </style>
 </head>
 <body class="text-gray-800 antialiased overflow-x-hidden">
 
     <!-- Header Section -->
     <header class="w-full bg-white shadow-sm sticky top-0 z-50">
-        <!-- Top Row: Logo & Actions -->
+        <!-- Top Row -->
         <div class="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
-            <!-- Logo -->
-            <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
                 <div class="w-10 h-10 bg-cream rounded flex items-center justify-center text-brand-green">
                     <i data-lucide="leaf" class="w-6 h-6"></i>
                 </div>
@@ -110,18 +83,14 @@
                 </div>
             </div>
 
-            <!-- Search & Icons -->
             <div class="flex items-center gap-6">
-                <!-- Compact Search Bar -->
                 <div class="hidden md:flex items-center bg-gray-100 rounded-full px-4 py-2 border border-transparent focus-within:border-brand-green focus-within:bg-white transition-all">
                     <i data-lucide="search" class="w-4 h-4 text-gray-400"></i>
                     <input type="text" placeholder="Search items..." class="bg-transparent border-none focus:outline-none text-sm ml-2 w-48 text-gray-700 placeholder-gray-400">
                 </div>
-                <!-- Profile / Login (Triggers Modal) -->
-                <button onclick="toggleAuthModal()" class="text-gray-600 hover:text-brand-green transition-colors" aria-label="User Account">
+                <button onclick="toggleModal('login-modal')" class="text-gray-600 hover:text-brand-green transition-colors" aria-label="User Account">
                     <i data-lucide="user" class="w-5 h-5"></i>
                 </button>
-                <!-- Cart -->
                 <div class="relative cursor-pointer text-gray-600 hover:text-brand-green transition-colors" aria-label="Shopping Cart">
                     <i data-lucide="shopping-basket" class="w-5 h-5"></i>
                     <span class="absolute -top-2 -right-2 bg-yellow-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
@@ -129,56 +98,57 @@
             </div>
         </div>
 
-        <!-- Bottom Row: Navigation Links -->
+        <!-- Bottom Row -->
         <nav class="border-t border-gray-100">
             <div class="container mx-auto px-4 md:px-8 py-3 flex justify-start gap-8 overflow-x-auto text-sm font-medium text-gray-600">
-                <button onclick="navigateTo('home')" class="hover:text-brand-green transition-colors whitespace-nowrap">Home</button>
-                <button onclick="navigateTo('store')" class="hover:text-brand-green transition-colors whitespace-nowrap">Shop All</button>
+                <button onclick="window.scrollTo(0,0)" class="hover:text-brand-green transition-colors whitespace-nowrap">Home</button>
+                <button class="hover:text-brand-green transition-colors whitespace-nowrap">Shop All</button>
                 <button class="hover:text-brand-green transition-colors whitespace-nowrap">About Us</button>
                 <button class="hover:text-brand-green transition-colors whitespace-nowrap">Contact Us</button>
-                <!-- Hidden Admin Link -->
-                <button id="nav-admin-link" onclick="openAdmin()" class="hidden text-brand-green font-bold whitespace-nowrap"><i data-lucide="shield-check" class="w-4 h-4 inline mr-1"></i>Admin Portal</button>
+                <button id="nav-admin-link" onclick="toggleModal('admin-modal')" class="hidden text-brand-green font-bold whitespace-nowrap"><i data-lucide="shield-check" class="w-4 h-4 inline mr-1"></i>Admin Portal</button>
             </div>
         </nav>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main id="main-content">
-        <!-- Hero Section -->
-        <section class="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center bg-gray-900 overflow-hidden">
-            <!-- Cover Image with descriptive ALT text -->
-            <img src="hero-bg.jpg" alt="Beautiful mountain landscape representing Adhishaya natural herbs" class="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-overlay">
+        <!-- Hero Section (Perfect Match to image_8dc29c.jpg) -->
+        <section class="relative w-full py-12 md:py-20 flex items-center justify-center bg-gray-900 overflow-hidden min-h-[80vh]">
+            <!-- Fallback background image handling -->
+            <img src="hero-bg.jpg" onerror="this.src='https://placehold.co/1920x1080/1A1A1A/2A4B3C?text=Landscape+Image'" alt="Landscape" class="absolute inset-0 w-full h-full object-cover opacity-80">
             
-            <div class="relative z-10 container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between h-full">
+            <div class="relative z-10 container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-8 h-full">
                 
-                <!-- Hero Text -->
-                <div class="w-full md:w-3/5 text-center md:text-left text-white drop-shadow-lg mb-8 md:mb-0">
-                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold serif-font mb-4 leading-tight">Ancient Wisdom<br>for modern wellness.</h2>
-                    <p class="text-lg md:text-xl font-light mb-8 max-w-xl mx-auto md:mx-0">With Expert-Formulated Herbal Products of Unparalleled Quality.</p>
-                    <div class="flex gap-4 justify-center md:justify-start">
-                        <button onclick="navigateTo('store')" class="bg-brand-green hover:bg-green-800 text-white px-8 py-3 rounded text-sm font-semibold tracking-wide transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">SHOP NOW</button>
-                        <button class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/50 text-white px-8 py-3 rounded text-sm font-semibold tracking-wide transition-all">LEARN MORE</button>
+                <!-- Left Cream Box: Text & Buttons -->
+                <div class="w-full md:w-3/5 bg-cream/95 backdrop-blur-sm p-8 md:p-14 rounded-[2rem] shadow-2xl">
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold serif-font mb-4 text-brand-green leading-tight">Ancient Wisdom<br>for modern wellness.</h2>
+                    <p class="text-lg md:text-xl font-medium mb-10 text-brand-green/80">With Expert-Formulated Herbal Products of Unparalleled Quality.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="openProductDetail()" class="bg-brand-green hover:bg-green-900 text-white px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide transition-all shadow-lg">SHOP NOW</button>
+                        <button class="bg-transparent border-2 border-brand-green text-brand-green hover:bg-brand-green hover:text-white px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide transition-all">LEARN MORE</button>
                     </div>
                 </div>
 
-                <!-- Floating Hero Product Card (Compact & Right Aligned) -->
+                <!-- Right Cream Box: Compact Product Card -->
                 <div class="w-full md:w-2/5 flex justify-center md:justify-end">
-                    <div class="hero-mini-card p-4 rounded-xl shadow-2xl border border-white/40 cursor-pointer group" onclick="openProductDetail()">
-                        <div class="relative w-full h-48 bg-white rounded-lg overflow-hidden mb-4 flex items-center justify-center">
-                            <span class="absolute top-2 right-2 bg-white text-gray-800 text-xs font-bold px-2 py-1 rounded shadow-sm z-10">20% off</span>
-                            <!-- Hero Image -->
-                            <img src="carasoul1.png" alt="Thathuviruthi Chooranam Bottle" class="max-h-full max-w-full object-contain p-2 group-hover:scale-105 transition-transform duration-500">
+                    <div class="bg-cream/95 backdrop-blur-sm p-6 rounded-[2rem] shadow-2xl w-full max-w-[340px] cursor-pointer group" onclick="openProductDetail()">
+                        <!-- Product Image Area -->
+                        <div class="relative w-full h-56 bg-cream rounded-xl overflow-hidden mb-6 flex items-center justify-center">
+                            <span class="absolute top-3 right-3 bg-white text-brand-green text-xs font-bold px-3 py-1.5 rounded-full shadow-sm z-10">20% off</span>
+                            <!-- Bulletproof Image Tag with Placeholder Fallback -->
+                            <img src="Carasoul%20img%201.png" onerror="this.onerror=null; this.src='https://placehold.co/400x400/FDF6EA/2A4B3C?text=Product+Image';" alt="Thathuviruthi Chooranam Bottle" class="max-h-full max-w-full object-contain p-2 group-hover:scale-105 transition-transform duration-500">
                         </div>
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-[#C48B5D] tracking-wider uppercase mb-1">Men's Vitality</p>
-                            <h3 class="text-lg font-bold text-brand-green serif-font mb-2">Thathuviruthi Chooranam</h3>
-                            <p class="text-xs text-gray-600 leading-relaxed mb-3">Traditional Siddha Proprietary Herbal Formula.</p>
-                            <div class="flex items-center justify-between border-t border-gray-200/60 pt-3">
-                                <div>
-                                    <span class="text-lg font-bold text-gray-900">Rs. 450</span>
+                        <!-- Product Info Area -->
+                        <div>
+                            <p class="text-xs font-bold text-[#C48B5D] tracking-wider uppercase mb-1">MEN'S HEALTH</p>
+                            <h3 class="text-2xl font-bold text-brand-green serif-font mb-2">Thathuviruthi Chooranam</h3>
+                            <p class="text-sm text-brand-green/70 leading-relaxed mb-4">Expert formulated to restore balance and support long-term well-being.</p>
+                            <div class="flex items-center justify-between pt-3 border-t border-brand-green/10">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-xl font-bold text-brand-green">Rs. 450</span>
+                                    <span class="text-sm text-gray-400 line-through">Rs. 560</span>
                                 </div>
-                                <button class="bg-brand-green hover:bg-green-800 text-white text-xs font-bold px-3 py-2 rounded transition-colors flex items-center gap-1 shadow-md">
-                                    <i data-lucide="shopping-cart" class="w-3 h-3"></i> Details
+                                <button class="bg-brand-green hover:bg-green-900 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition-colors flex items-center gap-2 shadow-md">
+                                    <i data-lucide="shopping-basket" class="w-4 h-4"></i> Add
                                 </button>
                             </div>
                         </div>
@@ -187,104 +157,111 @@
             </div>
         </section>
 
-        <!-- Products Categories -->
-        <section class="py-16 bg-cream">
-            <div class="container mx-auto px-4 md:px-8">
-                <div class="flex justify-between items-end mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-brand-green serif-font">Products Categories</h2>
-                    <button class="hidden md:flex items-center gap-2 border border-brand-green text-brand-green px-6 py-2 rounded hover:bg-brand-green hover:text-white transition text-sm font-semibold tracking-wide">
-                        DISCOVER ALL <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        <!-- Products Categories (Perfect Match to image_998fff.jpg) -->
+        <section class="py-20 bg-cream">
+            <div class="container mx-auto px-4 md:px-8 max-w-6xl">
+                <!-- Header -->
+                <div class="flex justify-between items-end mb-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-brand-green serif-font">Products Categories</h2>
+                    <button class="hidden md:flex items-center gap-2 border-2 border-brand-green text-brand-green px-6 py-2.5 rounded-lg hover:bg-brand-green hover:text-white transition text-sm font-bold tracking-wide">
+                        DISCOVER ALL <i data-lucide="arrow-right" class="w-5 h-5"></i>
                     </button>
                 </div>
                 
+                <!-- Grid of White Pill Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Category Cards matching image_998fff.jpg -->
-                    <div class="bg-white rounded-lg p-6 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group border border-gray-100">
-                        <span class="font-bold text-gray-800 group-hover:text-brand-green transition-colors">Daily food Essentials</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-xl px-6 py-5 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group">
+                        <span class="font-bold text-gray-800 text-lg group-hover:text-brand-green transition-colors">Daily food Essentials</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 text-brand-green"></i>
                     </div>
-                    <div class="bg-white rounded-lg p-6 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group border border-gray-100">
-                        <span class="font-bold text-gray-800 group-hover:text-brand-green transition-colors">Women's Health</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-xl px-6 py-5 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group">
+                        <span class="font-bold text-gray-800 text-lg group-hover:text-brand-green transition-colors">Women's Health</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 text-brand-green"></i>
                     </div>
-                    <div class="bg-white rounded-lg p-6 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group border border-gray-100">
-                        <span class="font-bold text-gray-800 group-hover:text-brand-green transition-colors">Men's Health</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-xl px-6 py-5 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group">
+                        <span class="font-bold text-gray-800 text-lg group-hover:text-brand-green transition-colors">Men's Health</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 text-brand-green"></i>
                     </div>
-                    <div class="bg-white rounded-lg p-6 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group border border-gray-100">
-                        <span class="font-bold text-gray-800 group-hover:text-brand-green transition-colors">Traditional Remedies</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+                    <!-- Card 4 -->
+                    <div class="bg-white rounded-xl px-6 py-5 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group">
+                        <span class="font-bold text-gray-800 text-lg group-hover:text-brand-green transition-colors">Traditional Remedies</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 text-brand-green"></i>
                     </div>
-                    <div class="bg-white rounded-lg p-6 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group border border-gray-100">
-                        <span class="font-bold text-gray-800 group-hover:text-brand-green transition-colors">Herbal Drinks</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+                    <!-- Card 5 -->
+                    <div class="bg-white rounded-xl px-6 py-5 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group">
+                        <span class="font-bold text-gray-800 text-lg group-hover:text-brand-green transition-colors">Herbal Drinks</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 text-brand-green"></i>
                     </div>
-                    <div class="bg-white rounded-lg p-6 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group border border-gray-100">
-                        <span class="font-bold text-gray-800 group-hover:text-brand-green transition-colors">Immunity Care</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 group-hover:text-brand-green transition-colors"></i>
+                    <!-- Card 6 -->
+                    <div class="bg-white rounded-xl px-6 py-5 flex justify-between items-center cursor-pointer shadow-sm hover:shadow-md transition-shadow group">
+                        <span class="font-bold text-gray-800 text-lg group-hover:text-brand-green transition-colors">Immunity Care</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 text-brand-green"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Certifications & Trust Banner -->
+        <!-- Certifications -->
         <section class="py-12 bg-white border-y border-gray-100">
-            <div class="container mx-auto px-4 flex flex-wrap justify-center items-center gap-12 md:gap-24">
+            <div class="container mx-auto px-4 flex flex-wrap justify-center items-center gap-12 md:gap-32">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/FSSAI_logo.svg/1200px-FSSAI_logo.svg.png" alt="FSSAI" class="h-16 object-contain cert-logo">
-                <img src="https://5.imimg.com/data5/YQ/YI/MY-10972412/gmp-certification-services-500x500.png" alt="GMP Certified" class="h-20 object-contain cert-logo gmp-logo">
+                <img src="https://5.imimg.com/data5/YQ/YI/MY-10972412/gmp-certification-services-500x500.png" alt="GMP Certified" class="h-24 object-contain cert-logo gmp-logo">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Ministry_of_Ayush_Logo.png" alt="Ministry of AYUSH" class="h-16 object-contain cert-logo">
             </div>
         </section>
 
         <!-- Google Reviews -->
-        <section class="py-16 bg-gray-50">
+        <section class="py-20 bg-gray-50">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-brand-green serif-font mb-2">What Our Customers Say</h2>
-                <div class="flex justify-center text-yellow-400 mb-2">
-                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                <h2 class="text-3xl md:text-5xl font-bold text-brand-green serif-font mb-4">What Our Customers Say</h2>
+                <div class="flex justify-center gap-1 text-yellow-400 mb-2">
+                    <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                    <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                    <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                    <i data-lucide="star" class="w-6 h-6 fill-current"></i>
+                    <i data-lucide="star" class="w-6 h-6 fill-current"></i>
                 </div>
-                <p class="text-gray-500 text-sm mb-10">4.9/5 Average rating on Google Reviews</p>
+                <p class="text-gray-500 text-sm mb-12 font-medium">4.9/5 Average rating on Google Reviews</p>
                 
-                <div class="flex gap-6 overflow-x-auto review-scroll pb-8 px-4">
+                <div class="flex gap-6 overflow-x-auto review-scroll pb-8 px-4 max-w-6xl mx-auto">
                     <!-- Review 1 -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 min-w-[300px] max-w-[350px] review-card text-left flex-shrink-0">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">R</div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 min-w-[320px] max-w-[380px] review-card text-left flex-shrink-0">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg">R</div>
                             <div>
-                                <h4 class="font-bold text-gray-800 text-sm">Rahul Sharma</h4>
-                                <p class="text-xs text-gray-400">2 days ago</p>
+                                <h4 class="font-bold text-gray-900">Rahul Sharma</h4>
+                                <p class="text-xs text-gray-400 mt-0.5">2 days ago</p>
                             </div>
                         </div>
-                        <div class="flex text-yellow-400 mb-2 w-3 h-3"><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i></div>
-                        <p class="text-gray-600 text-sm italic">"The Thathuviruthi Chooranam is fantastic. It has really helped with my vitality and stamina. Highly recommend their authentic products!"</p>
+                        <div class="flex text-yellow-400 mb-3 gap-0.5"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                        <p class="text-gray-600 text-sm leading-relaxed">"The Thathuviruthi Chooranam is fantastic. It has really helped with my vitality and stamina. Highly recommend their authentic products!"</p>
                     </div>
                     <!-- Review 2 -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 min-w-[300px] max-w-[350px] review-card text-left flex-shrink-0">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">P</div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 min-w-[320px] max-w-[380px] review-card text-left flex-shrink-0">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold text-lg">P</div>
                             <div>
-                                <h4 class="font-bold text-gray-800 text-sm">Priya Natarajan</h4>
-                                <p class="text-xs text-gray-400">1 week ago</p>
+                                <h4 class="font-bold text-gray-900">Priya Natarajan</h4>
+                                <p class="text-xs text-gray-400 mt-0.5">1 week ago</p>
                             </div>
                         </div>
-                        <div class="flex text-yellow-400 mb-2 w-3 h-3"><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i></div>
-                        <p class="text-gray-600 text-sm italic">"I've been using their products for a month. The quality is pure and authentic. Customer service is also very responsive."</p>
+                        <div class="flex text-yellow-400 mb-3 gap-0.5"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                        <p class="text-gray-600 text-sm leading-relaxed">"I've been using their products for a month. The quality is pure and authentic. Customer service is also very responsive."</p>
                     </div>
                      <!-- Review 3 -->
-                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 min-w-[300px] max-w-[350px] review-card text-left flex-shrink-0">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold">K</div>
+                     <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 min-w-[320px] max-w-[380px] review-card text-left flex-shrink-0">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg">K</div>
                             <div>
-                                <h4 class="font-bold text-gray-800 text-sm">Karthik S.</h4>
-                                <p class="text-xs text-gray-400">3 weeks ago</p>
+                                <h4 class="font-bold text-gray-900">Karthik S.</h4>
+                                <p class="text-xs text-gray-400 mt-0.5">3 weeks ago</p>
                             </div>
                         </div>
-                        <div class="flex text-yellow-400 mb-2 w-3 h-3"><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i><i data-lucide="star" class="fill-current"></i></div>
-                        <p class="text-gray-600 text-sm italic">"Excellent packaging and traditional formulations. You can really tell they use high-quality ingredients. Will buy again."</p>
+                        <div class="flex text-yellow-400 mb-3 gap-0.5"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                        <p class="text-gray-600 text-sm leading-relaxed">"Excellent packaging and traditional formulations. You can really tell they use high-quality ingredients. Will buy again."</p>
                     </div>
                 </div>
             </div>
@@ -292,159 +269,96 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#1A1A1A] text-white pt-16 pb-8 mt-0 border-t-4 border-brand-green">
+    <footer class="bg-[#1A1A1A] text-white pt-16 pb-8 border-t-4 border-brand-green">
         <div class="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div>
                 <div class="flex items-center gap-2 mb-6">
                     <div class="w-8 h-8 bg-white rounded flex items-center justify-center text-brand-green"><i data-lucide="leaf" class="w-5 h-5"></i></div>
-                    <h3 class="text-xl font-bold serif-font tracking-wide">Adhishaya</h3>
+                    <h3 class="text-2xl font-bold serif-font tracking-wide">Adhishaya</h3>
                 </div>
                 <p class="text-gray-400 text-sm leading-relaxed mb-6">Expert-formulated traditional Siddha medicines bringing the healing power of nature to your modern lifestyle.</p>
             </div>
             <div>
-                <h4 class="text-lg font-bold serif-font mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-brand-green transition">Shop All</a></li>
-                    <li><a href="#" class="hover:text-brand-green transition">About Us</a></li>
-                    <li><a href="#" class="hover:text-brand-green transition">Contact Us</a></li>
+                <h4 class="text-lg font-bold serif-font mb-6 text-cream">Quick Links</h4>
+                <ul class="space-y-3 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-cream transition">Shop All</a></li>
+                    <li><a href="#" class="hover:text-cream transition">About Us</a></li>
+                    <li><a href="#" class="hover:text-cream transition">Contact Us</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-lg font-bold serif-font mb-4">Legal & Help</h4>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-brand-green transition">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-brand-green transition">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-brand-green transition">Refund Policy</a></li>
+                <h4 class="text-lg font-bold serif-font mb-6 text-cream">Legal & Help</h4>
+                <ul class="space-y-3 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-cream transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-cream transition">Terms of Service</a></li>
+                    <li><a href="#" class="hover:text-cream transition">Refund Policy</a></li>
                 </ul>
             </div>
         </div>
         <div class="container mx-auto px-4 md:px-8 text-center text-gray-500 text-sm border-t border-gray-800 pt-8 flex justify-between items-center">
             <p>&copy; 2024 Adhishaya Herbs & Food. All rights reserved.</p>
-            <!-- Admin Portal Link (Only visible if logged in as Admin) -->
-            <button id="footer-admin-link" onclick="openAdmin()" class="hidden text-brand-green hover:text-white transition font-bold text-xs"><i data-lucide="shield-check" class="w-3 h-3 inline mr-1"></i>Admin Access</button>
+            <button id="footer-admin-link" onclick="toggleModal('admin-modal')" class="hidden text-brand-green hover:text-white transition font-bold text-xs"><i data-lucide="shield-check" class="w-3 h-3 inline mr-1"></i>Admin Access</button>
         </div>
     </footer>
 
-    <!-- Login Modal (Fixed Centering with flex) -->
-    <div id="login-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
-        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm relative text-center">
-            <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><i data-lucide="x"></i></button>
-            <div class="w-16 h-16 bg-cream rounded-full mx-auto flex items-center justify-center text-brand-green mb-4">
-                <i data-lucide="leaf" class="w-8 h-8"></i>
+    
+    <!-- Login Modal (Centered layout fixed) -->
+    <div id="login-modal" class="modal-overlay fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-sm relative text-center mx-4">
+            <button onclick="toggleModal('login-modal')" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 bg-gray-50 p-2 rounded-full"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <div class="w-20 h-20 bg-cream rounded-full mx-auto flex items-center justify-center text-brand-green mb-6 shadow-inner">
+                <i data-lucide="leaf" class="w-10 h-10"></i>
             </div>
-            <h2 class="text-2xl font-bold serif-font text-brand-green mb-2">Welcome Back</h2>
-            <p class="text-gray-500 text-sm mb-6">Sign in to manage your profile.</p>
+            <h2 class="text-3xl font-bold serif-font text-brand-green mb-3">Welcome Back</h2>
+            <p class="text-gray-500 text-sm mb-8 font-medium">Sign in to manage your profile.</p>
             
-            <button onclick="loginWithGoogle()" class="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-3 px-4 rounded-lg transition shadow-sm">
+            <button onclick="loginWithGoogle()" class="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-200 hover:border-brand-green hover:bg-gray-50 text-gray-800 font-bold py-3.5 px-4 rounded-xl transition-all shadow-sm">
                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5">
                 Continue with Google
             </button>
         </div>
     </div>
 
-    <!-- Admin Dashboard Modal -->
-    <div id="admin-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden p-4">
-        <div class="bg-white w-full max-w-5xl h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden relative">
-            <div class="p-6 border-b flex justify-between items-center bg-gray-50">
-                <div>
-                    <h2 class="text-2xl font-bold text-brand-green serif-font flex items-center gap-2">
-                        <i data-lucide="shield-check" class="w-6 h-6"></i> Admin Dashboard
-                    </h2>
-                    <p class="text-sm text-gray-500">Manage your store products and content securely.</p>
-                </div>
-                <button onclick="closeAdmin()" class="text-gray-500 hover:text-red-500 bg-white p-2 rounded-full shadow-sm border"><i data-lucide="x"></i></button>
-            </div>
-            <div class="flex-1 overflow-y-auto p-6 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <!-- Add Product Form -->
-                <div class="bg-gray-50 p-6 rounded-xl border">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">Add New Product</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="text-xs font-bold text-gray-600 uppercase">Product Title</label>
-                            <input type="text" id="admin-prod-title" placeholder="e.g. Thathuviruthi Chooranam" class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-brand-green outline-none">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-gray-600 uppercase">Price (INR)</label>
-                            <input type="number" id="admin-prod-price" placeholder="e.g. 450" class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-brand-green outline-none">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-gray-600 uppercase">Short Overview</label>
-                            <textarea id="admin-prod-desc" placeholder="Enter short description..." class="w-full mt-1 p-3 border rounded-lg h-20 focus:ring-2 focus:ring-brand-green outline-none"></textarea>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-gray-600 uppercase">Detailed Content & Benefits (HTML allowed)</label>
-                            <textarea id="admin-prod-benefits" placeholder="Enter long-form SEO content here..." class="w-full mt-1 p-3 border rounded-lg h-32 focus:ring-2 focus:ring-brand-green outline-none"></textarea>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-gray-600 uppercase">Image URLs (One per line)</label>
-                            <textarea id="admin-prod-images" placeholder="carasoul1.png&#10;carasoul2.png" class="w-full mt-1 p-3 border rounded-lg h-24 focus:ring-2 focus:ring-brand-green outline-none"></textarea>
-                            <p class="text-[10px] text-gray-500 mt-1">Paste image names exactly as they appear in GitHub (e.g. carasoul1.png)</p>
-                        </div>
-                        <button onclick="saveProduct()" class="w-full bg-brand-green text-white py-3 rounded-lg font-bold hover:bg-green-800 transition shadow-md flex justify-center items-center gap-2">
-                            <i data-lucide="plus-circle" class="w-5 h-5"></i> Publish Product
-                        </button>
-                    </div>
-                </div>
-                <!-- Manage Products -->
-                <div>
-                    <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2 flex justify-between items-center">
-                        Active Inventory
-                        <button onclick="loadAdminProducts()" class="text-sm text-brand-green hover:underline flex items-center gap-1"><i data-lucide="refresh-cw" class="w-3 h-3"></i> Refresh</button>
-                    </h3>
-                    <div id="admin-product-list" class="space-y-3 pr-2 max-h-[600px] overflow-y-auto">
-                        <p class="text-gray-500 text-sm italic">Loading products...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product Details Modal (E-commerce Style) -->
-    <div id="product-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md hidden p-4">
-        <div class="bg-white w-full max-w-5xl h-[90vh] md:h-[80vh] rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden relative">
-            <button onclick="closeProductDetail()" class="absolute top-4 right-4 z-50 text-gray-500 hover:text-red-500 bg-white/90 backdrop-blur p-2 rounded-full shadow-md border"><i data-lucide="x"></i></button>
+    <!-- Product Details Modal -->
+    <div id="product-modal" class="modal-overlay fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 md:p-8">
+        <div class="bg-white w-full max-w-6xl h-[90vh] md:h-[85vh] rounded-[2rem] shadow-2xl flex flex-col md:flex-row overflow-hidden relative">
+            <button onclick="toggleModal('product-modal')" class="absolute top-5 right-5 z-50 text-gray-500 hover:text-red-500 bg-white/90 backdrop-blur p-3 rounded-full shadow-lg border border-gray-100"><i data-lucide="x"></i></button>
             
             <!-- Left: Image Slider -->
-            <div class="w-full md:w-1/2 bg-[#F9F9F9] relative flex flex-col items-center justify-center border-r p-8">
+            <div class="w-full md:w-1/2 bg-[#F9F9F9] relative flex flex-col items-center justify-center border-r border-gray-100 p-8">
                 <div class="relative w-full flex-1 flex items-center justify-center min-h-[300px]">
-                    <img id="prod-main-img" src="" class="max-h-full max-w-full object-contain drop-shadow-xl transition-all duration-300">
-                    <!-- Navigation Arrows -->
-                    <button onclick="prevImage()" class="absolute left-0 bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 hover:scale-105 transition-all text-gray-700"><i data-lucide="chevron-left"></i></button>
-                    <button onclick="nextImage()" class="absolute right-0 bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 hover:scale-105 transition-all text-gray-700"><i data-lucide="chevron-right"></i></button>
+                    <img id="prod-main-img" src="" onerror="this.onerror=null; this.src='https://placehold.co/400x400/FDF6EA/2A4B3C?text=Product';" class="max-h-full max-w-full object-contain drop-shadow-xl transition-opacity duration-300">
+                    <button onclick="prevImage()" class="absolute left-2 bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 transition-all text-gray-700"><i data-lucide="chevron-left"></i></button>
+                    <button onclick="nextImage()" class="absolute right-2 bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 transition-all text-gray-700"><i data-lucide="chevron-right"></i></button>
                 </div>
                 <!-- Thumbnails -->
-                <div id="prod-thumbnails" class="w-full flex justify-center gap-3 mt-6 overflow-x-auto py-2">
-                    <!-- Thumbnails generated by JS -->
+                <div id="prod-thumbnails" class="w-full flex justify-center gap-4 mt-6 overflow-x-auto py-2">
+                    <!-- Generated via JS -->
                 </div>
             </div>
 
-            <!-- Right: Content & Ordering -->
+            <!-- Right: Content -->
             <div class="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto flex flex-col bg-white">
                 <p id="prod-detail-category" class="text-xs font-bold text-[#C48B5D] tracking-wider uppercase mb-2">Siddha Proprietary Medicine</p>
-                <h2 id="prod-detail-title" class="text-3xl md:text-4xl font-bold serif-font text-brand-green mb-4 leading-tight">Product Title</h2>
-                <div class="flex items-end gap-3 mb-6 pb-6 border-b border-gray-100">
-                    <p id="prod-detail-price" class="text-3xl font-bold text-gray-900">Rs. 0</p>
-                    <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded mb-1 ml-2">In Stock</span>
+                <h2 id="prod-detail-title" class="text-3xl md:text-5xl font-bold serif-font text-brand-green mb-4 leading-tight">Product Title</h2>
+                <div class="flex items-end gap-3 mb-8 pb-8 border-b border-gray-100">
+                    <p id="prod-detail-price" class="text-4xl font-bold text-gray-900">Rs. 0</p>
+                    <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1.5 rounded-md mb-1 ml-2">In Stock</span>
                 </div>
                 
                 <!-- Content Tabs -->
-                <div class="flex gap-6 border-b border-gray-200 mb-6 text-sm font-semibold">
-                    <button onclick="switchTab('overview')" id="tab-overview" class="pb-3 border-b-2 border-brand-green text-brand-green transition-colors">Overview</button>
-                    <button onclick="switchTab('benefits')" id="tab-benefits" class="pb-3 border-b-2 border-transparent text-gray-400 hover:text-gray-700 transition-colors">Details & Benefits</button>
+                <div class="flex gap-8 border-b border-gray-200 mb-8 text-sm font-bold">
+                    <button onclick="switchTab('overview')" id="tab-overview" class="pb-4 border-b-[3px] border-brand-green text-brand-green transition-colors">Overview</button>
+                    <button onclick="switchTab('benefits')" id="tab-benefits" class="pb-4 border-b-[3px] border-transparent text-gray-400 hover:text-gray-700 transition-colors">Details & Benefits</button>
                 </div>
 
-                <!-- Tab Contents -->
-                <div id="content-overview" class="text-gray-600 leading-relaxed mb-8 flex-1 text-sm md:text-base">
-                    Description goes here...
-                </div>
-                <div id="content-benefits" class="text-gray-600 leading-relaxed mb-8 flex-1 text-sm md:text-base hidden">
-                    Benefits go here...
-                </div>
+                <div id="content-overview" class="text-gray-600 leading-relaxed mb-8 flex-1 text-sm md:text-base"></div>
+                <div id="content-benefits" class="text-gray-600 leading-relaxed mb-8 flex-1 text-sm md:text-base hidden"></div>
 
                 <!-- Sticky Order Action -->
-                <div class="mt-auto pt-6 border-t border-gray-100 bg-white sticky bottom-0">
-                    <p class="text-xs text-gray-500 text-center mb-3"><i data-lucide="shield-check" class="w-3 h-3 inline"></i> Secure Checkout via WhatsApp</p>
-                    <button onclick="orderViaWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold py-4 rounded-xl flex justify-center items-center gap-3 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-lg">
+                <div class="mt-auto pt-6 bg-white sticky bottom-0">
+                    <p class="text-xs text-gray-500 text-center mb-3 font-medium"><i data-lucide="shield-check" class="w-4 h-4 inline text-green-600"></i> Secure Checkout via WhatsApp</p>
+                    <button onclick="orderViaWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold py-4 rounded-xl flex justify-center items-center gap-3 transition-all shadow-lg text-lg">
                         <i data-lucide="message-circle" class="w-6 h-6"></i> Order Now on WhatsApp
                     </button>
                 </div>
@@ -452,175 +366,88 @@
         </div>
     </div>
 
+    <!-- Admin Modal -->
+    <div id="admin-modal" class="modal-overlay fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="bg-white w-full max-w-5xl h-[90vh] rounded-[2rem] shadow-2xl flex flex-col overflow-hidden relative">
+            <div class="p-6 border-b flex justify-between items-center bg-gray-50">
+                <div>
+                    <h2 class="text-2xl font-bold text-brand-green serif-font flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i> Admin Dashboard
+                    </h2>
+                    <p class="text-sm text-gray-500">Manage your store products and content securely.</p>
+                </div>
+                <button onclick="toggleModal('admin-modal')" class="text-gray-500 hover:text-red-500 bg-white p-2 rounded-full shadow-sm border"><i data-lucide="x"></i></button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6 md:p-8 flex flex-col items-center justify-center text-center">
+                <i data-lucide="database" class="w-16 h-16 text-gray-300 mb-4"></i>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Database Connection Required</h3>
+                <p class="text-gray-500 max-w-md">Once your Firebase Firestore database is created, the inventory management form will appear here.</p>
+            </div>
+        </div>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-        // Firebase Configuration
+        // Initialize Icons
+        lucide.createIcons();
+
         const firebaseConfig = {
           apiKey: "AIzaSyAhYm-TxemRXCTQSCY6Jo0c1SPMYegDjhw",
           authDomain: "adhishaya-6eb47.firebaseapp.com",
           projectId: "adhishaya-6eb47",
           storageBucket: "adhishaya-6eb47.firebasestorage.app",
           messagingSenderId: "871718551216",
-          appId: "1:871718551216:web:4c849b0053f77386588575",
-          measurementId: "G-FKYHW2SB6Q"
+          appId: "1:871718551216:web:4c849b0053f77386588575"
         };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        const db = getFirestore(app);
 
         // State Variables
         let isAdmin = false;
-        let productsList = [];
         let currentViewProduct = null;
         let currentImageIndex = 0;
 
-        // Initialize Icons
-        lucide.createIcons();
-
-        // --- 1. Authentication ---
-        window.toggleAuthModal = function() {
-            const modal = document.getElementById('login-modal');
-            modal.classList.toggle('hidden');
+        // Modal Toggling Helper
+        window.toggleModal = function(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            } else {
+                modal.classList.add('active');
+            }
         };
 
+        // Authentication
         window.loginWithGoogle = async function() {
             const provider = new GoogleAuthProvider();
             try {
                 await signInWithPopup(auth, provider);
-                window.toggleAuthModal();
+                toggleModal('login-modal');
+                alert("Successfully logged in!");
             } catch (error) {
                 console.error("Login Error:", error);
-                alert("Login Error: " + error.message);
+                alert("Ensure badoza.github.io is added to Firebase Authorized Domains.\n\nError: " + error.message);
             }
         };
 
-        // Listen for Auth changes and unlock Admin UI if authorized
         onAuthStateChanged(auth, (user) => {
             if (user && user.email === 'dodge.kunal@gmail.com') {
                 isAdmin = true;
-                const adminLink1 = document.getElementById('nav-admin-link');
-                const adminLink2 = document.getElementById('footer-admin-link');
-                if(adminLink1) adminLink1.classList.remove('hidden');
-                if(adminLink2) adminLink2.classList.remove('hidden');
+                document.getElementById('nav-admin-link').classList.remove('hidden');
+                document.getElementById('footer-admin-link').classList.remove('hidden');
             } else {
                 isAdmin = false;
-                const adminLink1 = document.getElementById('nav-admin-link');
-                const adminLink2 = document.getElementById('footer-admin-link');
-                if(adminLink1) adminLink1.classList.add('hidden');
-                if(adminLink2) adminLink2.classList.add('hidden');
+                document.getElementById('nav-admin-link').classList.add('hidden');
+                document.getElementById('footer-admin-link').classList.add('hidden');
             }
         });
 
-        // --- 2. Admin Dashboard Logic ---
-        window.openAdmin = function() {
-            if(isAdmin) {
-                document.getElementById('admin-modal').classList.remove('hidden');
-                loadAdminProducts();
-            } else {
-                alert("Security Alert: Access Denied.");
-            }
-        };
-
-        window.closeAdmin = function() {
-            document.getElementById('admin-modal').classList.add('hidden');
-        };
-
-        window.saveProduct = async function() {
-            const title = document.getElementById('admin-prod-title').value;
-            const price = document.getElementById('admin-prod-price').value;
-            const desc = document.getElementById('admin-prod-desc').value;
-            const benefits = document.getElementById('admin-prod-benefits').value;
-            const imagesRaw = document.getElementById('admin-prod-images').value;
-            
-            if(!title || !price) {
-                alert("Please provide at least a Product Title and Price.");
-                return;
-            }
-
-            // Convert raw lines of URLs into a cleaned array
-            const images = imagesRaw.split(/[\n,]+/).map(img => img.trim()).filter(img => img !== "");
-            if(images.length === 0) images.push("carasoul1.png");
-
-            try {
-                await addDoc(collection(db, 'store_products'), {
-                    title, price, desc, benefits, images, createdAt: new Date()
-                });
-                alert("Product saved successfully!");
-                document.getElementById('admin-prod-title').value = '';
-                document.getElementById('admin-prod-price').value = '';
-                document.getElementById('admin-prod-desc').value = '';
-                document.getElementById('admin-prod-benefits').value = '';
-                document.getElementById('admin-prod-images').value = '';
-                loadAdminProducts();
-            } catch (error) {
-                console.error("Database Write Error: ", error);
-                alert("Error saving. Make sure Firestore is enabled.");
-            }
-        };
-
-        window.loadAdminProducts = async function() {
-            const listEl = document.getElementById('admin-product-list');
-            listEl.innerHTML = '<p class="text-brand-green text-sm">Loading...</p>';
-            try {
-                const querySnapshot = await getDocs(collection(db, 'store_products'));
-                listEl.innerHTML = '';
-                productsList = [];
-
-                if(querySnapshot.empty) {
-                    listEl.innerHTML = '<p class="text-gray-500 text-sm">No products found.</p>';
-                    return;
-                }
-                
-                querySnapshot.forEach((docSnap) => {
-                    const data = docSnap.data();
-                    productsList.push({ id: docSnap.id, ...data });
-                    
-                    const div = document.createElement('div');
-                    div.className = "flex justify-between items-center p-4 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow transition group";
-                    const thumb = data.images && data.images.length > 0 ? data.images[0] : 'carasoul1.png';
-                    
-                    div.innerHTML = `
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-gray-50 rounded border flex items-center justify-center overflow-hidden">
-                                <img src="${thumb}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/FDF6EA/2A4B3C?text=Img'">
-                            </div>
-                            <div>
-                                <p class="font-bold text-gray-800">${data.title}</p>
-                                <p class="text-xs font-bold text-brand-green">Rs. ${data.price}</p>
-                            </div>
-                        </div>
-                        <button onclick="deleteProduct('${docSnap.id}')" class="text-gray-400 hover:text-red-600 bg-gray-50 hover:bg-red-50 p-2 rounded-full transition opacity-0 group-hover:opacity-100" title="Delete Product">
-                            <i data-lucide="trash-2" class="w-5 h-5"></i>
-                        </button>
-                    `;
-                    listEl.appendChild(div);
-                });
-                lucide.createIcons();
-            } catch(e) {
-                console.error(e);
-                listEl.innerHTML = '<p class="text-red-500 text-sm">Database connection error.</p>';
-            }
-        };
-
-        window.deleteProduct = async function(id) {
-            if(confirm("Delete this product?")) {
-                try {
-                    await deleteDoc(doc(db, 'store_products', id));
-                    loadAdminProducts();
-                } catch(e) {
-                    alert("Error deleting product.");
-                }
-            }
-        };
-
-        // --- 3. Product Presentation & Image Slider ---
-        window.openProductDetail = function(id = null) {
-            // Default Hero Product (With your requested long-form Tamil/English content)
-            let prod = {
+        // Product Presentation Logic (Hardcoded high-quality data for now)
+        window.openProductDetail = function() {
+            const prod = {
                 title: "Thathuviruthi Chooranam",
                 price: "450",
                 desc: "Traditional Siddha Proprietary Herbal Formula for Men's Wellness, featuring Ashwagandha, Poonaikali Seeds, and Moringa.",
@@ -628,54 +455,42 @@
                     <strong>Why Choose Thathuviruthi Chooranam?</strong><br>
                     ✔️ Traditional Siddha Proprietary Formula<br>
                     ✔️ Carefully Selected Herbal Ingredients<br>
-                    ✔️ Supports Men's Vitality<br>
-                    ✔️ Made with Traditional Siddha Knowledge<br><br>
+                    ✔️ Supports Men's Vitality<br><br>
                     <strong>Traditional Herbal Ingredients:</strong><br>
                     • Ashwagandha (Withania somnifera) - Supporting physical stamina.<br>
-                    • Poonaikali Seeds - Supporting reproductive wellness.<br>
-                    • Nilappanai Kizhangu - Supporting strength.<br><br>
+                    • Poonaikali Seeds - Supporting reproductive wellness.<br><br>
                     <strong>தமிழ் விளக்கம்:</strong><br>
-                    தாது விருத்தி சூரணம் என்பது பாரம்பரிய சித்த மருத்துவ அறிவின் அடிப்படையில் உருவாக்கப்பட்ட தனித்துவமான மூலிகை தயாரிப்பாகும். அஷ்வகந்தா, பூனைக்காலி விதை, நிலப்பனை கிழங்கு ஆகியவை ஆண்களின் உடல் வலிமை, உற்சாகம், சகிப்புத்தன்மை, இனப்பெருக்க நலம் ஆகியவற்றை ஆதரிக்கும் வகையில் வடிவமைக்கப்பட்டுள்ளன.
+                    தாது விருத்தி சூரணம் என்பது பாரம்பரிய சித்த மருத்துவ அறிவின் அடிப்படையில் உருவாக்கப்பட்ட தனித்துவமான மூலிகை தயாரிப்பாகும்.
                 `,
-                images: ["carasoul1.png", "carasoul2.png", "carasoul3.png"]
+                images: ["Carasoul%20img%201.png", "Carasoul%20img%202.png", "Carasoul%20img%203.png", "Carasoul%20img%204.png"]
             };
 
-            // Inject real product from DB if ID is provided
-            if(id && productsList.length > 0) {
-                const found = productsList.find(p => p.id === id);
-                if(found) prod = found;
-            }
-            
             currentViewProduct = prod;
             currentImageIndex = 0;
 
             document.getElementById('prod-detail-title').innerText = prod.title;
             document.getElementById('prod-detail-price').innerText = `Rs. ${prod.price}`;
-            document.getElementById('content-overview').innerHTML = (prod.desc || "").replace(/\n/g, '<br>');
-            document.getElementById('content-benefits').innerHTML = (prod.benefits || "").replace(/\n/g, '<br>');
+            document.getElementById('content-overview').innerHTML = prod.desc.replace(/\n/g, '<br>');
+            document.getElementById('content-benefits').innerHTML = prod.benefits.replace(/\n/g, '<br>');
             
             switchTab('overview');
             updateImageSlider();
 
-            document.getElementById('product-modal').classList.remove('hidden');
-        };
-
-        window.closeProductDetail = function() {
-            document.getElementById('product-modal').classList.add('hidden');
+            toggleModal('product-modal');
         };
 
         window.switchTab = function(tabName) {
-            document.getElementById('tab-overview').className = "pb-3 border-b-2 border-transparent text-gray-400 hover:text-gray-700 transition-colors";
-            document.getElementById('tab-benefits').className = "pb-3 border-b-2 border-transparent text-gray-400 hover:text-gray-700 transition-colors";
+            document.getElementById('tab-overview').className = "pb-4 border-b-[3px] border-transparent text-gray-400 hover:text-gray-700 transition-colors";
+            document.getElementById('tab-benefits').className = "pb-4 border-b-[3px] border-transparent text-gray-400 hover:text-gray-700 transition-colors";
             document.getElementById('content-overview').classList.add('hidden');
             document.getElementById('content-benefits').classList.add('hidden');
 
-            document.getElementById(`tab-${tabName}`).className = "pb-3 border-b-2 border-brand-green text-brand-green transition-colors";
+            document.getElementById(`tab-${tabName}`).className = "pb-4 border-b-[3px] border-brand-green text-brand-green transition-colors";
             document.getElementById(`content-${tabName}`).classList.remove('hidden');
         };
 
         window.updateImageSlider = function() {
-            if(!currentViewProduct.images || currentViewProduct.images.length === 0) return;
+            if(!currentViewProduct || !currentViewProduct.images) return;
             
             const mainImg = document.getElementById('prod-main-img');
             mainImg.style.opacity = 0;
@@ -689,31 +504,30 @@
             currentViewProduct.images.forEach((img, idx) => {
                 const isActive = idx === currentImageIndex;
                 const btn = document.createElement('button');
-                btn.className = `w-16 h-16 rounded-lg border-2 overflow-hidden flex-shrink-0 transition-all ${isActive ? 'border-brand-green shadow-md scale-105' : 'border-gray-200 opacity-60 hover:opacity-100'}`;
+                btn.className = `w-16 h-16 rounded-xl border-2 overflow-hidden flex-shrink-0 transition-all ${isActive ? 'border-brand-green shadow-md scale-105' : 'border-transparent opacity-50 hover:opacity-100'}`;
                 btn.onclick = () => { currentImageIndex = idx; updateImageSlider(); };
-                btn.innerHTML = `<img src="${img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/FDF6EA/2A4B3C?text=Img'">`;
+                btn.innerHTML = `<img src="${img}" onerror="this.onerror=null; this.src='https://placehold.co/100x100/FDF6EA/2A4B3C?text=Img';" class="w-full h-full object-cover">`;
                 thumbContainer.appendChild(btn);
             });
         };
 
         window.nextImage = function() {
-            if(!currentViewProduct.images) return;
+            if(!currentViewProduct) return;
             currentImageIndex = (currentImageIndex + 1) % currentViewProduct.images.length;
             updateImageSlider();
         };
 
         window.prevImage = function() {
-            if(!currentViewProduct.images) return;
+            if(!currentViewProduct) return;
             currentImageIndex = (currentImageIndex - 1 + currentViewProduct.images.length) % currentViewProduct.images.length;
             updateImageSlider();
         };
 
-        // --- 4. Automated WhatsApp Checkout ---
+        // WhatsApp Checkout
         window.orderViaWhatsApp = function() {
             if(!currentViewProduct) return;
             
-            // NOTE TO STORE OWNER: Change this variable to your business WhatsApp number!
-            const STORE_PHONE_NUMBER = "919999999999"; 
+            const STORE_PHONE_NUMBER = "919999999999"; // UPDATE THIS TO YOUR NUMBER
             
             const greeting = "Hello Adhishaya Herbs! 🌿\n\nI would like to place an order:\n\n";
             const orderDetails = `*Product:* ${currentViewProduct.title}\n*Price:* Rs. ${currentViewProduct.price}\n\n`;
@@ -721,10 +535,6 @@
             
             const fullMessage = encodeURIComponent(greeting + orderDetails + closing);
             window.open(`https://wa.me/${STORE_PHONE_NUMBER}?text=${fullMessage}`, '_blank');
-        };
-
-        window.navigateTo = function(page) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         };
     </script>
 </body>
