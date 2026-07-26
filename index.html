@@ -203,18 +203,396 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK Imports (Leave these exactly as they are) -->
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm relative text-center">
+            <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><i data-lucide="x"></i></button>
+            <div class="w-16 h-16 bg-cream rounded-full mx-auto flex items-center justify-center text-brand-green mb-4">
+                <i data-lucide="leaf" class="w-8 h-8"></i>
+            </div>
+            <h2 class="text-2xl font-bold serif-font text-brand-green mb-2">Welcome Back</h2>
+            <p class="text-gray-500 text-sm mb-6">Sign in to manage your profile.</p>
+            
+            <button onclick="loginWithGoogle()" class="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-3 px-4 rounded-lg transition shadow-sm">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5">
+                Continue with Google
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-white w-full max-w-5xl h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden relative">
+            <div class="p-6 border-b flex justify-between items-center bg-gray-50">
+                <div>
+                    <h2 class="text-2xl font-bold text-brand-green serif-font flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i> Admin Dashboard
+                    </h2>
+                    <p class="text-sm text-gray-500">Manage your store products and content securely.</p>
+                </div>
+                <button onclick="closeAdmin()" class="text-gray-500 hover:text-red-500 bg-white p-2 rounded-full shadow-sm border"><i data-lucide="x"></i></button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Add Product Form -->
+                <div class="bg-gray-50 p-6 rounded-xl border">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">Add New Product</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-xs font-bold text-gray-600 uppercase">Product Title</label>
+                            <input type="text" id="admin-prod-title" placeholder="e.g. Thathuviruthi Chooranam" class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-brand-green outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-600 uppercase">Price (INR)</label>
+                            <input type="number" id="admin-prod-price" placeholder="e.g. 450" class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-brand-green outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-600 uppercase">Overview / Description</label>
+                            <textarea id="admin-prod-desc" placeholder="Enter short description..." class="w-full mt-1 p-3 border rounded-lg h-24 focus:ring-2 focus:ring-brand-green outline-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-600 uppercase">Detailed Content (HTML allowed)</label>
+                            <textarea id="admin-prod-benefits" placeholder="Enter full SEO content, benefits, ingredients..." class="w-full mt-1 p-3 border rounded-lg h-32 focus:ring-2 focus:ring-brand-green outline-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-600 uppercase">Image URLs (One per line)</label>
+                            <textarea id="admin-prod-images" placeholder="carasoul1.png&#10;carasoul2.png" class="w-full mt-1 p-3 border rounded-lg h-24 focus:ring-2 focus:ring-brand-green outline-none"></textarea>
+                            <p class="text-[10px] text-gray-500 mt-1">Add multiple images for the product carousel. Ensure images are uploaded to GitHub with exact names.</p>
+                        </div>
+                        <button onclick="saveProduct()" class="w-full bg-brand-green text-white py-3 rounded-lg font-bold hover:bg-green-800 transition shadow-md flex justify-center items-center gap-2">
+                            <i data-lucide="plus-circle" class="w-5 h-5"></i> Publish Product
+                        </button>
+                    </div>
+                </div>
+                <!-- Manage Products -->
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2 flex justify-between items-center">
+                        Active Inventory
+                        <button onclick="loadAdminProducts()" class="text-sm text-brand-green hover:underline flex items-center gap-1"><i data-lucide="refresh-cw" class="w-3 h-3"></i> Refresh</button>
+                    </h3>
+                    <div id="admin-product-list" class="space-y-3 pr-2 max-h-[600px] overflow-y-auto">
+                        <p class="text-gray-500 text-sm italic">Loading products...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal (E-commerce Style) -->
+    <div id="product-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md hidden p-4">
+        <div class="bg-white w-full max-w-5xl h-[90vh] md:h-[80vh] rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-hidden relative">
+            <button onclick="closeProductDetail()" class="absolute top-4 right-4 z-50 text-gray-500 hover:text-red-500 bg-white/90 backdrop-blur p-2 rounded-full shadow-md border"><i data-lucide="x"></i></button>
+            
+            <!-- Left: Image Slider -->
+            <div class="w-full md:w-1/2 bg-[#F9F9F9] relative flex flex-col items-center justify-center border-r p-8">
+                <div class="relative w-full flex-1 flex items-center justify-center min-h-[300px]">
+                    <img id="prod-main-img" src="" class="max-h-full max-w-full object-contain drop-shadow-xl transition-all duration-300">
+                    <!-- Navigation Arrows -->
+                    <button onclick="prevImage()" class="absolute left-0 bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 hover:scale-105 transition-all text-gray-700"><i data-lucide="chevron-left"></i></button>
+                    <button onclick="nextImage()" class="absolute right-0 bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 hover:scale-105 transition-all text-gray-700"><i data-lucide="chevron-right"></i></button>
+                </div>
+                <!-- Thumbnails -->
+                <div id="prod-thumbnails" class="w-full flex justify-center gap-3 mt-6 overflow-x-auto py-2">
+                    <!-- Thumbnails generated by JS -->
+                </div>
+            </div>
+
+            <!-- Right: Content & Ordering -->
+            <div class="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto flex flex-col bg-white">
+                <p id="prod-detail-category" class="text-xs font-bold text-[#C48B5D] tracking-wider uppercase mb-2">Siddha Proprietary Medicine</p>
+                <h2 id="prod-detail-title" class="text-3xl md:text-4xl font-bold serif-font text-brand-green mb-4 leading-tight">Product Title</h2>
+                <div class="flex items-end gap-3 mb-6 pb-6 border-b border-gray-100">
+                    <p id="prod-detail-price" class="text-3xl font-bold text-gray-900">Rs. 0</p>
+                    <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded mb-1 ml-2">In Stock</span>
+                </div>
+                
+                <!-- Content Tabs -->
+                <div class="flex gap-6 border-b border-gray-200 mb-6 text-sm font-semibold">
+                    <button onclick="switchTab('overview')" id="tab-overview" class="pb-3 border-b-2 border-brand-green text-brand-green transition-colors">Overview</button>
+                    <button onclick="switchTab('benefits')" id="tab-benefits" class="pb-3 border-b-2 border-transparent text-gray-400 hover:text-gray-700 transition-colors">Details & Benefits</button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div id="content-overview" class="text-gray-600 leading-relaxed mb-8 flex-1 text-sm md:text-base">
+                    Description goes here...
+                </div>
+                <div id="content-benefits" class="text-gray-600 leading-relaxed mb-8 flex-1 text-sm md:text-base hidden">
+                    Benefits go here...
+                </div>
+
+                <!-- Sticky Order Action -->
+                <div class="mt-auto pt-6 border-t border-gray-100 bg-white sticky bottom-0">
+                    <p class="text-xs text-gray-500 text-center mb-3"><i data-lucide="shield-check" class="w-3 h-3 inline"></i> Secure Checkout via WhatsApp</p>
+                    <button onclick="orderViaWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold py-4 rounded-xl flex justify-center items-center gap-3 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 text-lg">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i> Order Now on WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-      import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-      // Ensure your Firebase Config goes here as previously discussed.
-    </script>
-    
-    <script>
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        // Firebase Configuration (Directly linked to your Adhishaya Project)
+        const firebaseConfig = {
+          apiKey: "AIzaSyAhYm-TxemRXCTQSCY6Jo0c1SPMYegDjhw",
+          authDomain: "adhishaya-6eb47.firebaseapp.com",
+          projectId: "adhishaya-6eb47",
+          storageBucket: "adhishaya-6eb47.firebasestorage.app",
+          messagingSenderId: "871718551216",
+          appId: "1:871718551216:web:4c849b0053f77386588575",
+          measurementId: "G-FKYHW2SB6Q"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // State Variables
+        let isAdmin = false;
+        let productsList = [];
+        let currentViewProduct = null;
+        let currentImageIndex = 0;
+
+        // Initialize Icons
         lucide.createIcons();
-        function toggleAuthModal() { /* Your modal logic */ }
-        function openProductDetail() { /* Your logic */ }
-        function navigateTo(page) { /* Your logic */ }
+
+        // 1. Authentication & Modals
+        window.toggleAuthModal = function() {
+            const modal = document.getElementById('login-modal');
+            modal.classList.toggle('hidden');
+        };
+
+        window.loginWithGoogle = async function() {
+            const provider = new GoogleAuthProvider();
+            try {
+                await signInWithPopup(auth, provider);
+                window.toggleAuthModal();
+            } catch (error) {
+                console.error("Login Error:", error);
+                alert("Login encountered an issue. Please try again.");
+            }
+        };
+
+        // Strict listener for the Admin Account
+        onAuthStateChanged(auth, (user) => {
+            if (user && user.email === 'dodge.kunal@gmail.com') {
+                isAdmin = true;
+                const adminLink = document.getElementById('nav-admin-link');
+                if(adminLink) adminLink.classList.remove('hidden');
+            } else {
+                isAdmin = false;
+                const adminLink = document.getElementById('nav-admin-link');
+                if(adminLink) adminLink.classList.add('hidden');
+            }
+        });
+
+        // 2. Admin Dashboard Logic
+        window.openAdmin = function() {
+            if(isAdmin) {
+                document.getElementById('admin-modal').classList.remove('hidden');
+                loadAdminProducts();
+            } else {
+                alert("Security Alert: Access Denied. Admin privileges required.");
+            }
+        };
+
+        window.closeAdmin = function() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        };
+
+        window.saveProduct = async function() {
+            const title = document.getElementById('admin-prod-title').value;
+            const price = document.getElementById('admin-prod-price').value;
+            const desc = document.getElementById('admin-prod-desc').value;
+            const benefits = document.getElementById('admin-prod-benefits').value;
+            const imagesRaw = document.getElementById('admin-prod-images').value;
+            
+            if(!title || !price) {
+                alert("Please provide at least a Product Title and Price.");
+                return;
+            }
+
+            // Convert raw lines of URLs into a cleaned array
+            const images = imagesRaw.split(/[\n,]+/).map(img => img.trim()).filter(img => img !== "");
+            if(images.length === 0) images.push("carasoul1.png");
+
+            try {
+                await addDoc(collection(db, 'store_products'), {
+                    title, price, desc, benefits, images, createdAt: new Date()
+                });
+                alert("Success: Product published to the live store!");
+                
+                // Clear form
+                document.getElementById('admin-prod-title').value = '';
+                document.getElementById('admin-prod-price').value = '';
+                document.getElementById('admin-prod-desc').value = '';
+                document.getElementById('admin-prod-benefits').value = '';
+                document.getElementById('admin-prod-images').value = '';
+                
+                loadAdminProducts();
+            } catch (error) {
+                console.error("Database Write Error: ", error);
+                alert("Failed to save product. Ensure Firestore billing/rules allow writes.");
+            }
+        };
+
+        window.loadAdminProducts = async function() {
+            const listEl = document.getElementById('admin-product-list');
+            listEl.innerHTML = '<p class="text-brand-green text-sm flex items-center gap-2"><i data-lucide="loader" class="animate-spin w-4 h-4"></i> Syncing with database...</p>';
+            lucide.createIcons();
+
+            try {
+                const querySnapshot = await getDocs(collection(db, 'store_products'));
+                listEl.innerHTML = '';
+                productsList = [];
+
+                if(querySnapshot.empty) {
+                    listEl.innerHTML = '<p class="text-gray-500 text-sm">No products found in database.</p>';
+                    return;
+                }
+                
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    productsList.push({ id: docSnap.id, ...data });
+                    
+                    const div = document.createElement('div');
+                    div.className = "flex justify-between items-center p-4 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow transition group";
+                    const thumb = data.images && data.images.length > 0 ? data.images[0] : 'carasoul1.png';
+                    
+                    div.innerHTML = `
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-50 rounded border flex items-center justify-center overflow-hidden">
+                                <img src="${thumb}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/FDF6EA/2A4B3C?text=Img'">
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800">${data.title}</p>
+                                <p class="text-xs font-bold text-brand-green">Rs. ${data.price}</p>
+                            </div>
+                        </div>
+                        <button onclick="deleteProduct('${docSnap.id}')" class="text-gray-400 hover:text-red-600 bg-gray-50 hover:bg-red-50 p-2 rounded-full transition opacity-0 group-hover:opacity-100" title="Delete Product">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </button>
+                    `;
+                    listEl.appendChild(div);
+                });
+                lucide.createIcons();
+            } catch(e) {
+                console.error(e);
+                listEl.innerHTML = '<p class="text-red-500 text-sm">Error connecting to database.</p>';
+            }
+        };
+
+        window.deleteProduct = async function(id) {
+            if(confirm("Warning: This action is permanent. Delete this product?")) {
+                try {
+                    await deleteDoc(doc(db, 'store_products', id));
+                    loadAdminProducts();
+                } catch(e) {
+                    alert("Error deleting product.");
+                }
+            }
+        };
+
+        // 3. Product Presentation & Image Slider
+        window.openProductDetail = function(id = null) {
+            // Hero Product Fallback for immediate viewing
+            let prod = {
+                title: "Thathuviruthi Chooranam",
+                price: "450",
+                desc: "Traditional Siddha Proprietary Herbal Formula for Men's Wellness, featuring Ashwagandha, Poonaikali Seeds, and Moringa.",
+                benefits: "<strong>Why Choose Thathuviruthi Chooranam?</strong><br><br>✔️ Traditional Siddha Proprietary Formula<br>✔️ Carefully Selected Herbal Ingredients<br>✔️ Supports Men's Vitality<br>✔️ Made with Traditional Siddha Knowledge",
+                images: ["carasoul1.png", "carasoul2.png", "carasoul3.png"]
+            };
+
+            // Inject real product if specified
+            if(id && productsList.length > 0) {
+                const found = productsList.find(p => p.id === id);
+                if(found) prod = found;
+            }
+            
+            currentViewProduct = prod;
+            currentImageIndex = 0;
+
+            document.getElementById('prod-detail-title').innerText = prod.title;
+            document.getElementById('prod-detail-price').innerText = `Rs. ${prod.price}`;
+            document.getElementById('content-overview').innerHTML = (prod.desc || "").replace(/\n/g, '<br>');
+            document.getElementById('content-benefits').innerHTML = (prod.benefits || "").replace(/\n/g, '<br>');
+            
+            switchTab('overview');
+            updateImageSlider();
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        };
+
+        window.closeProductDetail = function() {
+            document.getElementById('product-modal').classList.add('hidden');
+        };
+
+        window.switchTab = function(tabName) {
+            document.getElementById('tab-overview').className = "pb-3 border-b-2 border-transparent text-gray-400 hover:text-gray-700 transition-colors";
+            document.getElementById('tab-benefits').className = "pb-3 border-b-2 border-transparent text-gray-400 hover:text-gray-700 transition-colors";
+            document.getElementById('content-overview').classList.add('hidden');
+            document.getElementById('content-benefits').classList.add('hidden');
+
+            document.getElementById(`tab-${tabName}`).className = "pb-3 border-b-2 border-brand-green text-brand-green transition-colors";
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+        };
+
+        window.updateImageSlider = function() {
+            if(!currentViewProduct.images || currentViewProduct.images.length === 0) return;
+            
+            const mainImg = document.getElementById('prod-main-img');
+            mainImg.style.opacity = 0;
+            setTimeout(() => {
+                mainImg.src = currentViewProduct.images[currentImageIndex];
+                mainImg.style.opacity = 1;
+            }, 150);
+            
+            const thumbContainer = document.getElementById('prod-thumbnails');
+            thumbContainer.innerHTML = '';
+            currentViewProduct.images.forEach((img, idx) => {
+                const isActive = idx === currentImageIndex;
+                const btn = document.createElement('button');
+                btn.className = `w-16 h-16 rounded-lg border-2 overflow-hidden flex-shrink-0 transition-all ${isActive ? 'border-brand-green shadow-md scale-105' : 'border-gray-200 opacity-60 hover:opacity-100'}`;
+                btn.onclick = () => { currentImageIndex = idx; updateImageSlider(); };
+                btn.innerHTML = `<img src="${img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/FDF6EA/2A4B3C?text=Img'">`;
+                thumbContainer.appendChild(btn);
+            });
+        };
+
+        window.nextImage = function() {
+            if(!currentViewProduct.images) return;
+            currentImageIndex = (currentImageIndex + 1) % currentViewProduct.images.length;
+            updateImageSlider();
+        };
+
+        window.prevImage = function() {
+            if(!currentViewProduct.images) return;
+            currentImageIndex = (currentImageIndex - 1 + currentViewProduct.images.length) % currentViewProduct.images.length;
+            updateImageSlider();
+        };
+
+        // 4. E-commerce WhatsApp Checkout Integration
+        window.orderViaWhatsApp = function() {
+            if(!currentViewProduct) return;
+            
+            // NOTE TO STORE OWNER: Change this variable to your business WhatsApp number!
+            const STORE_PHONE_NUMBER = "919999999999"; 
+            
+            const greeting = "Hello Adhishaya Herbs! 🌿\n\nI would like to place an order:\n\n";
+            const orderDetails = `*Product:* ${currentViewProduct.title}\n*Price:* Rs. ${currentViewProduct.price}\n\n`;
+            const closing = "Please guide me with the payment and delivery details. Thank you!";
+            
+            const fullMessage = encodeURIComponent(greeting + orderDetails + closing);
+            window.open(`https://wa.me/${STORE_PHONE_NUMBER}?text=${fullMessage}`, '_blank');
+        };
+
+        window.navigateTo = function(page) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
     </script>
 </body>
 </html>
