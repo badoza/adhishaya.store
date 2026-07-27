@@ -104,7 +104,7 @@
                 
                 <!-- Logo -->
                 <div class="flex items-center cursor-pointer" onclick="navigateTo('view-home')">
-                    <img src="logo.png" alt="Adhishaya Logo" class="h-10 md:h-12 object-contain" onerror="this.outerHTML='<div class=\'font-serif font-bold text-2xl text-brand-green\'>Adhishaya</div>'">
+                    <img src="logo.jpeg" alt="Adhishaya Logo" class="h-10 md:h-12 object-contain" onerror="this.outerHTML='<div class=\'font-serif font-bold text-2xl text-brand-green\'>Adhishaya</div>'">
                 </div>
 
                 <!-- Desktop Search -->
@@ -150,11 +150,11 @@
         <!-- ========================================== -->
         <main id="view-home" class="view-section active page-transition">
             
-            <!-- HERO SECTION with bkg1.png -->
+            <!-- HERO SECTION with bkg.png -->
             <section class="relative w-full min-h-[80vh] flex items-center py-20">
                 <!-- Background Image -->
                 <div class="absolute inset-0 z-0 bg-brand-green">
-                    <img src="bkg1.png" alt="Hero Background" class="img-cover opacity-90" onerror="this.style.display='none'">
+                    <img src="bkg.png" alt="Hero Background" class="img-cover opacity-90" onerror="this.style.display='none'">
                     <div class="absolute inset-0 bg-black/20"></div>
                 </div>
                 
@@ -283,7 +283,7 @@
             </section>
 
             <!-- PRODUCT CATEGORIES SECTION (From Screenshot) -->
-            <section class="py-16 bg-brand-cream relative z-20 border-y border-[#EBE8DF]">
+            <section class="py-16 bg-brand-cream relative z-20 border-t border-[#EBE8DF]">
                 <div class="container mx-auto px-4 md:px-8">
                     <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
                         <h2 class="text-3xl md:text-4xl font-serif text-brand-green">Products Categories</h2>
@@ -293,32 +293,27 @@
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Category Pill 1 -->
+                        <!-- Pills -->
                         <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
                             <span class="font-bold text-brand-green text-sm">Women's Health</span>
                             <i class="ph ph-arrow-right text-brand-green text-lg"></i>
                         </div>
-                        <!-- Category Pill 2 -->
                         <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
                             <span class="font-bold text-brand-green text-sm">Men's Health</span>
                             <i class="ph ph-arrow-right text-brand-green text-lg"></i>
                         </div>
-                        <!-- Category Pill 3 -->
                         <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
                             <span class="font-bold text-brand-green text-sm">Digestive Health</span>
                             <i class="ph ph-arrow-right text-brand-green text-lg"></i>
                         </div>
-                        <!-- Category Pill 4 -->
                         <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
                             <span class="font-bold text-brand-green text-sm">Blood Booster</span>
                             <i class="ph ph-arrow-right text-brand-green text-lg"></i>
                         </div>
-                        <!-- Category Pill 5 -->
                         <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
                             <span class="font-bold text-brand-green text-sm">Skin care</span>
                             <i class="ph ph-arrow-right text-brand-green text-lg"></i>
                         </div>
-                        <!-- Category Pill 6 -->
                         <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
                             <span class="font-bold text-brand-green text-sm">Hair care</span>
                             <i class="ph ph-arrow-right text-brand-green text-lg"></i>
@@ -328,7 +323,52 @@
             </section>
 
             <!-- EXACT 'WHY ADHISHAYA' SECTION from Screenshot -->
-            <section class="py-24 bg-white">
+            <section class="py-24 bg-white border-y border-[#EBE8DF]">
+                <div class="container mx-auto px-4 md:px-8">
+                    
+                    <!-- Header & Button -->
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
+                        <h2 class="text-4xl font-serif font-bold text-brand-green">Why Adhishaya ?</h2>
+                        <button class="flex items-center gap-3 text-[11px] font-bold text-brand-green border border-brand-green px-6 py-3 rounded-full hover:bg-brand-green hover:text-white transition tracking-[0.15em] uppercase">
+                            Discover more about us <i class="ph ph-arrow-right text-lg"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- 4 Columns exactly matching text and layout -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 mb-20">
+                        <!-- Block 1 -->
+                        <div>
+                            <!-- Specific rounded cream box with user-requested bowl image -->
+                            <div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6">
+                                <img src="bowl1.png" class="w-10 h-10 object-contain mix-blend-multiply" alt="High Quality" onerror="this.outerHTML='<i class=\'ph ph-plant text-3xl text-brand-green\'></i>'">
+                            </div>
+                            <h4 class="font-bold text-brand-green mb-3 text-base">High-Quality Ingredient Sourcing.</h4>
+                            <p class="text-[13px] text-gray-500 leading-relaxed">We source only the most potent, ethically-harvested herbs from trusted growers who honor nature's timing. No shortcuts, no synthetics — just pure, unadulterated ingredients that meet our rigorous quality standards.</p>
+                        </div>
+                        
+                        <!-- Block 2 -->
+                        <div>
+                            <div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6">
+                                <img src="bowl2.png" class="w-10 h-10 object-contain mix-blend-multiply" alt="Small Batch" onerror="this.outerHTML='<i class=\'ph ph-diamond text-3xl text-brand-green\'></i>'">
+                            </div>
+                            <h4 class="font-bold text-brand-green mb-3 text-base">Small-batch production.</h4>
+                            <p class="text-[13px] text-gray-500 leading-relaxed">Every blend is handcrafted in small batches to ensure freshness, potency, and care. This slow, intentional process allows us to maintain quality over quantity — your wellness deserves nothing less.</p>
+                        </div>
+                        
+                        <!-- Block 3 -->
+                        <div>
+                            <div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6">
+                                <img src="bowl3.png" class="w-10 h-10 object-contain mix-blend-multiply" alt="Ancient Knowledge" onerror="this.outerHTML='<i class=\'ph ph-atom text-3xl text-brand-green\'></i>'">
+                            </div>
+                            <h4 class="font-bold text-brand-green mb-3 text-base">Rooted in Ancient Knowledge and Modern science</h4>
+                            <p class="text-[13px] text-gray-500 leading-relaxed">Our formulations are born at the intersection of time-tested herbal wisdom and cutting-edge Methods. We bridge tradition and innovation to create remedies that are both soulful and scientifically sound.</p>
+                        </div>
+                        
+                        <!-- Block 4 -->
+                        <div>
+                            <div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6">
+                                <img src="bowl4.png" class="w-10 h-10 object-contain mix-blend-multiply" alt="Affordable" onerror="this.outerHTML='<i class=\'ph ph-hand-coins text-3xl text-brand-green\'></i>'">
+                            </div>
                             <h4 class="font-bold text-brand-green mb-3 text-base">Affordable Wellness for Everyone</h4>
                             <p class="text-[13px] text-gray-500 leading-relaxed">We believe that holistic health should never be a luxury. That's why we're committed to keeping our products accessible — high-quality, herbal wellness that doesn't break the bank.</p>
                         </div>
@@ -336,39 +376,6 @@
 
                     <!-- EXACT LICENSES LAYOUT -->
                     <div class="pt-16 border-t border-gray-100 flex flex-wrap justify-center items-center gap-12 md:gap-24">
-                        <img src="fassi.png" alt="FSSAI" class="h-[60px] md:h-[70px] object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=FSSAI'">
-                        <img src="gmp.png" alt="GMP" class="h-[60px] md:h-[70px] object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=GMP'">
-                        <img src="ayush.png" alt="Ministry of Ayush" class="h-[60px] md:h-[70px] object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=AYUSH'">
-                    </div>
-                </div>
-            </section>
-
-            <!-- CURATED WELLNESS SETS with bkg2.png -->
-            <section class="relative py-24">
-                <!-- Background Image -->
-                <div class="absolute inset-0 z-0 bg-[#1a2e1f]">
-                    <img src="bkg2.png" alt="Curated Sets" class="img-cover opacity-40 mix-blend-overlay" onerror="this.style.display='none'">
-                </div>
-                
-                <div class="container relative z-10 mx-auto px-4 md:px-8 text-center text-white">
-                    <h2 class="text-4xl font-serif font-bold mb-6">Curated Wellness Sets</h2>
-                    <p class="max-w-2xl mx-auto text-gray-300 mb-12 text-sm leading-relaxed">Discover curated combinations designed for holistic healing. Each bundle is formulated for specific wellness needs—immunity, vitality, and balance—at an exceptional value.</p>
-                    
-                    <div class="flex justify-center gap-6 overflow-x-auto pb-8 no-scrollbar">
-                        <div class="bg-white/10 backdrop-blur-md rounded-[2rem] p-6 w-[280px] flex-shrink-0 border border-white/20 hover-lift cursor-pointer">
-                            <div class="h-48 bg-white/5 rounded-2xl mb-5 p-4 flex items-center justify-center">
-                                <img src="bowl3.png" class="img-contain drop-shadow-2xl" onerror="this.src='https://placehold.co/300x300/1a2e1f/ffffff?text=Set+1'">
-                            </div>
-                            <h4 class="font-bold text-lg mb-1">Vitality Bundle</h4>
-                            <p class="text-[11px] text-gray-300 uppercase tracking-wider mb-4">Men's health essentials</p>
-                            <button class="w-full bg-white text-brand-green py-2.5 rounded-full text-xs font-bold uppercase tracking-wider">View Bundle</button>
-                        </div>
-                        
-                        <div class="bg-white/10 backdrop-blur-md rounded-[2rem] p-6 w-[280px] flex-shrink-0 border border-white/20 hover-lift cursor-pointer">
-                            <div class="h-48 bg-white/5 rounded-2xl mb-5 p-4 flex items-center justify-center">
-                                <img src="bowl4.png" class="img-contain drop-shadow-2xl" onerror="this.src='https://placehold.co/300x300/1a2e1f/ffffff?text=Set+2'">
-                            </div>
-                            <h4 class="font-bold text-lg mb-1">Immunity Shield</h4>
                         <img src="fssai.png" alt="FSSAI" class="h-[60px] md:h-[70px] object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=FSSAI'">
                         <img src="gmp.png" alt="GMP" class="h-[60px] md:h-[70px] object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=GMP'">
                         <img src="ayush.png" alt="Ministry of Ayush" class="h-[60px] md:h-[70px] object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=AYUSH'">
@@ -667,7 +674,7 @@
         <div class="container mx-auto px-4 md:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div>
-                    <img src="logo.png" class="h-10 mb-4 bg-white p-2 rounded-xl" alt="Logo" onerror="this.outerHTML='<h3 class=\'font-serif font-bold text-xl text-brand-green bg-white p-2 rounded-xl inline-block mb-4\'>Adhishaya</h3>'">
+                    <img src="logo.jpeg" class="h-10 mb-4 bg-white p-2 rounded-xl" alt="Logo" onerror="this.outerHTML='<h3 class=\'font-serif font-bold text-xl text-brand-green bg-white p-2 rounded-xl inline-block mb-4\'>Adhishaya</h3>'">
                     <p class="text-gray-400 text-sm leading-relaxed">
                         Reviving ancient Siddha wisdom for modern wellness. Pure, potent, and ethically sourced.
                     </p>
@@ -824,7 +831,7 @@
             setTimeout(() => { msg.classList.add('hidden'); }, 3000);
         }
 
-        // Direct Developer Admin Login Bypass
+        // Handle direct admin bypass
         function handleEmailLogin() {
             const emailInput = document.getElementById('login-email').value;
             const errorText = document.getElementById('auth-error');
