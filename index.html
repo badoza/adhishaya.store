@@ -1124,5 +1124,62 @@
             }
         }
     </script>
+
+    <!-- Firebase Auth System -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        // Your specific Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhYm-TxemRXCTQSCY6Jo0c1SPMYegDjhw",
+            authDomain: "adhishaya-6eb47.firebaseapp.com",
+            projectId: "adhishaya-6eb47",
+            storageBucket: "adhishaya-6eb47.firebasestorage.app",
+            messagingSenderId: "871718551216",
+            appId: "1:871718551216:web:4c849b0053f77386588575"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        const btnGoogleLogin = document.getElementById('btn-google-login');
+        
+        // Handle Google Login Click
+        if(btnGoogleLogin) {
+            btnGoogleLogin.addEventListener('click', () => {
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        closeModal('login-modal');
+                        
+                        // Show Welcome Toast Notification
+                        const toast = document.getElementById('toast');
+                        const originalHTML = toast.innerHTML;
+                        toast.innerHTML = `<i class="ph-fill ph-check-circle text-green-400 text-lg"></i> Welcome, ${result.user.displayName}!`;
+                        toast.classList.add('show');
+                        
+                        // Reset toast after 3 seconds
+                        setTimeout(() => { 
+                            toast.classList.remove('show'); 
+                            setTimeout(() => { toast.innerHTML = originalHTML; }, 300);
+                        }, 3000);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        alert("Google Login Error: " + error.message);
+                    });
+            });
+        }
+
+        // Check if Admin logs in via Google and unlock Dashboard
+        onAuthStateChanged(auth, (user) => {
+            const adminLink = document.getElementById('admin-link-btn');
+            if (user && user.email === "dodge.kunal@gmail.com") {
+                adminLink.classList.remove('hidden'); 
+            }
+        });
+    </script>
 </body>
 </html>
