@@ -7,17 +7,38 @@
     <!-- SEO & LLMO Tags -->
     <title>Adhishaya Herbs & Food | Premium Siddha Medicine</title>
     <meta name="description" content="Traditional Siddha proprietary herbal formulas for vitality, strength, and overall wellness. Formulated with time-tested wisdom.">
+    <meta property="og:title" content="Adhishaya Herbs & Food">
+    <meta property="og:description" content="Premium Siddha Medicine & Wellness Sets">
+    <meta property="og:type" content="website">
+    
+    <!-- JSON-LD for AI Search Engines (LLMO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Adhishaya Herbs & Food",
+      "url": "https://adhishaya.shop",
+      "logo": "https://adhishaya.shop/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-9816889996",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["en", "Tamil"]
+      }
+    }
+    </script>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Phosphor Icons (Bulletproof SVG Icons) -->
+    <!-- Phosphor Icons (Highly Reliable CDN) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -49,7 +70,7 @@
         .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.06); }
         
         .page-transition {
-            animation: fadePageIn 0.5s ease-out forwards;
+            animation: fadePageIn 0.4s ease-out forwards;
         }
         @keyframes fadePageIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -63,7 +84,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px);
             z-index: 1000;
             display: flex;
@@ -94,14 +115,14 @@
         .img-contain { width: 100%; height: 100%; object-fit: contain; }
         .img-cover { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Toast Notification */
+        /* Custom Toast */
         .toast {
             position: fixed;
-            bottom: 20px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 2000;
         }
         .toast.show {
@@ -119,7 +140,7 @@
                 
                 <!-- Logo -->
                 <div class="flex items-center cursor-pointer" onclick="navigateTo('view-home')">
-                    <img src="logo.jpeg" alt="Adhishaya Logo" class="h-10 md:h-12 object-contain" onerror="this.outerHTML='<div class=\'font-serif font-bold text-2xl text-brand-green\'>Adhishaya</div>'">
+                    <img src="logo.png" alt="Adhishaya Logo" class="h-10 md:h-12 object-contain" onerror="this.src='logo.jpeg'; this.onerror=null;">
                 </div>
 
                 <!-- Desktop Search -->
@@ -149,9 +170,12 @@
             <!-- EXACT 4 LINKS AS REQUESTED -->
             <nav class="hidden md:flex gap-10 text-[11px] font-bold tracking-[0.15em] text-gray-500 uppercase py-3 border-t border-gray-50">
                 <a href="javascript:void(0)" onclick="navigateTo('view-home')" class="text-brand-green nav-link">Home</a>
-                <a href="javascript:void(0)" onclick="navigateTo('view-shop')" class="hover:text-brand-green transition nav-link">Shop All</a>
+                <a href="javascript:void(0)" onclick="openShopWithCategory('All')" class="hover:text-brand-green transition nav-link">Shop All</a>
                 <a href="javascript:void(0)" onclick="navigateTo('view-about')" class="hover:text-brand-green transition nav-link">About Us</a>
-                <a href="javascript:void(0)" onclick="navigateTo('view-contact')" class="hover:text-brand-green transition nav-link">Contact Us</a>
+                <a href="javascript:void(0)" onclick="document.getElementById('footer-section').scrollIntoView({behavior: 'smooth'})" class="hover:text-brand-green transition nav-link">Contact Us</a>
+                
+                <!-- Hidden Admin Link for Top Nav -->
+                <a href="javascript:void(0)" onclick="navigateTo('view-admin')" id="nav-admin-link" class="hidden text-blue-600 hover:text-blue-800 transition nav-link ml-auto flex items-center gap-1"><i class="ph-fill ph-lock-key"></i> Admin Dashboard</a>
             </nav>
         </div>
     </header>
@@ -164,45 +188,46 @@
         <!-- ========================================== -->
         <main id="view-home" class="view-section active page-transition">
             
-            <!-- HERO SECTION -->
-            <section class="relative w-full min-h-[80vh] flex items-center py-20">
-                <div class="absolute inset-0 z-0 bg-brand-green">
-                    <img src="bkg.png" alt="Hero Background" class="img-cover opacity-90" onerror="this.style.display='none'">
-                    <div class="absolute inset-0 bg-black/20"></div>
+            <!-- HERO SECTION with bkg1.png -->
+            <section class="relative w-full min-h-[85vh] flex items-center py-20">
+                <!-- Background Image Layer -->
+                <div class="absolute inset-0 z-0 bg-[#2B4E35]">
+                    <img src="bkg1.png" alt="Hero Background" class="img-cover opacity-90" onerror="this.style.display='none'">
+                    <div class="absolute inset-0 bg-black/10"></div>
                 </div>
                 
                 <div class="container relative z-10 mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-12">
                     
                     <!-- Left: Frosted Glass Text Box -->
-                    <div class="w-full md:w-1/2 lg:w-7/12 max-w-2xl bg-white/80 backdrop-blur-xl p-10 md:p-14 rounded-[2rem] border border-white/40 shadow-2xl">
+                    <div class="w-full md:w-1/2 lg:w-7/12 max-w-2xl bg-white/85 backdrop-blur-xl p-10 md:p-14 rounded-[2.5rem] border border-white/50 shadow-2xl">
                         <h1 class="text-4xl md:text-5xl lg:text-[4rem] font-serif font-bold text-brand-green leading-[1.1] mb-6">
                             Ancient Wisdom<br>
                             <span class="text-gray-600 font-normal italic text-3xl md:text-4xl lg:text-5xl">for modern wellness.</span>
                         </h1>
-                        <p class="text-gray-700 mb-10 text-lg font-medium">
+                        <p class="text-gray-700 mb-10 text-lg font-medium leading-relaxed">
                             With Expert-Formulated Herbal Products of Unparalleled Quality.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <button onclick="document.getElementById('featured').scrollIntoView({behavior: 'smooth'})" class="bg-brand-green text-white px-8 py-4 rounded-full font-bold hover:bg-[#1E3A26] transition hover-lift shadow-lg tracking-wider uppercase text-xs">
+                            <button onclick="openShopWithCategory('All')" class="bg-brand-green text-white px-8 py-4 rounded-full font-bold hover:bg-[#1E3A26] transition hover-lift shadow-lg tracking-wider uppercase text-xs">
                                 Shop Now
                             </button>
-                            <button onclick="navigateTo('view-about')" class="bg-transparent border border-brand-green text-brand-green px-8 py-4 rounded-full font-bold hover:bg-brand-green hover:text-white transition hover-lift tracking-wider uppercase text-xs">
+                            <button onclick="document.getElementById('why-adhishaya').scrollIntoView({behavior: 'smooth'})" class="bg-transparent border border-brand-green text-brand-green px-8 py-4 rounded-full font-bold hover:bg-brand-green hover:text-white transition hover-lift tracking-wider uppercase text-xs">
                                 Learn More
                             </button>
                         </div>
                     </div>
 
-                    <!-- Right: Dynamic Hero Product Card -->
+                    <!-- Right: Hero Product Container (Injected dynamically) -->
                     <div id="hero-product-container" class="w-full md:w-1/2 lg:w-4/12 flex justify-center md:justify-end">
-                        <!-- Hero product gets injected here via JS -->
+                        <!-- JS injects hero here -->
                     </div>
                 </div>
             </section>
 
             <!-- FEATURED PRODUCTS -->
-            <section id="featured" class="py-24 bg-brand-cream relative z-20 -mt-8 rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+            <section id="featured" class="py-24 bg-brand-cream relative z-20 -mt-10 rounded-t-[3rem] shadow-[0_-15px_40px_rgba(0,0,0,0.08)] border-t border-white/50">
                 <div class="container mx-auto px-4 md:px-8">
-                    <h2 class="text-3xl font-serif font-bold text-brand-green mb-10">Featured Products</h2>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-green mb-12">Featured Products</h2>
                     
                     <div id="dynamic-products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <!-- Products are injected here dynamically via JS -->
@@ -210,49 +235,50 @@
                 </div>
             </section>
 
-            <!-- PRODUCT CATEGORIES -->
-            <section class="py-16 bg-brand-cream relative z-20 border-t border-[#EBE8DF]">
+            <!-- PRODUCT CATEGORIES PILLS (As per screenshot) -->
+            <section class="py-16 bg-brand-cream relative z-20">
                 <div class="container mx-auto px-4 md:px-8">
                     <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
                         <h2 class="text-3xl md:text-4xl font-serif text-brand-green">Products Categories</h2>
-                        <button onclick="navigateTo('view-shop')" class="border border-brand-green text-brand-green px-6 py-2.5 rounded-lg text-[11px] font-bold uppercase tracking-widest hover:bg-brand-green hover:text-white transition flex items-center gap-2">
+                        <button onclick="openShopWithCategory('All')" class="border border-brand-green text-brand-green px-6 py-2.5 rounded-lg text-[11px] font-bold uppercase tracking-widest hover:bg-brand-green hover:text-white transition flex items-center gap-2">
                             Discover All <i class="ph ph-arrow-right text-base"></i>
                         </button>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
-                            <span class="font-bold text-brand-green text-sm">Women's Health</span>
-                            <i class="ph ph-arrow-right text-brand-green text-lg"></i>
+                        <div onclick="openShopWithCategory('Women\'s Health')" class="bg-white rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform group">
+                            <span class="font-bold text-brand-green text-sm group-hover:text-[#1E3A26]">Women's Health</span>
+                            <i class="ph ph-arrow-right text-brand-green text-xl group-hover:translate-x-1 transition-transform"></i>
                         </div>
-                        <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
-                            <span class="font-bold text-brand-green text-sm">Men's Health</span>
-                            <i class="ph ph-arrow-right text-brand-green text-lg"></i>
+                        <div onclick="openShopWithCategory('Men\'s Health')" class="bg-white rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform group">
+                            <span class="font-bold text-brand-green text-sm group-hover:text-[#1E3A26]">Men's Health</span>
+                            <i class="ph ph-arrow-right text-brand-green text-xl group-hover:translate-x-1 transition-transform"></i>
                         </div>
-                        <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
-                            <span class="font-bold text-brand-green text-sm">Digestive Health</span>
-                            <i class="ph ph-arrow-right text-brand-green text-lg"></i>
+                        <div onclick="openShopWithCategory('Digestive Health')" class="bg-white rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform group">
+                            <span class="font-bold text-brand-green text-sm group-hover:text-[#1E3A26]">Digestive Health</span>
+                            <i class="ph ph-arrow-right text-brand-green text-xl group-hover:translate-x-1 transition-transform"></i>
                         </div>
-                        <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
-                            <span class="font-bold text-brand-green text-sm">Blood Booster</span>
-                            <i class="ph ph-arrow-right text-brand-green text-lg"></i>
+                        <div onclick="openShopWithCategory('Blood Booster')" class="bg-white rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform group">
+                            <span class="font-bold text-brand-green text-sm group-hover:text-[#1E3A26]">Blood Booster</span>
+                            <i class="ph ph-arrow-right text-brand-green text-xl group-hover:translate-x-1 transition-transform"></i>
                         </div>
-                        <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
-                            <span class="font-bold text-brand-green text-sm">Skin care</span>
-                            <i class="ph ph-arrow-right text-brand-green text-lg"></i>
+                        <div onclick="openShopWithCategory('Skin care')" class="bg-white rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform group">
+                            <span class="font-bold text-brand-green text-sm group-hover:text-[#1E3A26]">Skin care</span>
+                            <i class="ph ph-arrow-right text-brand-green text-xl group-hover:translate-x-1 transition-transform"></i>
                         </div>
-                        <div class="bg-white rounded-xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform">
-                            <span class="font-bold text-brand-green text-sm">Hair care</span>
-                            <i class="ph ph-arrow-right text-brand-green text-lg"></i>
+                        <div onclick="openShopWithCategory('Hair care')" class="bg-white rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-50 flex justify-between items-center cursor-pointer hover:-translate-y-1 transition-transform group">
+                            <span class="font-bold text-brand-green text-sm group-hover:text-[#1E3A26]">Hair care</span>
+                            <i class="ph ph-arrow-right text-brand-green text-xl group-hover:translate-x-1 transition-transform"></i>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- EXACT 'WHY ADHISHAYA' SECTION -->
-            <section class="py-24 bg-white border-y border-[#EBE8DF]">
+            <!-- EXACT 'WHY ADHISHAYA' SECTION from Screenshot -->
+            <section id="why-adhishaya" class="py-24 bg-white border-y border-[#EBE8DF]">
                 <div class="container mx-auto px-4 md:px-8">
                     
+                    <!-- Header & Button -->
                     <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
                         <h2 class="text-4xl font-serif font-bold text-brand-green">Why Adhishaya ?</h2>
                         <button onclick="navigateTo('view-about')" class="flex items-center gap-3 text-[11px] font-bold text-brand-green border border-brand-green px-6 py-3 rounded-full hover:bg-brand-green hover:text-white transition tracking-[0.15em] uppercase">
@@ -260,103 +286,89 @@
                         </button>
                     </div>
                     
+                    <!-- 4 Columns exactly matching text and layout -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 mb-20">
+                        <!-- Block 1 -->
                         <div>
                             <div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6">
-                                <img src="bowl1.png" class="w-10 h-10 max-w-full max-h-full object-contain mix-blend-multiply" alt="High Quality" onerror="this.outerHTML='<i class=\'ph ph-plant text-3xl text-brand-green\'></i>'">
+                                <img src="bowl1.png" class="w-10 h-10 object-contain mix-blend-multiply" alt="High Quality">
                             </div>
                             <h4 class="font-bold text-brand-green mb-3 text-base">High-Quality Ingredient Sourcing.</h4>
                             <p class="text-[13px] text-gray-500 leading-relaxed">We source only the most potent, ethically-harvested herbs from trusted growers who honor nature's timing. No shortcuts, no synthetics — just pure, unadulterated ingredients that meet our rigorous quality standards.</p>
                         </div>
                         
+                        <!-- Block 2 -->
                         <div>
                             <div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6">
-                                <img src="bowl2.png" class="w-10 h-10 max-w-full max-h-full object-contain mix-blend-multiply" alt="Small Batch" onerror="this.outerHTML='<i class=\'ph ph-diamond text-3xl text-brand-green\'></i>'">
+                                <img src="bowl2.png" class="w-10 h-10 object-contain mix-blend-multiply" alt="Small Batch">
                             </div>
                             <h4 class="font-bold text-brand-green mb-3 text-base">Small-batch production.</h4>
                             <p class="text-[13px] text-gray-500 leading-relaxed">Every blend is handcrafted in small batches to ensure freshness, potency, and care. This slow, intentional process allows us to maintain quality over quantity — your wellness deserves nothing less.</p>
                         </div>
                         
+                        <!-- Block 3 -->
                         <div>
                             <div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6">
-                                <img src="bowl3.png" class="w-10 h-10 max-w-full max-h-full object-contain mix-blend-multiply" alt="Ancient Knowledge" onerror="this.outerHTML='<i class=\'ph ph-atom text-3xl text-brand-green\'></i>'">
+                                <img src="bowl3.png" class="w-10 h-10 object-contain mix-blend-multiply" alt="Ancient Knowledge">
                             </div>
                             <h4 class="font-bold text-brand-green mb-3 text-base">Rooted in Ancient Knowledge and Modern science</h4>
                             <p class="text-[13px] text-gray-500 leading-relaxed">Our formulations are born at the intersection of time-tested herbal wisdom and cutting-edge Methods. We bridge tradition and innovation to create remedies that are both soulful and scientifically sound.</p>
                         </div>
                         
+                        <!-- Block 4 -->
                         <div>
                             <div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6">
-                                <img src="bowl4.png" class="w-10 h-10 max-w-full max-h-full object-contain mix-blend-multiply" alt="Affordable" onerror="this.outerHTML='<i class=\'ph ph-hand-coins text-3xl text-brand-green\'></i>'">
+                                <img src="bowl4.png" class="w-10 h-10 object-contain mix-blend-multiply" alt="Affordable">
                             </div>
                             <h4 class="font-bold text-brand-green mb-3 text-base">Affordable Wellness for Everyone</h4>
                             <p class="text-[13px] text-gray-500 leading-relaxed">We believe that holistic health should never be a luxury. That's why we're committed to keeping our products accessible — high-quality, herbal wellness that doesn't break the bank.</p>
                         </div>
                     </div>
 
+                    <!-- EXACT LICENSES LAYOUT -->
                     <div class="pt-16 border-t border-gray-100 flex flex-wrap justify-center items-center gap-12 md:gap-24">
-                        <img src="fssai.png" alt="FSSAI" class="h-[60px] md:h-[70px] max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=FSSAI'">
-                        <img src="gmp.png" alt="GMP" class="h-[60px] md:h-[70px] max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=GMP'">
-                        <img src="ayush.png" alt="Ministry of Ayush" class="h-[60px] md:h-[70px] max-w-full max-h-full object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=AYUSH'">
+                        <img src="fssai.png" alt="FSSAI" class="h-[60px] md:h-[70px] object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=FSSAI'">
+                        <img src="gmp.png" alt="GMP" class="h-[60px] md:h-[70px] object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=GMP'">
+                        <img src="ayush.png" alt="Ministry of Ayush" class="h-[60px] md:h-[70px] object-contain" onerror="this.src='https://placehold.co/200x80/ffffff/2B4E35?text=AYUSH'">
                     </div>
                 </div>
             </section>
         </main>
 
         <!-- ========================================== -->
-        <!-- VIEW: SHOP ALL                             -->
+        <!-- VIEW 2: SHOP ALL PAGE (With Sidebar)       -->
         <!-- ========================================== -->
-        <main id="view-shop" class="view-section page-transition bg-brand-cream min-h-screen py-20">
-            <div class="container mx-auto px-4 md:px-8 text-center">
-                <h1 class="text-4xl font-serif font-bold text-brand-green mb-6">Shop All Products</h1>
-                <p class="text-gray-500 mb-12">Browse our entire collection of authentic Siddha formulations.</p>
-                <div id="shop-all-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    <!-- Cloned from Home page via JS -->
-                </div>
-            </div>
-        </main>
-
-        <!-- ========================================== -->
-        <!-- VIEW: ABOUT US                             -->
-        <!-- ========================================== -->
-        <main id="view-about" class="view-section page-transition bg-white min-h-screen py-20">
-            <div class="container mx-auto px-4 md:px-8 max-w-4xl text-center">
-                <h1 class="text-4xl font-serif font-bold text-brand-green mb-6">Our Story</h1>
-                <p class="text-gray-600 leading-relaxed text-lg mb-8">Adhishaya Herbs & Food was founded with a single mission: to bring the ancient, time-tested healing of traditional Siddha medicine to the modern world. Every product we create is rooted in centuries of wisdom, meticulously formulated by experts to ensure unparalleled purity and potency.</p>
-                <img src="bkg.png" class="w-full h-80 object-cover rounded-3xl shadow-xl" onerror="this.style.display='none'">
-            </div>
-        </main>
-
-        <!-- ========================================== -->
-        <!-- VIEW: CONTACT US                           -->
-        <!-- ========================================== -->
-        <main id="view-contact" class="view-section page-transition bg-brand-cream min-h-screen py-20">
-            <div class="container mx-auto px-4 md:px-8 max-w-2xl text-center">
-                <h1 class="text-4xl font-serif font-bold text-brand-green mb-6">Get in Touch</h1>
-                <p class="text-gray-600 leading-relaxed mb-12">We are here to help you on your wellness journey. Reach out to us with any questions.</p>
+        <main id="view-shop" class="view-section page-transition bg-brand-cream min-h-screen py-16">
+            <div class="container mx-auto px-4 md:px-8">
                 
-                <div class="bg-white p-10 rounded-[2rem] shadow-lg text-left">
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-brand-light-green rounded-full flex items-center justify-center text-brand-green"><i class="ph-fill ph-map-pin text-xl"></i></div>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Visit Us</h4>
-                                <p class="text-sm text-gray-500">Chennai, Tamil Nadu, India</p>
-                            </div>
+                <div class="flex flex-col lg:flex-row gap-10">
+                    <!-- Left Sidebar (Categories) -->
+                    <div class="w-full lg:w-1/4">
+                        <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 sticky top-24">
+                            <h3 class="font-serif font-bold text-2xl text-gray-900 mb-8 border-b border-gray-100 pb-4">Categories</h3>
+                            <ul class="space-y-4" id="shop-category-list">
+                                <li><button onclick="openShopWithCategory('All')" class="cat-btn text-left w-full text-sm tracking-wide transition" data-cat="All">All Products</button></li>
+                                <li><button onclick="openShopWithCategory('Men\'s Health')" class="cat-btn text-left w-full text-sm tracking-wide transition" data-cat="Men's Health">Men's Health</button></li>
+                                <li><button onclick="openShopWithCategory('Women\'s Health')" class="cat-btn text-left w-full text-sm tracking-wide transition" data-cat="Women's Health">Women's Health</button></li>
+                                <li><button onclick="openShopWithCategory('Digestive Health')" class="cat-btn text-left w-full text-sm tracking-wide transition" data-cat="Digestive Health">Digestive Health</button></li>
+                                <li><button onclick="openShopWithCategory('Blood Booster')" class="cat-btn text-left w-full text-sm tracking-wide transition" data-cat="Blood Booster">Blood Booster</button></li>
+                                <li><button onclick="openShopWithCategory('Skin care')" class="cat-btn text-left w-full text-sm tracking-wide transition" data-cat="Skin care">Skin care</button></li>
+                                <li><button onclick="openShopWithCategory('Hair care')" class="cat-btn text-left w-full text-sm tracking-wide transition" data-cat="Hair care">Hair care</button></li>
+                                <li><button onclick="openShopWithCategory('Immunity Care')" class="cat-btn text-left w-full text-sm tracking-wide transition" data-cat="Immunity Care">Immunity Care</button></li>
+                                <li><button onclick="openShopWithCategory('Daily Essentials')" class="cat-btn text-left w-full text-sm tracking-wide transition" data-cat="Daily Essentials">Daily Essentials</button></li>
+                            </ul>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-brand-light-green rounded-full flex items-center justify-center text-brand-green"><i class="ph-fill ph-phone text-xl"></i></div>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Call or WhatsApp</h4>
-                                <p class="text-sm text-gray-500">+91 99999 99999</p>
-                            </div>
+                    </div>
+
+                    <!-- Right Content (Products Grid) -->
+                    <div class="w-full lg:w-3/4">
+                        <div class="flex justify-between items-end mb-8">
+                            <h2 id="shop-category-title" class="text-4xl font-serif font-bold text-brand-green">All Products</h2>
+                            <span id="shop-result-count" class="text-sm text-gray-500 font-medium">0 Results</span>
                         </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-brand-light-green rounded-full flex items-center justify-center text-brand-green"><i class="ph-fill ph-envelope text-xl"></i></div>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Email Us</h4>
-                                <p class="text-sm text-gray-500">support@adhishaya.com</p>
-                            </div>
+                        
+                        <div id="shop-all-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- JS Injected Products -->
                         </div>
                     </div>
                 </div>
@@ -364,19 +376,20 @@
         </main>
 
         <!-- ========================================== -->
-        <!-- VIEW 2: DEDICATED PRODUCT PAGE             -->
+        <!-- VIEW 3: DEDICATED PRODUCT PAGE             -->
         <!-- ========================================== -->
         <main id="view-product" class="view-section page-transition bg-white pb-20">
             
+            <!-- Breadcrumbs -->
             <div class="bg-brand-cream border-b border-gray-200">
                 <div class="container mx-auto px-4 md:px-8 py-4 flex items-center text-[11px] uppercase tracking-widest font-bold text-gray-400">
-                    <button onclick="navigateTo('view-home')" class="hover:text-brand-green transition flex items-center gap-1 mr-4">
-                        <i class="ph ph-arrow-left text-sm"></i> Back
+                    <button onclick="openShopWithCategory('All')" class="hover:text-brand-green transition flex items-center gap-1 mr-4">
+                        <i class="ph ph-arrow-left text-sm"></i> Back to Shop
                     </button>
                     <span>/</span>
-                    <span class="mx-4">Shop</span>
+                    <span id="breadcrumb-product-cat" class="mx-4 text-gray-500">Category</span>
                     <span>/</span>
-                    <span id="breadcrumb-product-name" class="mx-4 text-brand-green">Loading...</span>
+                    <span id="breadcrumb-product-name" class="mx-4 text-brand-green">Product Name</span>
                 </div>
             </div>
 
@@ -386,8 +399,7 @@
                     <!-- Left: E-commerce Product Gallery -->
                     <div class="w-full lg:w-1/2 flex flex-col items-center">
                         <div class="w-full aspect-square bg-[#F4EEDF] rounded-[2.5rem] p-10 mb-6 flex items-center justify-center border border-gray-100 relative">
-                            <img id="main-product-img" src="" alt="Product" class="max-w-full max-h-full object-contain mix-blend-multiply drop-shadow-2xl transition-opacity duration-300" onerror="this.src='https://placehold.co/600x600/F4EEDF/2B4E35?text=Product';">
-                            <!-- Discount Badge -->
+                            <img id="main-product-img" src="" alt="Product" class="img-contain mix-blend-multiply drop-shadow-2xl transition-opacity duration-300">
                             <div id="product-page-discount" class="absolute top-6 left-6 bg-[#C2A36C] text-white text-xs font-bold px-4 py-2 rounded-full shadow-md tracking-wider hidden"></div>
                         </div>
                         
@@ -406,6 +418,7 @@
                         
                         <h1 id="product-page-title" class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4 leading-tight">Loading...</h1>
                         
+                        <!-- Dynamic Ratings -->
                         <div class="flex items-center gap-3 mb-8">
                             <div class="flex text-[#C2A36C] text-lg">
                                 <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star-half"></i>
@@ -413,6 +426,7 @@
                             <span id="product-page-reviews" class="text-xs text-gray-500 font-bold uppercase tracking-wider border-l border-gray-300 pl-3">4.8 (0 Reviews)</span>
                         </div>
 
+                        <!-- Price Section -->
                         <div class="flex items-end gap-4 mb-8">
                             <span id="product-page-price" class="text-4xl font-bold text-brand-green">Rs. 0</span>
                             <div class="flex flex-col pb-1">
@@ -425,8 +439,8 @@
                             Product description goes here.
                         </p>
 
+                        <!-- Action Buttons -->
                         <div class="flex flex-col sm:flex-row gap-4 mb-14">
-                            <!-- ADD TO CART BUTTON -->
                             <button id="btn-add-to-cart" class="flex-1 bg-white border border-brand-green text-brand-green py-4 px-6 rounded-full font-bold hover:bg-brand-green hover:text-white transition shadow-sm flex items-center justify-center gap-3 text-sm tracking-wider uppercase">
                                 <i class="ph ph-shopping-bag text-xl"></i> Add to Cart
                             </button>
@@ -442,17 +456,19 @@
                             <button onclick="switchTab('tamil')" id="tab-tamil" class="pb-4 border-b-2 border-transparent text-gray-400 hover:text-gray-800 transition whitespace-nowrap">தமிழ்</button>
                         </div>
 
-                        <!-- Standardized Tab Contents -->
+                        <!-- Tab 1: Overview -->
                         <div id="content-overview" class="text-gray-600 space-y-6 text-sm leading-relaxed">
                             <h3 class="font-bold text-gray-900 text-lg font-serif">Strength Rooted in Siddha Tradition</h3>
-                            <p>In today's fast-paced lifestyle, irregular food habits, stress, inadequate sleep, and physical exhaustion can affect overall energy and well-being. This proprietary formulation is designed to complement a healthy lifestyle by providing traditional herbal support for everyday vitality.</p>
+                            <p>In today's fast-paced lifestyle, irregular food habits, stress, inadequate sleep, and physical exhaustion can affect overall energy and well-being. This formulation is designed to complement a healthy lifestyle by providing traditional herbal support for everyday vitality.</p>
                         </div>
 
+                        <!-- Tab 2: Ingredients -->
                         <div id="content-ingredients" class="hidden text-gray-600 space-y-6 text-sm leading-relaxed">
                             <h3 class="font-bold text-gray-900 text-lg font-serif">Traditional Herbal Ingredients</h3>
                             <p>Rather than relying on a single herb, this formulation combines multiple Siddha herbs that work together seamlessly to promote total wellness and balance in the body, strictly following ancient guidelines.</p>
                         </div>
 
+                        <!-- Tab 3: Tamil -->
                         <div id="content-tamil" class="hidden text-gray-600 space-y-6 text-sm leading-relaxed">
                             <h3 class="font-bold text-gray-900 text-lg font-serif">பாரம்பரிய சித்த மூலிகை தயாரிப்பு</h3>
                             <p>இது Adhishaya Herbs & Food நிறுவனத்தால் பாரம்பரிய சித்த மருத்துவ அறிவின் அடிப்படையில் உருவாக்கப்பட்ட தனித்துவமான (Proprietary) மூலிகை தயாரிப்பாகும்.</p>
@@ -466,10 +482,20 @@
             </div>
         </main>
 
+        <!-- VIEW 4: ABOUT US (Placeholder) -->
+        <main id="view-about" class="view-section page-transition bg-white min-h-screen py-20">
+            <div class="container mx-auto px-4 md:px-8 max-w-4xl text-center">
+                <h1 class="text-4xl font-serif font-bold text-brand-green mb-6">Our Story</h1>
+                <p class="text-gray-600 leading-relaxed text-lg mb-8">Adhishaya Herbs & Food was founded with a single mission: to bring the ancient, time-tested healing of traditional Siddha medicine to the modern world. Every product we create is rooted in centuries of wisdom, meticulously formulated by experts to ensure unparalleled purity and potency.</p>
+                <img src="bkg1.png" class="w-full h-80 object-cover rounded-3xl shadow-xl" onerror="this.style.display='none'">
+            </div>
+        </main>
+
         <!-- ========================================== -->
-        <!-- VIEW 3: ADMIN CMS DASHBOARD (Protected)    -->
+        <!-- VIEW 5: ADMIN CMS DASHBOARD (Protected)    -->
         <!-- ========================================== -->
         <main id="view-admin" class="view-section page-transition min-h-screen bg-gray-50 pb-20">
+            <!-- Admin Header -->
             <div class="bg-gray-900 text-white pt-10 pb-24 px-8">
                 <div class="max-w-6xl mx-auto flex justify-between items-center">
                     <div>
@@ -485,20 +511,18 @@
             </div>
 
             <div class="max-w-6xl mx-auto px-4 md:px-8 -mt-12">
-                
-                <!-- Add/Edit Product Form -->
+                <!-- Add Product Form -->
                 <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100 mb-8 relative">
+                    <input type="hidden" id="admin-id">
                     <div id="admin-mode-badge" class="absolute top-8 right-8 bg-blue-100 text-blue-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase hidden">Edit Mode</div>
                     <h3 class="text-xl font-serif font-bold text-brand-green mb-8 flex items-center gap-2 border-b border-gray-100 pb-4">
                         <i class="ph ph-plus-circle"></i> Add / Edit Product
                     </h3>
                     
-                    <input type="hidden" id="admin-id"> <!-- Hidden ID field for edits -->
-
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="md:col-span-2">
                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Product Name</label>
-                            <input type="text" id="admin-name" placeholder="e.g., Thathuviruthi Chooranam" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-brand-green focus:ring-1 focus:ring-brand-green outline-none bg-gray-50 text-sm">
+                            <input type="text" id="admin-name" placeholder="e.g., Thathuviruthi Chooranam" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-brand-green outline-none bg-gray-50 text-sm">
                         </div>
                         
                         <div>
@@ -506,12 +530,15 @@
                             <select id="admin-cat" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-brand-green outline-none bg-gray-50 text-sm">
                                 <option>Men's Health</option>
                                 <option>Women's Health</option>
-                                <option>Daily Essentials</option>
+                                <option>Digestive Health</option>
+                                <option>Blood Booster</option>
+                                <option>Skin care</option>
+                                <option>Hair care</option>
                                 <option>Immunity Care</option>
+                                <option>Daily Essentials</option>
                             </select>
                         </div>
 
-                        <!-- Description -->
                         <div class="md:col-span-3">
                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Short Description</label>
                             <textarea id="admin-desc" rows="2" placeholder="Brief product overview..." class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-brand-green outline-none bg-gray-50 text-sm"></textarea>
@@ -527,26 +554,25 @@
                         </div>
                         <div class="flex gap-4">
                             <div class="w-1/2">
-                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Star Rating</label>
+                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Rating</label>
                                 <input type="number" step="0.1" id="admin-rating" placeholder="4.8" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 outline-none bg-gray-50 text-sm">
                             </div>
                             <div class="w-1/2">
-                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Review Count</label>
+                                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Reviews</label>
                                 <input type="number" id="admin-reviews" placeholder="128" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 outline-none bg-gray-50 text-sm">
                             </div>
                         </div>
 
-                        <!-- MULTIPLE IMAGES INPUT -->
                         <div class="md:col-span-3">
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Image Filenames / URLs (Comma Separated)</label>
+                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Image Filenames (Comma Separated)</label>
                             <input type="text" id="admin-images" placeholder="e.g., Carasoul img 1.png, Carasoul img 2.png" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 outline-none bg-gray-50 text-sm">
-                            <p class="text-[10px] text-gray-400 mt-1">The first image will be the main cover. Separate multiple images with commas.</p>
+                            <p class="text-[10px] text-gray-400 mt-1">First image is main cover. Add up to 4 images separated by commas.</p>
                         </div>
 
                         <div class="md:col-span-3 flex items-center justify-between p-4 bg-brand-light-green rounded-xl border border-brand-green/20">
                             <div>
                                 <h4 class="font-bold text-brand-green text-sm">Set as Hero Product</h4>
-                                <p class="text-xs text-gray-600">This will display the product prominently on the home page.</p>
+                                <p class="text-xs text-gray-600">This will display the product prominently at the very top of the home page.</p>
                             </div>
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" id="admin-hero-toggle" class="sr-only peer">
@@ -560,17 +586,17 @@
                             <i class="ph ph-floppy-disk text-lg"></i> Save Product
                         </button>
                         <button onclick="resetAdminForm()" class="bg-gray-100 text-gray-600 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-gray-200 transition">
-                            Clear / Cancel
+                            Clear
                         </button>
                     </div>
                 </div>
 
-                <!-- Existing Inventory List -->
+                <!-- Existing Inventory List (Live Updating) -->
                 <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
                     <h3 class="text-xl font-serif font-bold text-gray-900 mb-6 border-b border-gray-100 pb-4">Live Inventory</h3>
                     
                     <div class="grid grid-cols-12 gap-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider pb-3 border-b border-gray-50">
-                        <div class="col-span-2 md:col-span-1">Image</div>
+                        <div class="col-span-2 md:col-span-1">Img</div>
                         <div class="col-span-5 md:col-span-4">Product Name</div>
                         <div class="hidden md:block md:col-span-2">Category</div>
                         <div class="col-span-2 text-center">Price</div>
@@ -579,7 +605,7 @@
                     </div>
                     
                     <div id="admin-inventory-list">
-                        <!-- Rendered via JS -->
+                        <!-- JS renders live inventory here -->
                     </div>
                 </div>
             </div>
@@ -587,11 +613,11 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8 mt-auto">
+    <footer id="footer-section" class="bg-gray-900 text-white pt-16 pb-8 mt-auto">
         <div class="container mx-auto px-4 md:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div>
-                    <img src="logo.jpeg" class="h-10 mb-4 bg-white p-2 rounded-xl" alt="Logo" onerror="this.outerHTML='<h3 class=\'font-serif font-bold text-xl text-brand-green bg-white p-2 rounded-xl inline-block mb-4\'>Adhishaya</h3>'">
+                    <img src="logo.png" class="h-10 mb-4 bg-white p-2 rounded-xl" alt="Logo" onerror="this.src='logo.jpeg'; this.onerror=null;">
                     <p class="text-gray-400 text-sm leading-relaxed">
                         Reviving ancient Siddha wisdom for modern wellness. Pure, potent, and ethically sourced.
                     </p>
@@ -600,7 +626,7 @@
                     <h4 class="font-bold text-sm uppercase tracking-wider mb-6 text-gray-100">Quick Links</h4>
                     <ul class="space-y-3 text-sm text-gray-400">
                         <li><a href="javascript:void(0)" onclick="navigateTo('view-home')" class="hover:text-white transition">Home</a></li>
-                        <li><a href="javascript:void(0)" onclick="navigateTo('view-shop')" class="hover:text-white transition">Shop All</a></li>
+                        <li><a href="javascript:void(0)" onclick="openShopWithCategory('All')" class="hover:text-white transition">Shop All</a></li>
                     </ul>
                 </div>
                 <div>
@@ -611,16 +637,18 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-sm uppercase tracking-wider mb-6 text-gray-100">Contact</h4>
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-6 text-gray-100">Contact Us</h4>
                     <ul class="space-y-4 text-sm text-gray-400">
-                        <li class="flex items-start gap-3"><i class="ph ph-map-pin text-xl text-gray-500"></i><span>Chennai, Tamil Nadu, India</span></li>
-                        <li class="flex items-center gap-3"><i class="ph ph-phone text-xl text-gray-500"></i><span>+91 99999 99999</span></li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-map-pin text-xl text-gray-500 shrink-0 mt-1"></i>
+                            <span class="leading-relaxed">No.4/862, Deveerahalli, Pochampalli TK,<br>Pannandur, Krishnagiri,<br>Tamil Nadu 635123</span>
+                        </li>
+                        <li class="flex items-center gap-3"><i class="ph ph-phone text-xl text-gray-500"></i><span>+91 9816889996</span></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 uppercase tracking-widest font-bold">
                 <p>&copy; 2026 Adhishaya Herbs & Food.</p>
-                
                 <button id="admin-link-btn" onclick="navigateTo('view-admin')" class="hidden hover:text-white transition mt-4 md:mt-0 flex items-center gap-2 border border-gray-700 px-4 py-2 rounded-full">
                     <i class="ph-fill ph-lock-key"></i> CMS Admin Access
                 </button>
@@ -644,10 +672,11 @@
             </div>
 
             <div class="space-y-4">
+                <!-- Direct Admin Bypass -->
                 <input type="email" id="login-email" placeholder="Email Address (type admin email here)" class="w-full px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-green bg-[#F5F5F5] text-sm">
                 <input type="password" placeholder="Password" class="w-full px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-green bg-[#F5F5F5] text-sm">
                 
-                <button onclick="handleAdminLogin()" class="w-full bg-brand-green text-white py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-[#1E3A26] transition shadow-md mt-2">Login</button>
+                <button onclick="handleManualLogin()" class="w-full bg-brand-green text-white py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-[#1E3A26] transition shadow-md mt-2">Login</button>
                 
                 <div class="relative flex items-center py-4">
                     <div class="flex-grow border-t border-gray-100"></div>
@@ -655,6 +684,7 @@
                     <div class="flex-grow border-t border-gray-100"></div>
                 </div>
 
+                <!-- Google Firebase Login -->
                 <button id="btn-google-login" class="w-full flex items-center justify-center gap-3 bg-white border border-gray-200 text-gray-700 py-3.5 rounded-xl font-bold hover:bg-gray-50 transition shadow-sm text-sm">
                     <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
                     Continue with Google
@@ -695,7 +725,7 @@
 
     <!-- CORE APPLICATION LOGIC (In-Memory Database & UI) -->
     <script>
-        // --- Custom Toast Notification ---
+        // Custom Toast Notification
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
             const iconWrap = document.getElementById('toast-icon');
@@ -712,21 +742,18 @@
             }
             
             toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+            setTimeout(() => { toast.classList.remove('show'); }, 3500);
         }
 
-        // --- 1. IN-MEMORY DATABASE (CRUD SYSTEM) ---
+        // 1. IN-MEMORY DATABASE (CRUD SYSTEM)
         let products = [
             {
                 id: "prod_1",
                 name: "Thathuviruthi Chooranam",
                 category: "Men's Health",
-                desc: "Traditional Siddha proprietary herbal formulation. Designed to support men's overall wellness, vitality, stamina, physical strength, and reproductive wellness through a balanced combination of time-tested botanical ingredients.",
-                price: 450,
-                mrp: 600,
-                rating: 4.8,
-                reviews: 128,
-                images: ["Carasoul img 1.png", "Carasoul img 2.png", "Carasoul img 3.png", "Carasoul img 4.png"],
+                desc: "Traditional Siddha proprietary herbal formulation. Designed to support men's overall wellness, vitality, stamina, physical strength, and reproductive wellness.",
+                price: 450, mrp: 600, rating: 4.8, reviews: 128,
+                images: ["Carasoul%20img%201.png", "Carasoul%20img%202.png", "Carasoul%20img%203.png", "Carasoul%20img%204.png"],
                 isHero: true
             },
             {
@@ -734,10 +761,7 @@
                 name: "Daily Health Blend",
                 category: "Daily Essentials",
                 desc: "Natural vitality support blend for everyday strength.",
-                price: 320,
-                mrp: 350,
-                rating: 4.5,
-                reviews: 89,
+                price: 320, mrp: 350, rating: 4.5, reviews: 89,
                 images: ["bowl1.png"],
                 isHero: false
             },
@@ -746,10 +770,7 @@
                 name: "Immunity Root",
                 category: "Immunity Care",
                 desc: "Builds natural resistance daily and fights off common colds.",
-                price: 270,
-                mrp: 300,
-                rating: 4.9,
-                reviews: 210,
+                price: 270, mrp: 300, rating: 4.9, reviews: 210,
                 images: ["bowl2.png"],
                 isHero: false
             }
@@ -757,13 +778,15 @@
 
         let cart = [];
         let currentViewedProductId = null;
+        let activeShopCategory = 'All';
 
-        // --- 2. INITIALIZATION & RENDERING ---
+        // 2. INITIALIZATION & RENDERING
         document.addEventListener("DOMContentLoaded", () => {
             renderHomePage();
             renderAdminInventory();
         });
 
+        // HOME PAGE RENDERER
         function renderHomePage() {
             // Find Hero Product
             const heroProd = products.find(p => p.isHero) || products[0];
@@ -775,52 +798,99 @@
                     <div class="bg-white/95 backdrop-blur-md p-6 rounded-[2rem] shadow-2xl max-w-[320px] w-full border border-white hover-lift cursor-pointer" onclick="openProductPage('${heroProd.id}')">
                         ${discount > 0 ? `<div class="absolute -top-3 -right-3 bg-[#C2A36C] text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg z-10 tracking-wider">${discount}% OFF</div>` : ''}
                         <div class="bg-[#F4EEDF] rounded-2xl p-6 mb-5 h-64 flex items-center justify-center">
-                            <img src="${heroProd.images[0]}" class="max-w-full max-h-full object-contain mix-blend-multiply drop-shadow-xl" onerror="this.src='https://placehold.co/400x400/F4EEDF/2B4E35?text=Product'">
+                            <img src="${heroProd.images[0]}" class="img-contain mix-blend-multiply drop-shadow-xl" onerror="this.src='https://placehold.co/400x400/F4EEDF/2B4E35?text=Product'">
                         </div>
-                        <h3 class="font-serif font-bold text-xl text-gray-900 leading-tight mb-2">${heroProd.name}</h3>
+                        <h3 class="font-serif font-bold text-xl text-gray-900 leading-tight mb-2 uppercase">${heroProd.name}</h3>
                         <p class="text-xs text-gray-500 mb-4 line-clamp-2">${heroProd.desc}</p>
                         <div class="flex justify-between items-center pt-4 border-t border-gray-100">
                             <div>
                                 <div class="text-xs text-gray-400 line-through">Rs. ${heroProd.mrp}</div>
                                 <div class="font-bold text-lg text-brand-green">Rs. ${heroProd.price}</div>
                             </div>
-                            <button class="bg-brand-green text-white px-6 py-2.5 rounded-full text-[10px] font-bold hover:bg-[#1E3A26] transition tracking-widest uppercase">View</button>
+                            <button class="bg-brand-green text-white px-6 py-2.5 rounded-full text-[10px] font-bold hover:bg-[#1E3A26] transition tracking-widest uppercase">View Details</button>
                         </div>
                     </div>
                 `;
             }
 
-            // Render Featured Grid & Shop All Grid
+            // Render Featured Grid
             const gridContainer = document.getElementById('dynamic-products-grid');
-            const shopContainer = document.getElementById('shop-all-grid');
-            
             let gridHTML = `
                 <div class="bg-white rounded-3xl p-8 border-2 border-blue-400 flex flex-col justify-between shadow-sm">
                     <div>
                         <p class="text-sm text-gray-700 leading-relaxed mb-6">
-                            <strong class="text-gray-900">Expert-formulated</strong> and rooted in the study of <strong class="text-gray-900">ancient herbs and naturopathy</strong>, our formulas bring the healing of nature to you. 
+                            <strong class="text-gray-900">Expert-formulated</strong> and rooted in the study of <strong class="text-gray-900">ancient herbs and naturopathy</strong>. Using high-quality ingredients, each blend is carefully designed to restore balance.
                         </p>
-                        <p class="text-sm text-gray-700 font-medium">Explore our range and find the perfect blend for your body's needs:</p>
+                        <p class="text-sm text-gray-700 font-medium">Explore our range:</p>
                     </div>
-                    <button onclick="navigateTo('view-shop')" class="mt-8 flex items-center justify-between w-full border border-gray-200 rounded-full px-6 py-3 text-[11px] font-bold text-gray-700 hover:bg-gray-50 transition tracking-widest uppercase">
+                    <button onclick="openShopWithCategory('All')" class="mt-8 flex items-center justify-between w-full border border-gray-200 rounded-full px-6 py-3 text-[11px] font-bold text-gray-700 hover:bg-gray-50 transition tracking-widest uppercase">
                         Discover All <i class="ph ph-arrow-right text-base"></i>
                     </button>
                 </div>
             `;
 
-            let shopHTML = "";
-
             products.forEach(p => {
                 const discount = Math.round(((p.mrp - p.price) / p.mrp) * 100);
-                const cardHTML = `
+                gridHTML += `
                     <div class="bg-white rounded-3xl p-5 border border-gray-100 hover-lift cursor-pointer shadow-sm flex flex-col text-left" onclick="openProductPage('${p.id}')">
                         ${discount > 0 ? `<div class="absolute top-5 right-5 bg-white border border-gray-100 text-gray-600 text-[9px] font-bold px-2 py-1 rounded shadow-sm z-10 uppercase tracking-wider">${discount}% off</div>` : ''}
                         <div class="bg-[#F4EEDF] rounded-2xl p-4 h-56 mb-5 flex items-center justify-center">
-                            <img src="${p.images[0]}" class="max-w-full max-h-full object-contain mix-blend-multiply drop-shadow-md" onerror="this.src='https://placehold.co/300x300/F4EEDF/2B4E35?text=Product'">
+                            <img src="${p.images[0]}" class="img-contain mix-blend-multiply drop-shadow-md" onerror="this.src='https://placehold.co/300x300/F4EEDF/2B4E35?text=Product'">
                         </div>
                         <div class="mt-auto">
                             <h3 class="font-bold text-gray-900 text-sm mb-1 uppercase tracking-wider truncate">${p.name}</h3>
                             <p class="text-xs text-gray-500 mb-3 h-8 line-clamp-2">${p.desc}</p>
+                            <div class="flex justify-between items-center pt-3 border-t border-gray-50">
+                                <div>
+                                    <span class="text-[10px] text-gray-400 line-through block">Rs. ${p.mrp}</span>
+                                    <span class="font-bold text-brand-green text-base">Rs. ${p.price}</span>
+                                </div>
+                                <button class="bg-brand-green text-white px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-[#1E3A26]">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            if(gridContainer) gridContainer.innerHTML = gridHTML;
+        }
+
+        // SHOP ALL PAGE RENDERER
+        function openShopWithCategory(category) {
+            activeShopCategory = category;
+            navigateTo('view-shop');
+            renderShopPage();
+        }
+
+        function renderShopPage() {
+            const grid = document.getElementById('shop-all-grid');
+            const title = document.getElementById('shop-category-title');
+            const count = document.getElementById('shop-result-count');
+            
+            title.textContent = activeShopCategory === 'All' ? 'All Products' : activeShopCategory;
+            
+            let filtered = products;
+            if (activeShopCategory !== 'All') {
+                filtered = products.filter(p => p.category === activeShopCategory);
+            }
+            
+            count.textContent = `${filtered.length} Results`;
+            
+            grid.innerHTML = '';
+            if(filtered.length === 0) {
+                grid.innerHTML = '<p class="text-gray-500 col-span-full">No products found in this category currently. Please check back later!</p>';
+            }
+            
+            filtered.forEach(p => {
+                const discount = Math.round(((p.mrp - p.price) / p.mrp) * 100);
+                grid.innerHTML += `
+                    <div class="bg-white rounded-3xl p-5 border border-gray-100 hover-lift cursor-pointer shadow-sm flex flex-col text-left" onclick="openProductPage('${p.id}')">
+                        ${discount > 0 ? `<div class="absolute top-5 right-5 bg-white border border-gray-100 text-gray-600 text-[9px] font-bold px-2 py-1 rounded shadow-sm z-10 uppercase tracking-wider">${discount}% off</div>` : ''}
+                        <div class="bg-[#F4EEDF] rounded-2xl p-4 h-56 mb-5 flex items-center justify-center">
+                            <img src="${p.images[0]}" class="img-contain mix-blend-multiply drop-shadow-md" onerror="this.src='https://placehold.co/300x300/F4EEDF/2B4E35?text=Product'">
+                        </div>
+                        <div class="mt-auto">
+                            <h3 class="font-bold text-gray-900 text-sm mb-1 uppercase tracking-wider truncate">${p.name}</h3>
+                            <p class="text-[10px] text-gray-400 mb-2 uppercase tracking-wider">${p.category}</p>
                             <div class="flex justify-between items-center pt-3 border-t border-gray-50">
                                 <div>
                                     <span class="text-[10px] text-gray-400 line-through block">Rs. ${p.mrp}</span>
@@ -831,15 +901,21 @@
                         </div>
                     </div>
                 `;
-                gridHTML += cardHTML;
-                shopHTML += cardHTML;
             });
 
-            if(gridContainer) gridContainer.innerHTML = gridHTML;
-            if(shopContainer) shopContainer.innerHTML = shopHTML;
+            // Highlight active category in sidebar
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.dataset.cat === activeShopCategory) {
+                    btn.classList.add('text-brand-green', 'font-bold');
+                    btn.classList.remove('text-gray-500');
+                } else {
+                    btn.classList.remove('text-brand-green', 'font-bold');
+                    btn.classList.add('text-gray-500');
+                }
+            });
         }
 
-        // --- 3. DYNAMIC PRODUCT PAGE VIEWER ---
+        // DYNAMIC PRODUCT PAGE VIEWER
         function openProductPage(id) {
             const product = products.find(p => p.id === id);
             if(!product) return;
@@ -847,6 +923,7 @@
 
             // Populate DOM
             document.getElementById('breadcrumb-product-name').textContent = product.name;
+            document.getElementById('breadcrumb-product-cat').textContent = product.category;
             document.getElementById('product-page-title').textContent = product.name;
             document.getElementById('product-page-price').textContent = `Rs. ${product.price}`;
             document.getElementById('product-page-mrp').textContent = `Rs. ${product.mrp}`;
@@ -872,12 +949,12 @@
                 const borderClass = index === 0 ? 'border-brand-green' : 'border-transparent hover:border-brand-green';
                 thumbContainer.innerHTML += `
                     <div class="w-24 h-24 bg-[#F4EEDF] rounded-2xl flex-shrink-0 cursor-pointer border-2 ${borderClass} p-2 shadow-sm transition hover-lift" onclick="changeMainImage(this, '${imgSrc}')">
-                        <img src="${imgSrc}" class="max-w-full max-h-full object-contain mix-blend-multiply" onerror="this.parentElement.style.display='none'">
+                        <img src="${imgSrc}" class="img-contain mix-blend-multiply" onerror="this.parentElement.style.display='none'">
                     </div>
                 `;
             });
 
-            // Set up Add To Cart Button specifically for this product
+            // Set up Add To Cart Button
             const btn = document.getElementById('btn-add-to-cart');
             btn.onclick = () => addToCart(product);
 
@@ -896,24 +973,18 @@
             thumbnailElement.classList.remove('border-transparent');
         }
 
-        // --- 4. CART LOGIC ---
+        // CART LOGIC
         function addToCart(product) {
             cart.push(product);
-            
-            // Update Badge
             document.getElementById('cart-badge').textContent = cart.length;
-            
-            // Re-render Cart Modal
             renderCartModal();
-
-            // Show Custom Toast
-            showToast('Item added to cart!');
+            showToast('Item successfully added to your cart!');
         }
 
         function renderCartModal() {
             const container = document.getElementById('cart-items-container');
             if (cart.length === 0) {
-                container.innerHTML = `<p class="text-gray-500 text-center py-10">Your cart is currently empty.</p>`;
+                container.innerHTML = `<p class="text-gray-500 text-center py-10 font-medium">Your cart is currently empty.</p>`;
                 document.getElementById('cart-total-price').textContent = "Rs. 0";
                 return;
             }
@@ -923,15 +994,15 @@
             cart.forEach((item, index) => {
                 total += item.price;
                 container.innerHTML += `
-                    <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl">
+                    <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-100">
                         <div class="w-16 h-16 bg-[#F4EEDF] rounded-lg p-1 flex items-center justify-center">
-                            <img src="${item.images[0]}" class="max-w-full max-h-full object-contain mix-blend-multiply">
+                            <img src="${item.images[0]}" class="img-contain mix-blend-multiply">
                         </div>
                         <div class="flex-grow">
                             <h4 class="text-sm font-bold text-gray-900">${item.name}</h4>
                             <p class="text-brand-green font-bold text-xs">Rs. ${item.price}</p>
                         </div>
-                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 p-2"><i class="ph-fill ph-trash text-lg"></i></button>
+                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 p-2 transition"><i class="ph-fill ph-trash text-lg"></i></button>
                     </div>
                 `;
             });
@@ -944,7 +1015,7 @@
             renderCartModal();
         }
 
-        // --- 5. ADMIN CRUD LOGIC ---
+        // ADMIN CRUD LOGIC (In-Memory updates)
         function saveProduct() {
             const idInput = document.getElementById('admin-id').value;
             const name = document.getElementById('admin-name').value;
@@ -958,15 +1029,14 @@
             const isHero = document.getElementById('admin-hero-toggle').checked;
 
             if(!name || !price || !rawImages) {
-                showToast("Please fill in Name, Price, and at least 1 Image URL.", true);
+                showToast("Error: Name, Price, and at least 1 Image are required.", true);
                 return;
             }
 
-            // Convert comma separated string to array of clean URLs
             const imageArray = rawImages.split(',').map(url => url.trim()).filter(url => url.length > 0);
 
             if(isHero) {
-                // Remove hero status from all others if this one is true
+                // Ensure only 1 hero product exists
                 products.forEach(p => p.isHero = false);
             }
 
@@ -982,16 +1052,14 @@
                     id: 'prod_' + Date.now(),
                     name, category: cat, desc, price, mrp, rating, reviews, images: imageArray, isHero
                 };
-                products.unshift(newProduct); // Add to top of list
+                products.unshift(newProduct);
             }
 
-            // Reset form & Re-render everything
             resetAdminForm();
-            renderHomePage();
-            renderAdminInventory();
-
-            // Show success msg
-            showToast('Product saved successfully!');
+            renderHomePage(); // Update live site
+            renderAdminInventory(); // Update admin table
+            
+            showToast('Success! Product database updated.');
         }
 
         function renderAdminInventory() {
@@ -1001,8 +1069,8 @@
                 list.innerHTML += `
                     <div class="grid grid-cols-12 gap-4 items-center py-4 border-b border-gray-50">
                         <div class="col-span-2 md:col-span-1">
-                            <div class="w-10 h-10 bg-[#F4EEDF] rounded-lg flex items-center justify-center p-1">
-                                <img src="${p.images[0]}" class="max-w-full max-h-full object-contain mix-blend-multiply" onerror="this.style.display='none'">
+                            <div class="w-10 h-10 bg-[#F4EEDF] rounded-lg flex items-center justify-center p-1 border border-gray-200">
+                                <img src="${p.images[0]}" class="img-contain mix-blend-multiply" onerror="this.style.display='none'">
                             </div>
                         </div>
                         <div class="col-span-5 md:col-span-4 font-bold text-sm text-gray-800 truncate">${p.name}</div>
@@ -1012,7 +1080,7 @@
                             ${p.isHero ? '<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded">HERO</span>' : '<span class="bg-gray-100 text-gray-500 text-[10px] font-bold px-2 py-1 rounded">ACTIVE</span>'}
                         </div>
                         <div class="col-span-3 md:col-span-2 text-right space-x-2">
-                            <button onclick="editProduct('${p.id}')" class="text-blue-400 hover:text-blue-600 transition"><i class="ph-fill ph-pencil-simple text-lg"></i></button>
+                            <button onclick="editProduct('${p.id}')" class="text-blue-500 hover:text-blue-700 transition"><i class="ph-fill ph-pencil-simple text-lg"></i></button>
                             <button onclick="deleteProduct('${p.id}')" class="text-red-400 hover:text-red-600 transition"><i class="ph-fill ph-trash text-lg"></i></button>
                         </div>
                     </div>
@@ -1043,7 +1111,7 @@
             products = products.filter(p => p.id !== id);
             renderHomePage();
             renderAdminInventory();
-            showToast('Product successfully deleted.');
+            showToast('Product permanently deleted.');
         }
 
         function resetAdminForm() {
@@ -1057,23 +1125,10 @@
             document.getElementById('admin-mode-badge').classList.add('hidden');
         }
 
-
-        // --- 6. UTILS (Navigation, Modals, Tabs, Order) ---
+        // UTILS (Navigation, Modals, Tabs, WhatsApp Order)
         function navigateTo(viewId) {
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
             document.getElementById(viewId).classList.add('active');
-            
-            // Update Active Nav Link color
-            document.querySelectorAll('.nav-link').forEach(el => {
-                el.classList.remove('text-brand-green');
-                el.classList.add('text-gray-500');
-            });
-            // Rough match to highlight current
-            if(event && event.target && event.target.classList.contains('nav-link')) {
-                event.target.classList.add('text-brand-green');
-                event.target.classList.remove('text-gray-500');
-            }
-
             window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         }
 
@@ -1102,7 +1157,7 @@
         }
 
         function orderViaWhatsApp() {
-            const STORE_PHONE = "919999999999"; 
+            const STORE_PHONE = "919816889996"; 
             let message = "Hello Adhishaya Herbs! I would like to place an order:\n\n";
             let grandTotal = 0;
 
@@ -1112,10 +1167,10 @@
                     grandTotal += item.price;
                 });
                 message += `\n*Total Amount:* Rs. ${grandTotal}\n\nPlease share payment and delivery details.`;
-            } else if (currentViewedProductId) {
+            } else if (currentViewedProductId && document.getElementById('view-product').classList.contains('active')) {
                 const p = products.find(prod => prod.id === currentViewedProductId);
                 if(p) {
-                    message += `- ${p.name} (Rs. ${p.price})\n\nPlease share payment and delivery details.`;
+                    message += `- ${p.name} (Rs. ${p.price})\n\n*Total Amount:* Rs. ${p.price}\n\nPlease share payment and delivery details.`;
                 }
             } else {
                 showToast("Your cart is empty!", true); 
@@ -1126,16 +1181,17 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        // --- 7. ADMIN BYPASS LOGIN ---
-        function handleAdminLogin() {
+        // Direct Login Bypass
+        function handleManualLogin() {
             const emailInput = document.getElementById('login-email').value;
             if (emailInput.trim().toLowerCase() === 'dodge.kunal@gmail.com') {
                 closeModal('login-modal');
                 document.getElementById('admin-link-btn').classList.remove('hidden');
-                navigateTo('view-admin');
-                showToast('Welcome Admin! CMS Access Granted.');
+                document.getElementById('nav-admin-link').classList.remove('hidden');
+                showToast('Welcome Admin! Access Granted.');
+                navigateTo('view-admin'); // Auto redirect
             } else {
-                showToast("Invalid Admin Email. Please try again.", true);
+                showToast("Account not found. Please register.", true);
             }
         }
     </script>
@@ -1145,7 +1201,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        // Your specific Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAhYm-TxemRXCTQSCY6Jo0c1SPMYegDjhw",
             authDomain: "adhishaya-6eb47.firebaseapp.com",
@@ -1155,37 +1210,42 @@
             appId: "1:871718551216:web:4c849b0053f77386588575"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
         const btnGoogleLogin = document.getElementById('btn-google-login');
         
-        // Handle Google Login Click
-        if(btnGoogleLogin) {
-            btnGoogleLogin.addEventListener('click', () => {
-                signInWithPopup(auth, provider)
-                    .then((result) => {
-                        closeModal('login-modal');
-                        
-                        // Show Custom Welcome Toast
-                        showToast(`Welcome, ${result.user.displayName}!`);
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        showToast("Google Login Error. Try again.", true);
-                    });
-            });
-        }
+        btnGoogleLogin.addEventListener('click', () => {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    closeModal('login-modal');
+                    showToast(`Welcome back, ${result.user.displayName}!`);
+                    
+                    // Admin Auto-Redirect logic
+                    if (result.user.email === "dodge.kunal@gmail.com") {
+                        navigateTo('view-admin');
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                    showToast("Login failed. Please check your connection.", true);
+                });
+        });
 
-        // Check if Admin logs in via Google and unlock Dashboard
         onAuthStateChanged(auth, (user) => {
             const adminLink = document.getElementById('admin-link-btn');
+            const navAdminLink = document.getElementById('nav-admin-link');
+            
             if (user && user.email === "dodge.kunal@gmail.com") {
                 adminLink.classList.remove('hidden'); 
+                navAdminLink.classList.remove('hidden'); 
             } else {
                 adminLink.classList.add('hidden'); 
+                navAdminLink.classList.add('hidden'); 
+                if (document.getElementById('view-admin').classList.contains('active')) {
+                    navigateTo('view-home');
+                }
             }
         });
     </script>
