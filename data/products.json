@@ -1,0 +1,22 @@
+{
+"items": [
+{
+"id": "prod_1",
+"name": "Thathuviruthi Chooranam",
+"category": "Men's Health",
+"desc": "Traditional Siddha proprietary herbal formulation. Designed to support men's overall wellness, vitality, stamina, physical strength, and reproductive wellness.",
+"price": 450,
+"mrp": 600,
+"rating": 4.8,
+"reviews": 128,
+"isHero": true,
+"image": "/Carasoul img 1.png",
+"gallery": [
+"/Carasoul img 2.png",
+"/Carasoul img 3.png",
+"/Carasoul img 4.png"
+],
+"tamil_content": "ஆண்களின் முழுமையான நலனுக்கான பாரம்பரிய சித்த மூலிகை தயாரிப்பு. தாது விருத்தி சூரணம் என்பது Adhishaya Herbs & Food நிறுவனத்தால் பாரம்பரிய சித்த மருத்துவ அறிவின் அடிப்படையில் உருவாக்கப்பட்ட தனித்துவமான மூலிகை தயாரிப்பாகும்."
+}
+]
+}
