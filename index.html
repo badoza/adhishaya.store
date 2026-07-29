@@ -15,9 +15,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Netlify Identity (Required for CMS Authentication) -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <style>
         :root { --brand-green: #2B4E35; --brand-cream: #FAF9F4; --text-dark: #1A1A1A; }
@@ -52,7 +49,7 @@
         <div class="container mx-auto px-4 md:px-8">
             <div class="flex items-center justify-between py-4">
                 <div class="flex items-center cursor-pointer" onclick="navigateTo('view-home')">
-                    <img src="logo.png" alt="Adhishaya Logo" class="h-10 md:h-12 object-contain" onerror="this.outerHTML='<div class=\'font-serif font-bold text-2xl text-brand-green\'>Adhishaya</div>'">
+                    <img src="logo.jpeg" alt="Adhishaya Logo" class="h-10 md:h-12 object-contain" onerror="this.outerHTML='<div class=\'font-serif font-bold text-2xl text-brand-green\'>Adhishaya</div>'">
                 </div>
 
                 <div class="hidden md:flex flex-1 max-w-md mx-8 relative group">
@@ -65,8 +62,8 @@
                         <i class="ph ph-shopping-bag text-[26px]"></i>
                         <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-[#C2A36C] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">0</span>
                     </button>
-                    <!-- Link to CMS Admin Portal -->
-                    <a href="admin/index.html" class="hover:text-brand-green transition" title="Admin Login">
+                    <!-- Link to CMS Admin Portal (Now points to /admin/index.html) -->
+                    <a href="admin/index.html" class="hover:text-brand-green transition" title="CMS Admin Login">
                         <i class="ph ph-user text-[26px]"></i>
                     </a>
                 </div>
@@ -88,7 +85,7 @@
             <!-- HERO SECTION -->
             <section class="relative w-full min-h-[85vh] flex items-center py-20 bg-brand-green">
                 <div class="absolute inset-0 z-0 bg-[#2B4E35]">
-                    <img src="bkg1.png" alt="Background" class="img-cover opacity-90" onerror="this.src='bkg.png'; this.onerror=null;">
+                    <img src="bkg.png" alt="Background" class="img-cover opacity-90" onerror="this.style.display='none'">
                     <div class="absolute inset-0 bg-black/10"></div>
                 </div>
                 
@@ -100,8 +97,8 @@
                         </h1>
                         <p class="text-gray-700 mb-10 text-lg font-medium">With Expert-Formulated Herbal Products of Unparalleled Quality.</p>
                         <div class="flex gap-4">
-                            <button onclick="openShopWithCategory('All')" class="bg-brand-green text-white px-8 py-4 rounded-full font-bold hover:bg-[#1E3A26] transition shadow-lg text-xs uppercase">Shop Now</button>
-                            <button onclick="document.getElementById('why-adhishaya').scrollIntoView({behavior: 'smooth'})" class="border border-brand-green text-brand-green px-8 py-4 rounded-full font-bold hover:bg-brand-green hover:text-white transition text-xs uppercase">Learn More</button>
+                            <button onclick="openShopWithCategory('All')" class="bg-brand-green text-white px-8 py-4 rounded-full font-bold hover:bg-[#1E3A26] transition shadow-lg text-xs uppercase tracking-wider">Shop Now</button>
+                            <button onclick="document.getElementById('why-adhishaya').scrollIntoView({behavior: 'smooth'})" class="border border-brand-green text-brand-green px-8 py-4 rounded-full font-bold hover:bg-brand-green hover:text-white transition text-xs uppercase tracking-wider">Learn More</button>
                         </div>
                     </div>
                     
@@ -123,7 +120,7 @@
                 <div class="container mx-auto px-4 md:px-8">
                     <div class="flex justify-between items-center mb-12">
                         <h2 class="text-3xl font-serif text-brand-green">Products Categories</h2>
-                        <button onclick="openShopWithCategory('All')" class="border border-brand-green text-brand-green px-6 py-2.5 rounded-lg text-[11px] font-bold uppercase hover:bg-brand-green hover:text-white transition">Discover All <i class="ph ph-arrow-right align-middle ml-1"></i></button>
+                        <button onclick="openShopWithCategory('All')" class="border border-brand-green text-brand-green px-6 py-2.5 rounded-lg text-[11px] font-bold uppercase hover:bg-brand-green hover:text-white transition tracking-wider">Discover All <i class="ph ph-arrow-right align-middle ml-1"></i></button>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div onclick="openShopWithCategory('Women\'s Health')" class="bg-white rounded-xl p-6 shadow-sm border flex justify-between cursor-pointer hover:-translate-y-1 transition group"><span class="font-bold text-brand-green text-sm">Women's Health</span><i class="ph ph-arrow-right text-brand-green text-xl group-hover:translate-x-1 transition"></i></div>
@@ -141,14 +138,14 @@
                 <div class="container mx-auto px-4 md:px-8">
                     <div class="flex justify-between items-center mb-16">
                         <h2 class="text-4xl font-serif font-bold text-brand-green">Why Adhishaya ?</h2>
-                        <button onclick="navigateTo('view-about')" class="flex items-center gap-2 text-[11px] font-bold text-brand-green border border-brand-green px-6 py-3 rounded-full hover:bg-brand-green hover:text-white transition uppercase">Discover more about us <i class="ph ph-arrow-right"></i></button>
+                        <button onclick="navigateTo('view-about')" class="flex items-center gap-2 text-[11px] font-bold text-brand-green border border-brand-green px-6 py-3 rounded-full hover:bg-brand-green hover:text-white transition uppercase tracking-wider">Discover more about us <i class="ph ph-arrow-right"></i></button>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-20">
-                        <div><div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6"><img src="bowl1.png" class="w-10 h-10 object-contain mix-blend-multiply" onerror="this.style.display='none'"></div><h4 class="font-bold text-brand-green mb-3 text-base">High-Quality Ingredient Sourcing.</h4><p class="text-[13px] text-gray-500 leading-relaxed">Potent, ethically-harvested herbs from trusted growers. No synthetics.</p></div>
-                        <div><div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6"><img src="bowl2.png" class="w-10 h-10 object-contain mix-blend-multiply" onerror="this.style.display='none'"></div><h4 class="font-bold text-brand-green mb-3 text-base">Small-batch production.</h4><p class="text-[13px] text-gray-500 leading-relaxed">Handcrafted in small batches to ensure freshness, potency, and care.</p></div>
-                        <div><div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6"><img src="bowl3.png" class="w-10 h-10 object-contain mix-blend-multiply" onerror="this.style.display='none'"></div><h4 class="font-bold text-brand-green mb-3 text-base">Rooted in Ancient Knowledge.</h4><p class="text-[13px] text-gray-500 leading-relaxed">Bridging time-tested herbal wisdom and modern scientific methods.</p></div>
-                        <div><div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6"><img src="bowl4.png" class="w-10 h-10 object-contain mix-blend-multiply" onerror="this.style.display='none'"></div><h4 class="font-bold text-brand-green mb-3 text-base">Affordable Wellness.</h4><p class="text-[13px] text-gray-500 leading-relaxed">Holistic health shouldn't be a luxury. We keep products accessible.</p></div>
+                        <div><div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6"><img src="bowl1.png" class="w-10 h-10 object-contain mix-blend-multiply" onerror="this.outerHTML='<i class=\'ph ph-plant text-3xl text-brand-green\'></i>'"></div><h4 class="font-bold text-brand-green mb-3 text-base">High-Quality Ingredient Sourcing.</h4><p class="text-[13px] text-gray-500 leading-relaxed">Potent, ethically-harvested herbs from trusted growers. No synthetics.</p></div>
+                        <div><div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6"><img src="bowl2.png" class="w-10 h-10 object-contain mix-blend-multiply" onerror="this.outerHTML='<i class=\'ph ph-diamond text-3xl text-brand-green\'></i>'"></div><h4 class="font-bold text-brand-green mb-3 text-base">Small-batch production.</h4><p class="text-[13px] text-gray-500 leading-relaxed">Handcrafted in small batches to ensure freshness, potency, and care.</p></div>
+                        <div><div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6"><img src="bowl3.png" class="w-10 h-10 object-contain mix-blend-multiply" onerror="this.outerHTML='<i class=\'ph ph-atom text-3xl text-brand-green\'></i>'"></div><h4 class="font-bold text-brand-green mb-3 text-base">Rooted in Ancient Knowledge.</h4><p class="text-[13px] text-gray-500 leading-relaxed">Bridging time-tested herbal wisdom and modern scientific methods.</p></div>
+                        <div><div class="w-16 h-16 bg-[#FDF9F0] rounded-2xl flex items-center justify-center mb-6"><img src="bowl4.png" class="w-10 h-10 object-contain mix-blend-multiply" onerror="this.outerHTML='<i class=\'ph ph-hand-coins text-3xl text-brand-green\'></i>'"></div><h4 class="font-bold text-brand-green mb-3 text-base">Affordable Wellness.</h4><p class="text-[13px] text-gray-500 leading-relaxed">Holistic health shouldn't be a luxury. We keep products accessible.</p></div>
                     </div>
 
                     <div class="pt-16 border-t border-gray-100 flex flex-wrap justify-center items-center gap-12 md:gap-24">
@@ -196,7 +193,7 @@
                 <div class="w-full lg:w-1/2 flex flex-col items-center">
                     <div class="w-full aspect-square bg-[#F4EEDF] rounded-[2.5rem] p-10 mb-6 flex items-center justify-center relative">
                         <img id="main-product-img" src="" class="max-w-full max-h-full object-contain mix-blend-multiply drop-shadow-2xl">
-                        <div id="product-page-discount" class="absolute top-6 left-6 bg-[#C2A36C] text-white text-xs font-bold px-4 py-2 rounded-full hidden"></div>
+                        <div id="product-page-discount" class="absolute top-6 left-6 bg-[#C2A36C] text-white text-xs font-bold px-4 py-2 rounded-full hidden tracking-wider"></div>
                     </div>
                     <div id="product-thumbnails" class="flex gap-4 overflow-x-auto justify-center w-full max-w-md no-scrollbar"></div>
                 </div>
@@ -206,20 +203,20 @@
                     <h1 id="product-page-title" class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">...</h1>
                     <div class="flex items-center gap-3 mb-8">
                         <div class="flex text-[#C2A36C] text-lg"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star-half"></i></div>
-                        <span id="product-page-reviews" class="text-xs text-gray-500 font-bold uppercase border-l pl-3">4.8 (0 Reviews)</span>
+                        <span id="product-page-reviews" class="text-xs text-gray-500 font-bold uppercase tracking-wider border-l pl-3">4.8 (0 Reviews)</span>
                     </div>
                     <div class="flex items-end gap-4 mb-8">
                         <span id="product-page-price" class="text-4xl font-bold text-brand-green">Rs. 0</span>
                         <div class="flex flex-col pb-1">
                             <span class="text-sm text-gray-400 font-medium">MRP: <span id="product-page-mrp" class="line-through">Rs. 0</span></span>
-                            <span class="text-[10px] text-gray-400 uppercase">Inclusive of all taxes</span>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-wider">Inclusive of all taxes</span>
                         </div>
                     </div>
                     <p id="product-page-desc" class="text-gray-600 mb-10 text-base leading-relaxed">...</p>
                     
                     <div class="flex flex-col sm:flex-row gap-4 mb-14">
-                        <button id="btn-add-to-cart" class="flex-1 bg-white border border-brand-green text-brand-green py-4 rounded-full font-bold hover:bg-brand-green hover:text-white transition uppercase text-sm tracking-wider"><i class="ph ph-shopping-bag text-xl align-middle mr-2"></i> Add to Cart</button>
-                        <button onclick="orderViaWhatsApp()" class="flex-1 bg-[#25D366] text-white py-4 rounded-full font-bold hover:bg-[#1DA851] transition shadow-lg text-sm uppercase tracking-wider">Order on WhatsApp <i class="ph ph-whatsapp-logo text-xl align-middle ml-2"></i></button>
+                        <button id="btn-add-to-cart" class="flex-1 bg-white border border-brand-green text-brand-green py-4 rounded-full font-bold hover:bg-brand-green hover:text-white transition uppercase text-sm tracking-wider shadow-sm flex justify-center items-center gap-2"><i class="ph ph-shopping-bag text-xl"></i> Add to Cart</button>
+                        <button onclick="orderViaWhatsApp()" class="flex-1 bg-[#25D366] text-white py-4 rounded-full font-bold hover:bg-[#1DA851] transition shadow-lg text-sm uppercase tracking-wider flex justify-center items-center gap-2">Order on WhatsApp <i class="ph ph-whatsapp-logo text-xl"></i></button>
                     </div>
 
                     <div class="border-b border-gray-200 mb-8 flex gap-8 text-[11px] font-bold uppercase tracking-widest">
@@ -246,13 +243,25 @@
         <div class="container mx-auto px-4 md:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div>
-                    <img src="logo.png" class="h-10 mb-4 bg-white p-2 rounded-xl" onerror="this.style.display='none'">
+                    <img src="logo.jpeg" class="h-10 mb-4 bg-white p-2 rounded-xl" onerror="this.style.display='none'">
                     <p class="text-gray-400 text-sm leading-relaxed">Reviving ancient Siddha wisdom for modern wellness.</p>
                 </div>
-                <div><h4 class="font-bold text-sm uppercase mb-6">Quick Links</h4><ul class="space-y-3 text-sm text-gray-400"><li><a href="javascript:void(0)" onclick="navigateTo('view-home')">Home</a></li><li><a href="javascript:void(0)" onclick="openShopWithCategory('All')">Shop All</a></li></ul></div>
-                <div><h4 class="font-bold text-sm uppercase mb-6">Legal</h4><ul class="space-y-3 text-sm text-gray-400"><li><a href="#">Shipping Policy</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
                 <div>
-                    <h4 class="font-bold text-sm uppercase mb-6">Contact</h4>
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-6 text-gray-100">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="javascript:void(0)" onclick="navigateTo('view-home')" class="hover:text-white transition">Home</a></li>
+                        <li><a href="javascript:void(0)" onclick="openShopWithCategory('All')" class="hover:text-white transition">Shop All</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-6 text-gray-100">Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider mb-6 text-gray-100">Contact</h4>
                     <ul class="space-y-4 text-sm text-gray-400">
                         <li class="flex items-start gap-3"><i class="ph-fill ph-map-pin text-xl text-brand-green"></i> <span>No.4/862, Deveerahalli, Pochampalli TK, Pannandur, Krishnagiri, Tamil Nadu 635123</span></li>
                         <li class="flex items-center gap-3"><i class="ph-fill ph-phone text-xl text-brand-green"></i> <span>+91 9816889996</span></li>
@@ -274,7 +283,7 @@
             <div id="cart-items-container" class="flex-grow overflow-y-auto space-y-4 mb-6"></div>
             <div class="border-t border-gray-100 pt-4 mt-auto">
                 <div class="flex justify-between font-bold text-lg mb-6"><span>Total:</span><span id="cart-total-price">Rs. 0</span></div>
-                <button onclick="orderViaWhatsApp()" class="w-full bg-brand-green text-white py-4 rounded-xl font-bold uppercase text-xs hover:bg-[#1E3A26] transition shadow-md">Checkout on WhatsApp</button>
+                <button onclick="orderViaWhatsApp()" class="w-full bg-brand-green text-white py-4 rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-[#1E3A26] transition shadow-md">Checkout on WhatsApp</button>
             </div>
         </div>
     </div>
@@ -284,7 +293,7 @@
         <span id="toast-icon"><i class="ph-fill ph-check-circle text-green-400 text-lg"></i></span> <span id="toast-message">Message</span>
     </div>
 
-    <!-- CORE LOGIC: Fetch from data/products.json created by the CMS -->
+    <!-- CORE LOGIC: Fetch from data/products.json created by Sveltia CMS -->
     <script>
         let products = [];
         let cart = [];
@@ -301,7 +310,7 @@
 
         document.addEventListener("DOMContentLoaded", async () => {
             try {
-                // Fetch the JSON file that Decap CMS edits!
+                // Fetch the JSON file that Sveltia CMS edits!
                 const res = await fetch('data/products.json');
                 if (res.ok) {
                     const data = await res.json();
@@ -342,14 +351,13 @@
         function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow=''; }
 
         function renderHomePage() {
-            // Find Hero Product
             const heroProd = products.find(p => p.isHero) || products[0];
             const heroContainer = document.getElementById('hero-product-container');
             if (heroProd && heroContainer) {
                 const discount = Math.round(((heroProd.mrp - heroProd.price) / heroProd.mrp) * 100);
                 heroContainer.innerHTML = `
                     <div class="bg-white/95 backdrop-blur-md p-6 rounded-[2rem] shadow-2xl max-w-[320px] w-full border border-white hover-lift cursor-pointer" onclick="openProductPage('${heroProd.id}')">
-                        ${discount > 0 ? `<div class="absolute -top-3 -right-3 bg-[#C2A36C] text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg z-10">${discount}% OFF</div>` : ''}
+                        ${discount > 0 ? `<div class="absolute -top-3 -right-3 bg-[#C2A36C] text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg z-10 tracking-wider">${discount}% OFF</div>` : ''}
                         <div class="bg-[#F4EEDF] rounded-2xl p-6 mb-5 h-64 flex items-center justify-center">
                             <img src="${heroProd.images[0].replace(/^\//, '')}" class="max-w-full max-h-full object-contain mix-blend-multiply drop-shadow-xl" onerror="this.src='https://placehold.co/400/F4EEDF/2B4E35?text=Product'">
                         </div>
@@ -357,12 +365,11 @@
                         <p class="text-xs text-gray-500 mb-4 line-clamp-2">${heroProd.desc}</p>
                         <div class="flex justify-between items-center pt-4 border-t border-gray-100">
                             <div><div class="text-xs text-gray-400 line-through">Rs. ${heroProd.mrp}</div><div class="font-bold text-lg text-brand-green">Rs. ${heroProd.price}</div></div>
-                            <button class="bg-brand-green text-white px-6 py-2.5 rounded-full text-[10px] font-bold hover:bg-[#1E3A26] uppercase transition">View Details</button>
+                            <button class="bg-brand-green text-white px-6 py-2.5 rounded-full text-[10px] font-bold hover:bg-[#1E3A26] uppercase tracking-wider transition">View Details</button>
                         </div>
                     </div>`;
             }
 
-            // Render Featured Grid (Limit to 3 plus the info box)
             const gridContainer = document.getElementById('dynamic-products-grid');
             let gridHTML = `
                 <div class="bg-white rounded-3xl p-8 border-2 border-blue-400 flex flex-col justify-between shadow-sm">
@@ -370,23 +377,23 @@
                         <p class="text-sm text-gray-700 leading-relaxed mb-6"><strong class="text-gray-900">Expert-formulated</strong> and rooted in the study of ancient herbs.</p>
                         <p class="text-sm text-gray-700 font-medium">Explore our range:</p>
                     </div>
-                    <button onclick="openShopWithCategory('All')" class="mt-8 flex items-center justify-between w-full border border-gray-200 rounded-full px-6 py-3 text-[11px] font-bold text-gray-700 hover:bg-gray-50 transition uppercase">Discover All <i class="ph ph-arrow-right"></i></button>
+                    <button onclick="openShopWithCategory('All')" class="mt-8 flex items-center justify-between w-full border border-gray-200 rounded-full px-6 py-3 text-[11px] font-bold text-gray-700 hover:bg-gray-50 transition uppercase tracking-wider">Discover All <i class="ph ph-arrow-right text-base"></i></button>
                 </div>`;
 
             products.slice(0, 3).forEach(p => {
                 const discount = Math.round(((p.mrp - p.price) / p.mrp) * 100);
                 gridHTML += `
                     <div class="bg-white rounded-3xl p-5 border border-gray-100 hover-lift cursor-pointer shadow-sm flex flex-col" onclick="openProductPage('${p.id}')">
-                        ${discount > 0 ? `<div class="absolute top-5 right-5 bg-white border border-gray-100 text-gray-600 text-[9px] font-bold px-2 py-1 rounded shadow-sm z-10 uppercase">${discount}% off</div>` : ''}
+                        ${discount > 0 ? `<div class="absolute top-5 right-5 bg-white border border-gray-100 text-gray-600 text-[9px] font-bold px-2 py-1 rounded shadow-sm z-10 uppercase tracking-wider">${discount}% off</div>` : ''}
                         <div class="bg-[#F4EEDF] rounded-2xl p-4 h-56 mb-5 flex items-center justify-center">
-                            <img src="${p.images[0].replace(/^\//, '')}" class="max-w-full max-h-full object-contain mix-blend-multiply" onerror="this.src='https://placehold.co/300/F4EEDF/2B4E35?text=Product'">
+                            <img src="${p.images[0].replace(/^\//, '')}" class="max-w-full max-h-full object-contain mix-blend-multiply drop-shadow-md" onerror="this.src='https://placehold.co/300/F4EEDF/2B4E35?text=Product'">
                         </div>
                         <div class="mt-auto">
-                            <h3 class="font-bold text-gray-900 text-sm mb-1 uppercase truncate">${p.name}</h3>
+                            <h3 class="font-bold text-gray-900 text-sm mb-1 uppercase tracking-wider truncate">${p.name}</h3>
                             <p class="text-xs text-gray-500 mb-3 h-8 line-clamp-2">${p.desc}</p>
                             <div class="flex justify-between items-center pt-3 border-t border-gray-50">
                                 <div><span class="text-[10px] text-gray-400 line-through block">Rs. ${p.mrp}</span><span class="font-bold text-brand-green text-base">Rs. ${p.price}</span></div>
-                                <button class="bg-brand-green text-white px-4 py-2 rounded-lg text-[10px] font-bold uppercase hover:bg-[#1E3A26]">View</button>
+                                <button class="bg-brand-green text-white px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-[#1E3A26]">View</button>
                             </div>
                         </div>
                     </div>`;
@@ -395,7 +402,6 @@
         }
 
         function openShopWithCategory(category) {
-            // Build Sidebar
             const allCats = ["All", "Men's Health", "Women's Health", "Digestive Health", "Blood Booster", "Skin care", "Hair care", "Immunity Care", "Daily Essentials"];
             let sideHTML = '';
             allCats.forEach(c => {
@@ -416,14 +422,14 @@
                     grid.innerHTML += `
                         <div class="bg-white rounded-3xl p-5 border border-gray-100 hover-lift cursor-pointer shadow-sm flex flex-col" onclick="openProductPage('${p.id}')">
                             <div class="bg-[#F4EEDF] rounded-2xl p-4 h-56 mb-5 flex items-center justify-center">
-                                <img src="${p.images[0].replace(/^\//, '')}" class="max-w-full max-h-full object-contain mix-blend-multiply" onerror="this.src='https://placehold.co/300/F4EEDF/2B4E35?text=Img'">
+                                <img src="${p.images[0].replace(/^\//, '')}" class="max-w-full max-h-full object-contain mix-blend-multiply drop-shadow-md" onerror="this.src='https://placehold.co/300/F4EEDF/2B4E35?text=Img'">
                             </div>
                             <div class="mt-auto">
-                                <h3 class="font-bold text-gray-900 text-sm mb-1 uppercase truncate">${p.name}</h3>
+                                <h3 class="font-bold text-gray-900 text-sm mb-1 uppercase tracking-wider truncate">${p.name}</h3>
                                 <p class="text-[10px] text-gray-400 mb-2 uppercase">${p.category}</p>
                                 <div class="flex justify-between items-center pt-3 border-t border-gray-50">
                                     <span class="font-bold text-brand-green text-base">Rs. ${p.price}</span>
-                                    <button class="bg-brand-green text-white px-4 py-2 rounded-lg text-[10px] font-bold uppercase">View</button>
+                                    <button class="bg-brand-green text-white px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider">View</button>
                                 </div>
                             </div>
                         </div>`;
@@ -458,7 +464,7 @@
                 const borderClass = index === 0 ? 'border-brand-green' : 'border-transparent hover:border-brand-green';
                 const cleanSrc = imgSrc.replace(/^\//, '');
                 thumbContainer.innerHTML += `
-                    <div class="w-24 h-24 bg-[#F4EEDF] rounded-2xl flex-shrink-0 cursor-pointer border-2 ${borderClass} p-2 transition hover-lift" onclick="changeMainImage(this, '${cleanSrc}')">
+                    <div class="w-24 h-24 bg-[#F4EEDF] rounded-2xl flex-shrink-0 cursor-pointer border-2 ${borderClass} p-2 transition hover-lift shadow-sm" onclick="changeMainImage(this, '${cleanSrc}')">
                         <img src="${cleanSrc}" class="max-w-full max-h-full object-contain mix-blend-multiply" onerror="this.parentElement.style.display='none'">
                     </div>`;
             });
@@ -489,7 +495,7 @@
             cart.push(product);
             document.getElementById('cart-badge').textContent = cart.length;
             renderCartModal();
-            showToast('Added to cart!');
+            showToast('Added to cart successfully!');
         }
 
         function renderCartModal() {
@@ -503,7 +509,7 @@
                     <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-100">
                         <div class="w-16 h-16 bg-[#F4EEDF] rounded-lg p-1 flex items-center justify-center"><img src="${item.images[0].replace(/^\//, '')}" class="max-w-full max-h-full object-contain mix-blend-multiply"></div>
                         <div class="flex-grow"><h4 class="text-sm font-bold">${item.name}</h4><p class="text-brand-green font-bold text-xs">Rs. ${item.price}</p></div>
-                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 p-2"><i class="ph-fill ph-trash text-lg"></i></button>
+                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 p-2 transition"><i class="ph-fill ph-trash text-lg"></i></button>
                     </div>`;
             });
             document.getElementById('cart-total-price').textContent = `Rs. ${total}`;
