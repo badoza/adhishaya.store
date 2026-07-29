@@ -1,0 +1,52 @@
+backend:
+name: github
+
+IMPORTANT: Make sure this is your exact GitHub username / repository!
+
+repo: badoza/adhishaya.store
+branch: main
+
+Images uploaded in the CMS will be saved directly to the 'images' folder in GitHub
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+
+name: "store_database"
+label: "Store Database"
+files:
+
+label: "Product Inventory"
+name: "products"
+file: "data/products.json"
+fields:
+
+name: "items"
+label: "All Products"
+widget: "list"
+fields:
+
+{label: "Unique Product ID (e.g., prod_1)", name: "id", widget: "string"}
+
+{label: "Product Name", name: "name", widget: "string"}
+
+{label: "Category", name: "category", widget: "select", options: ["Men's Health", "Women's Health", "Digestive Health", "Blood Booster", "Skin care", "Hair care", "Immunity Care", "Daily Essentials"]}
+
+{label: "Short Description", name: "desc", widget: "text"}
+
+{label: "Selling Price (Rs)", name: "price", widget: "number"}
+
+{label: "MRP Original Price (Rs)", name: "mrp", widget: "number"}
+
+{label: "Star Rating (e.g., 4.8)", name: "rating", widget: "number", value_type: "float", default: 5.0}
+
+{label: "Total Reviews (e.g., 150)", name: "reviews", widget: "number", default: 0}
+
+{label: "Set as Hero Product (Shows on Home Banner)?", name: "isHero", widget: "boolean", default: false, required: false}
+
+{label: "Main Cover Image", name: "image", widget: "image"}
+
+{label: "Extra Gallery Images (For the slider)", name: "gallery", widget: "list", field: {label: "Image", name: "img", widget: "image"}, required: false}
+
+{label: "Tamil / Deep Details Content", name: "tamil_content", widget: "markdown", required: false}
