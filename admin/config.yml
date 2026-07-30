@@ -27,26 +27,62 @@ label: "All Products"
 widget: "list"
 fields:
 
-{label: "Unique Product ID (e.g., prod_1)", name: "id", widget: "string"}
+name: "id"
+label: "Unique Product ID (e.g., prod_1)"
+widget: "string"
 
-{label: "Product Name", name: "name", widget: "string"}
+name: "name"
+label: "Product Name"
+widget: "string"
 
-{label: "Category", name: "category", widget: "select", options: ["Men's Health", "Women's Health", "Digestive Health", "Blood Booster", "Skin care", "Hair care", "Immunity Care", "Daily Essentials"]}
+name: "category"
+label: "Category"
+widget: "select"
+options: ["Men's Health", "Women's Health", "Digestive Health", "Blood Booster", "Skin care", "Hair care", "Immunity Care", "Daily Essentials"]
 
-{label: "Short Description", name: "desc", widget: "text"}
+name: "desc"
+label: "Short Description"
+widget: "text"
 
-{label: "Selling Price (Rs)", name: "price", widget: "number"}
+name: "price"
+label: "Selling Price (Rs)"
+widget: "number"
 
-{label: "MRP Original Price (Rs)", name: "mrp", widget: "number"}
+name: "mrp"
+label: "MRP Original Price (Rs)"
+widget: "number"
 
-{label: "Star Rating (e.g., 4.8)", name: "rating", widget: "number", value_type: "float", default: 5.0}
+name: "rating"
+label: "Star Rating (e.g., 4.8)"
+widget: "number"
+value_type: "float"
+default: 5.0
 
-{label: "Total Reviews (e.g., 150)", name: "reviews", widget: "number", default: 0}
+name: "reviews"
+label: "Total Reviews (e.g., 150)"
+widget: "number"
+default: 0
 
-{label: "Set as Hero Product (Shows on Home Banner)?", name: "isHero", widget: "boolean", default: false, required: false}
+name: "isHero"
+label: "Set as Hero Product (Shows on Home Banner)?"
+widget: "boolean"
+default: false
+required: false
 
-{label: "Main Cover Image", name: "image", widget: "image"}
+name: "image"
+label: "Main Cover Image"
+widget: "image"
 
-{label: "Extra Gallery Images (For the slider)", name: "gallery", widget: "list", field: {label: "Image", name: "img", widget: "image"}, required: false}
+name: "gallery"
+label: "Extra Gallery Images (For the slider)"
+widget: "list"
+required: false
+field:
+name: "img"
+label: "Image"
+widget: "image"
 
-{label: "Tamil / Deep Details Content", name: "tamil_content", widget: "markdown", required: false}
+name: "tamil_content"
+label: "Tamil / Deep Details Content"
+widget: "markdown"
+required: false
